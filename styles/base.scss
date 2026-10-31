@@ -84,6 +84,16 @@ a { text-underline-offset: .18em; }
   color: var(--ai-ink);
   text-wrap: balance;
 }
+.home-hero .display { margin-bottom: .7rem !important; }
+.home-hero .display-sub {
+  font-family: $headings-font-family;
+  font-size: clamp(1.25rem, 2.1vw, 1.6rem);
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--ai-ink-soft);
+  margin: 0 0 1.4rem;
+  max-width: 36ch;
+}
 .home-hero .lede { font-size: 1.12rem; color: var(--ai-text-soft); max-width: 44ch; margin-bottom: 0; }
 .home-hero .actions { margin: 1.6rem 0 0; display: flex; gap: .8rem; flex-wrap: wrap; }
 .hero-fits { margin: 0; justify-self: end; }

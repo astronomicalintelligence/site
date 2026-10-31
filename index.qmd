@@ -1,5 +1,5 @@
 ---
-pagetitle: "Astronomical Intelligence: tested workflows for science with language models"
+pagetitle: "Astronomical Intelligence: the first open collection of tested workflows for science with language models"
 toc: false
 page-layout: full
 title-block-style: none
@@ -17,7 +17,8 @@ listing:
 ::: {.home-hero}
 ```{=html}
 <div class="hero-copy">
-<p class="display" role="heading" aria-level="1">Language models for research, tested like instruments.</p>
+<p class="display" role="heading" aria-level="1">Science with language models, done properly.</p>
+<p class="display-sub">The first open collection of tested workflows.</p>
 <p class="lede">Step-by-step workflows for astronomers and other scientists. Each one says which model it was tested with, when, how to check the output and where it fails.</p>
 <p class="actions"><a class="btn-ai solid" href="workflows/index.html">Browse workflows</a> <a class="btn-ai" href="contribute.html">Contribute a workflow</a></p>
 </div>
