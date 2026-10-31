@@ -23,11 +23,11 @@ listing:
 </div>
 <figure class="hero-fits">
 <div class="fits" role="img" aria-label="Example of the header shown on every workflow"><span class="k">OBJECT  =</span><span class="v"> 'Literature search with ADS'</span>
-<span class="k">MODEL   =</span><span class="v"> 'name and version'</span><span class="c">  / always stated</span>
-<span class="k">TESTED  =</span><span class="v"> 'YYYY-MM-DD'</span><span class="c">        / models change</span>
-<span class="k">QFLAG   =</span><span class="flag"> 'L2'</span><span class="c">                / reproduced</span>
-<span class="k">VERIFY  =</span><span class="v"> 'How to check'</span><span class="c">      / never skipped</span>
-<span class="k">FAILURES=</span><span class="v">                    3</span><span class="c"> / documented</span>
+<span class="k">MODEL   =</span><span class="v"> 'name and version'</span>
+<span class="k">TESTED  =</span><span class="v"> 'YYYY-MM-DD'</span>
+<span class="k">QFLAG   =</span><span class="flag"> 'L2'</span>
+<span class="k">VERIFY  =</span><span class="v"> 'How to check'</span>
+<span class="k">FAILURES=</span><span class="v"> 3</span>
 <span class="k">END</span></div>
 <figcaption>Every workflow opens with a header like this. <a href="start.html#reading-a-workflow">How to read it</a></figcaption>
 </figure>
