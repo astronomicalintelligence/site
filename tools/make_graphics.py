@@ -11,41 +11,56 @@ ROOT = Path(__file__).resolve().parent.parent
 INK_LIGHT, INK_DARK, HALPHA = "#17324D", "#BFD3EA", "#C8323C"
 
 # ---------------------------------------------------------------- logo
-# A noisy baseline with one emission line: how astronomers read light,
-# and how a language model scores its next token.
-def _curve():
-    """Smooth emission line on a lightly noisy baseline, 32x28 box."""
+# "Ai" drawn as a spectrum: a tall emission line for the A, a smaller narrow
+# line for the i, and a red star as the dot of the i.
+LOGO_W, LOGO_H, LOGO_BASE = 35, 28, 23.5
+XA, HA = 11.5, 20.5      # the A
+XI, HI = 24.2, 11.0      # the i
+
+
+def _pvoigt(x, x0, h, fwhm, eta):
+    """Pseudo-Voigt profile: a natural-looking spectral line."""
+    s = fwhm / 2.3548
+    g = math.exp(-0.5 * ((x - x0) / s) ** 2)
+    lor = 1 / (1 + ((x - x0) / (fwhm / 2)) ** 2)
+    return h * ((1 - eta) * g + eta * lor)
+
+
+def _logo_flux(x):
+    quiet = (1 - math.exp(-0.5 * ((x - XA) / 4.0) ** 2)) * (1 - math.exp(-0.5 * ((x - XI) / 2.0) ** 2))
+    wiggle = 0.3 * (0.65 * math.sin(x * 1.15) + 0.35 * math.sin(x * 2.1 + 1.0)) * quiet
+    return LOGO_BASE - _pvoigt(x, XA, HA, 3.4, 0.25) - _pvoigt(x, XI, HI, 1.3, 0.15) + wiggle
+
+
+def _star(cx, cy, r=2.9, s=0.8):
     pts = []
-    x = 2.0
-    while x <= 30.0 + 1e-9:
-        peak = 19.5 * math.exp(-0.5 * ((x - 16.5) / 1.2) ** 2)
-        noise = (0.55 * math.sin(x * 1.15) + 0.3 * math.sin(x * 2.1 + 1.0)) * (1 - math.exp(-0.5 * ((x - 16.5) / 2.2) ** 2))
-        pts.append((x, 23.5 - peak + noise))
-        x += 0.5
+    for k in range(8):
+        a = math.pi / 4 * k - math.pi / 2
+        rad = r if k % 2 == 0 else s
+        pts.append((cx + rad * math.cos(a), cy + rad * math.sin(a)))
     return pts
 
 
-_PTS = _curve()
-_fmt = lambda seg: " ".join(f"{x:.1f},{y:.2f}" for x, y in seg)
-BASE = _fmt([p for p in _PTS if p[0] <= 13.5])
-PEAK = _fmt([p for p in _PTS if 13.5 <= p[0] <= 19.5])
-TAIL = _fmt([p for p in _PTS if p[0] >= 19.5])
+def _fmt(pts):
+    return " ".join(f"{x:.2f},{y:.2f}" for x, y in pts)
 
 
 def mark(ink, stroke):
+    xs = [2 + 0.25 * k for k in range(int((LOGO_W - 4) / 0.25) + 1)]
+    line = _fmt([(x, _logo_flux(x)) for x in xs])
+    star = _fmt(_star(XI, LOGO_BASE - HI - 4.6))
     return (
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 28" width="32" height="28" '
-        'role="img" aria-label="Astronomical Intelligence">'
-        f'<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="{stroke}">'
-        f'<polyline points="{BASE}" stroke="{ink}"/>'
-        f'<polyline points="{TAIL}" stroke="{ink}"/>'
-        f'<polyline points="{PEAK}" stroke="{HALPHA}"/>'
-        "</g></svg>\n"
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {LOGO_W} {LOGO_H}" '
+        f'width="{LOGO_W}" height="{LOGO_H}" role="img" aria-label="Astronomical Intelligence">'
+        f'<polyline points="{line}" fill="none" stroke="{ink}" stroke-width="{stroke}" '
+        'stroke-linecap="round" stroke-linejoin="round"/>'
+        f'<polygon points="{star}" fill="{HALPHA}"/>'
+        "</svg>\n"
     )
 
 
-(ROOT / "images/logo.svg").write_text(mark(INK_LIGHT, 2.2))
-(ROOT / "images/logo-dark.svg").write_text(mark(INK_DARK, 2.2))
+(ROOT / "images/logo.svg").write_text(mark(INK_LIGHT, 2.6))
+(ROOT / "images/logo-dark.svg").write_text(mark(INK_DARK, 2.6))
 (ROOT / "images/favicon.svg").write_text(mark(INK_LIGHT, 2.8))
 
 # ------------------------------------------------------------ spectrum
