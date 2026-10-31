@@ -1,0 +1,57 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - fonts/
+
+website:
+  title: "Astronomical Intelligence"
+  description: "Tested, dated workflows for doing science with language models."
+  site-url: https://astronomicalintelligence.org
+  repo-url: https://github.com/astronomicalintelligence/site
+  repo-actions: [edit, issue]
+  favicon: images/favicon.svg
+  search:
+    location: navbar
+    type: overlay
+  navbar:
+    logo: images/logo.svg
+    title: "Astronomical Intelligence"
+    left:
+      - text: Start here
+        href: start.qmd
+      - text: Workflows
+        href: workflows/index.qmd
+      - text: Prompts
+        href: prompts/index.qmd
+      - text: Failures
+        href: failures/index.qmd
+      - text: Notes
+        href: notes/index.qmd
+    right:
+      - text: Contribute
+        href: contribute.qmd
+      - icon: github
+        href: https://github.com/astronomicalintelligence/site
+        aria-label: GitHub repository
+  page-footer:
+    left: "Text: CC BY 4.0. Code: MIT."
+    right:
+      - text: About
+        href: about.qmd
+      - text: Policies
+        href: policies.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles/base.scss, styles/light.scss]
+      dark: [cosmo, styles/base.scss, styles/dark.scss]
+    respect-user-color-scheme: true
+    toc: true
+    toc-title: "On this page"
+    css: styles/fonts.css
+    code-copy: true
+    code-overflow: wrap
+    smooth-scroll: false
+    link-external-newwindow: true

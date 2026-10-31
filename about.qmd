@@ -1,0 +1,9 @@
+---
+title: "About"
+---
+
+Astronomical Intelligence is an open collection of tested workflows for doing research with language models, started by astronomers and open to every field.
+
+The site is independent of any AI company. Models are named because results depend on them, not as endorsements.
+
+Text is released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) and code under the [MIT licence](https://opensource.org/license/mit).

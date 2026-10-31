@@ -1,0 +1,22 @@
+---
+title: "Invented citations"
+description: "Plausible references that do not exist, or real papers credited with results they never contain."
+date: 2026-10-31
+---
+
+## What happens
+
+Asked for references, a model can return citations with real-looking authors, journals and years that do not exist. A subtler version: the paper exists, but does not contain the result attributed to it.
+
+## How to catch it
+
+- Resolve every reference in ADS or by DOI before using it.
+- For each citation, find the sentence in the paper that supports the claim.
+
+## How to prevent it
+
+Give the model the papers (or their abstracts) and require it to cite only from that set, as in [Literature search with NASA ADS](../workflows/literature-ads.qmd). Then check automatically that every cited identifier is in the set.
+
+## Cases
+
+To be added: dated examples with the model and the prompt used.

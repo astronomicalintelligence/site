@@ -1,0 +1,36 @@
+/*-- scss:defaults --*/
+// Cool plate-archive paper, Prussian-blue ink, H-alpha red for the one thing that matters.
+$ai-bg:        #F2F5F8;
+$ai-panel:     #E6ECF2;
+$ai-ink:       #17324D;
+$ai-ink-soft:  #4A6382;
+$ai-text:      #1C2733;
+$ai-muted:     #66768A;
+$ai-accent:    #B4232F;   // H-alpha
+$ai-rule:      #CCD6E0;
+
+$body-bg: $ai-bg;
+$body-color: $ai-text;
+$primary: $ai-ink;
+$link-color: $ai-ink;
+$navbar-bg: $ai-bg;
+$navbar-fg: $ai-ink;
+$navbar-hl: $ai-accent;
+$footer-bg: $ai-bg;
+$code-color: $ai-ink;
+$code-block-bg: $ai-panel;
+$callout-color-note: $ai-ink-soft;
+$callout-color-tip: $ai-ink-soft;
+
+/*-- scss:rules --*/
+:root {
+  --ai-bg: #{$ai-bg};
+  --ai-panel: #{$ai-panel};
+  --ai-ink: #{$ai-ink};
+  --ai-ink-soft: #{$ai-ink-soft};
+  --ai-text: #{$ai-text};
+  --ai-text-soft: #{mix($ai-text, $ai-bg, 82%)};
+  --ai-muted: #{$ai-muted};
+  --ai-accent: #{$ai-accent};
+  --ai-rule: #{$ai-rule};
+}

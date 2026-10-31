@@ -1,0 +1,12 @@
+---
+title: "Why this site"
+description: "Opinions about AI in science are everywhere. Tested procedures are not."
+date: 2026-10-31
+categories: [about]
+---
+
+There is no shortage of opinions on how language models will change research, and some of them come from people worth reading. What is hard to find is the practical layer underneath: the exact procedure someone followed, with which model, on what date, how they checked the result, and where it went wrong.
+
+This site collects that layer, starting from astronomy and open to every field. Each workflow is dated and carries a verification level, because a procedure that worked with one model in spring may fail with another in autumn.
+
+Contributions are welcome. See [how to contribute](../../contribute.qmd).

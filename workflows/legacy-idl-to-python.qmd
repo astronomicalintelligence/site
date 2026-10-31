@@ -1,0 +1,35 @@
+---
+title: "Porting legacy IDL code to Python"
+description: "Translate an IDL routine with a coding agent and prove the Python version gives the same numbers."
+categories: [code, astronomy]
+phase: "Data and code"
+model: "to be tested"
+tool: "Coding agent (e.g. Claude Code, Codex)"
+tested: "not yet"
+qflag: L0
+time-saved: "to be measured"
+---
+
+::: {.callout-note}
+## Draft
+Outline only. Steps, prompts and checks will be filled in after testing on a real routine.
+:::
+
+## Goal
+
+Move a working IDL routine to Python with Astropy and NumPy, keeping the numerical results identical within a stated tolerance.
+
+## Outline
+
+1. Run the original IDL code on two or three real inputs and save the outputs as reference files.
+2. Ask the agent to write the Python version and a test that compares it with the reference outputs.
+3. Iterate until the test passes. Review every place where the agent changed the algorithm.
+4. Check array ordering, indexing from 0 versus 1, and integer division: the classic sources of silent errors.
+
+## How to check the result
+
+The test against the IDL reference outputs is the check. A port without it is not finished.
+
+## Where it fails
+
+To be documented after testing.

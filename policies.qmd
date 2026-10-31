@@ -1,0 +1,25 @@
+---
+title: "Policies"
+description: "Journal and observatory rules on AI use, confidentiality, and how to declare AI assistance."
+---
+
+::: {.callout-note}
+## To be completed
+This page will collect, with links and dates, the current rules of the main journals and observatories. Rules change: always check the original source.
+:::
+
+## Journals
+
+To be added: A&A, MNRAS, ApJ/AAS journals, Nature, Science, PRL.
+
+## Observing proposals and peer review
+
+To be added: ESO, ALMA, ESA, NASA and other facilities, including rules on using AI when writing proposals and when reviewing other people's proposals.
+
+## Confidentiality
+
+Do not upload data, proposals or manuscripts that you are not authorised to share. Check whether your institution offers a model with a data-protection agreement.
+
+## Declaring AI use
+
+To be added: example statements for the acknowledgements or methods section.

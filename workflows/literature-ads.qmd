@@ -1,0 +1,105 @@
+---
+title: "Literature search with NASA ADS and a language model"
+description: "Build the query yourself, export abstracts from ADS, and let the model map the field with every claim tied to a bibcode you can check."
+categories: [literature, astronomy]
+phase: "Literature"
+model: "to be tested"
+tool: "Any chat model + ADS API"
+tested: "not yet"
+qflag: L0
+time-saved: "to be measured"
+---
+
+::: {.callout-note}
+## Draft
+This page shows the structure of a workflow. The steps are a proposal and have not yet been tested and timed. Once tested, the header above will record the model, the date and the verification level.
+:::
+
+## Goal
+
+Get a reliable first map of a topic (main results, open questions, who works on what) from a set of papers you chose, without the model inventing references.
+
+**Use it when** you are entering a new subfield or writing the introduction of a paper or proposal.
+**Don't use it** as a substitute for reading the key papers, or when the relevant results are only in the body of papers rather than in abstracts.
+
+## What you need
+
+- A free NASA ADS account and an [API token](https://ui.adsabs.harvard.edu/user/settings/token)
+- Python with `requests`
+- A chat model that accepts file uploads or long input
+
+## Steps
+
+### Write the query yourself
+
+The model should not decide which papers count. Build and refine the search in the ADS interface first, for example:
+
+```
+abs:"radio halo" year:2018-2026 property:refereed
+```
+
+Check the first results by eye. Adjust until most of the top 50 are relevant.
+
+### Export titles and abstracts
+
+```python
+import json, os, requests
+
+token = os.environ["ADS_TOKEN"]
+query = 'abs:"radio halo" year:2018-2026 property:refereed'
+r = requests.get(
+    "https://api.adsabs.harvard.edu/v1/search/query",
+    headers={"Authorization": f"Bearer {token}"},
+    params={"q": query, "fl": "bibcode,title,author,year,abstract",
+            "rows": 50, "sort": "citation_count desc"},
+)
+r.raise_for_status()
+docs = r.json()["response"]["docs"]
+json.dump(docs, open("papers.json", "w"), indent=1)
+print(len(docs), "papers saved")
+```
+
+### Ask for a map, constrained to the file
+
+Upload `papers.json` and use this prompt:
+
+```text
+You are helping me review the literature. Use ONLY the papers in the attached
+file. Do not use outside knowledge and do not add references.
+
+1. Group the papers into 4-7 themes. For each theme write 3-5 sentences.
+2. Every factual statement must end with the bibcode(s) it comes from,
+   in square brackets, exactly as written in the file.
+3. List open questions or disagreements between papers, with bibcodes.
+4. List what the abstracts do not let you judge (methods, caveats, numbers).
+
+If something is not supported by the abstracts, say so instead of guessing.
+```
+
+## How to check the result
+
+1. **Every bibcode exists in your file.** Run this on the model's answer saved as `answer.md`:
+
+    ```python
+    import json, re
+    known = {d["bibcode"] for d in json.load(open("papers.json"))}
+    cited = set(re.findall(r"\b\d{4}[A-Za-z&.][\w&.]{13}[A-Z.]\b",
+                           open("answer.md").read()))
+    print("not in file:", sorted(cited - known) or "none")
+    print("never cited:", len(known - cited), "papers")
+    ```
+
+2. **Spot-check five claims** against the abstracts they cite. If one is wrong, check them all.
+3. **Look at the papers that were never cited.** The model often drops papers that do not fit its themes.
+4. **Read the key papers yourself** before relying on any statement in your own writing.
+
+## Where it fails
+
+- Results that are only in the body of a paper are invisible: the model sees abstracts only.
+- Themes can be too tidy. Real disagreements get smoothed into consensus.
+- The query decides everything. A narrow query gives a confident but partial map.
+
+## Variations
+
+- Ask for a table instead of prose: theme, key result, bibcodes, open question.
+- Repeat the same prompt with a second model and compare the themes.

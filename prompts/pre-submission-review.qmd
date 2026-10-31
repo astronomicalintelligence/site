@@ -1,0 +1,39 @@
+---
+title: "Pre-submission referee report"
+description: "Ask a model to review your draft the way a demanding referee would, before a real one does."
+categories: [review, writing]
+phase: "Review"
+model: "to be tested"
+tool: "Any chat model with file upload"
+tested: "not yet"
+qflag: L0
+---
+
+::: {.callout-note}
+## Draft
+Prompt proposed, not yet tested. Example input and output will be added after testing.
+:::
+
+## Prompt
+
+```text
+You are a referee for [journal]. Review the attached manuscript.
+
+Write the report in three parts:
+1. Summary of the claims, in 5 sentences, so I can check you understood them.
+2. Major issues: anything that could change the conclusions (methods,
+   statistics, missing comparisons, unsupported claims). Quote the passage.
+3. Minor issues: clarity, figures, units, notation, references.
+
+Be specific and do not praise. If you are unsure whether something is an
+error, say so and explain what would settle it.
+```
+
+## Example
+
+To be added: a short excerpt of a real draft and the report obtained.
+
+## Known limits
+
+- The model cannot check numbers it cannot recompute. Treat silence on a result as "not checked", not "correct".
+- Do not upload manuscripts or proposals that are not yours to share.

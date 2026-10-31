@@ -1,0 +1,72 @@
+---
+pagetitle: "Astronomical Intelligence: tested workflows for science with language models"
+toc: false
+page-layout: full
+title-block-style: none
+listing:
+  id: latest
+  contents:
+    - "workflows/*.qmd"
+    - "!workflows/index.qmd"
+  template: _templates/workflows.ejs
+  sort: "tested desc"
+  max-items: 4
+  fields: [title, description, qflag, phase, model, tested]
+---
+
+::: {.home-hero}
+:::: {}
+# Language models for research, tested like instruments.
+
+[Step-by-step workflows for astronomers and other scientists. Each one says which model it was tested with, when, how to check the output and where it fails.]{.lede}
+
+[Browse workflows](workflows/index.qmd){.btn-ai .solid} [Contribute a workflow](contribute.qmd){.btn-ai}
+::::
+
+```{=html}
+<div class="fits" role="img" aria-label="Example of the header shown on every workflow"><span class="k">OBJECT  =</span><span class="v"> 'Literature search with ADS'</span>
+<span class="k">MODEL   =</span><span class="v"> 'name and version'</span><span class="c">  / always stated</span>
+<span class="k">TESTED  =</span><span class="v"> 'YYYY-MM-DD'</span><span class="c">        / models change</span>
+<span class="k">QFLAG   =</span><span class="flag"> 'L2'</span><span class="c">                / reproduced</span>
+<span class="k">VERIFY  =</span><span class="v"> 'How to check'</span><span class="c">      / never skipped</span>
+<span class="k">FAILURES=</span><span class="v">                    3</span><span class="c"> / documented</span>
+<span class="k">END</span></div>
+```
+:::
+
+## Workflows by research phase
+
+<ul class="phases">
+<li><a href="workflows/index.qmd#category=literature">Literature</a><span>Search, read and synthesise papers with ADS and arXiv</span></li>
+<li><a href="workflows/index.qmd#category=proposals">Proposals</a><span>Observing and funding proposals, within the rules</span></li>
+<li><a href="workflows/index.qmd#category=code">Data and code</a><span>Pipelines, legacy code, CASA and FITS handling</span></li>
+<li><a href="workflows/index.qmd#category=analysis">Analysis</a><span>Statistics, fits, units and derivations</span></li>
+<li><a href="workflows/index.qmd#category=writing">Writing</a><span>Drafts, figures and language review</span></li>
+<li><a href="workflows/index.qmd#category=review">Review</a><span>Pre-submission checks and referee replies</span></li>
+</ul>
+
+## Latest workflows
+
+::: {#latest}
+:::
+
+## How this site works
+
+::: {.principles}
+:::: {}
+### Test before trusting
+Every workflow is run on a real research task before it is published, and says how to check what the model produced.
+::::
+:::: {}
+### Date everything
+Models change every few months. Each page records the model, the tool and the date of the last test.
+::::
+:::: {}
+### Publish the failures
+Where a model got it wrong, the page says so. The [Failures](failures/index.qmd) section collects the errors worth knowing about.
+::::
+:::: {}
+### Keep it open
+Text is CC BY 4.0, code is MIT, and anyone can propose a workflow through GitHub. See [Contribute](contribute.qmd).
+::::
+:::

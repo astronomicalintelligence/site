@@ -1,0 +1,14 @@
+---
+title: "Prompts"
+description: "Prompts that worked on real research tasks, with the model, the date and the known limits."
+toc: false
+listing:
+  contents: "*.qmd"
+  template: ../_templates/workflows.ejs
+  sort: "tested desc"
+  categories: true
+  filter-ui: true
+  fields: [title, description, qflag, phase, model, tested, categories]
+---
+
+A prompt is listed here only with an example of real input and output and a note on where it stops working. Longer procedures live in [Workflows](../workflows/index.qmd).

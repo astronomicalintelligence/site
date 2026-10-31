@@ -1,0 +1,38 @@
+/*-- scss:defaults --*/
+// Observing at night: deep blue, not black; H-alpha lifted for contrast.
+$ai-bg:        #0F1B2B;
+$ai-panel:     #172739;
+$ai-ink:       #BFD3EA;
+$ai-ink-soft:  #8EA8C6;
+$ai-text:      #E3EAF2;
+$ai-muted:     #8797AB;
+$ai-accent:    #FF7A6E;   // H-alpha, lifted
+$ai-rule:      #26384D;
+
+$body-bg: $ai-bg;
+$body-color: $ai-text;
+$primary: $ai-ink;
+$link-color: $ai-ink;
+$navbar-bg: $ai-bg;
+$navbar-fg: $ai-ink;
+$navbar-hl: $ai-accent;
+$footer-bg: $ai-bg;
+$code-color: $ai-ink;
+$code-block-bg: $ai-panel;
+$callout-color-note: $ai-ink-soft;
+$callout-color-tip: $ai-ink-soft;
+$input-bg: $ai-panel;
+
+/*-- scss:rules --*/
+:root {
+  --ai-bg: #{$ai-bg};
+  --ai-panel: #{$ai-panel};
+  --ai-ink: #{$ai-ink};
+  --ai-ink-soft: #{$ai-ink-soft};
+  --ai-text: #{$ai-text};
+  --ai-text-soft: #{mix($ai-text, $ai-bg, 82%)};
+  --ai-muted: #{$ai-muted};
+  --ai-accent: #{$ai-accent};
+  --ai-rule: #{$ai-rule};
+}
+.btn-ai.solid { color: #0F1B2B; }
