@@ -1,0 +1,56 @@
+---
+title: "Radio FITS images and flux units"
+description: "A skill that makes an agent read radio FITS images safely: degenerate axes, beams, and Jy/beam to Jy conversions with units."
+categories: [code, analysis, astronomy]
+phase: "Data and code"
+model: "to be tested"
+tool: "Claude Code (Agent Skills)"
+tested: "not yet"
+qflag: L0
+---
+
+::: {.callout-note}
+## Draft
+Proposed content, not yet tested. The skill folder will be published for download after testing.
+:::
+
+## What it does
+
+When an agent writes code that opens a radio image, this skill makes it:
+
+- drop degenerate `FREQ` and `STOKES` axes before using the WCS;
+- read the beam from the header (`BMAJ`, `BMIN`, `BPA`) or from a beam table, and stop if it is missing;
+- convert Jy/beam to Jy using the beam area in pixels, with `astropy.units` throughout;
+- print the units of every quantity it reports.
+
+## SKILL.md (draft)
+
+```markdown
+---
+name: radio-fits-units
+description: Use when reading or measuring radio FITS images or cubes
+  (WSClean, CASA, DDFacet, AIPS headers), integrated fluxes, beams,
+  or Jy/beam conversions.
+---
+
+# Radio FITS images and flux units
+
+1. Open with astropy.io.fits; build the WCS with `.celestial` so that
+   FREQ and STOKES axes are dropped. Squeeze the data to 2D.
+2. Beam: read BMAJ, BMIN (degrees) and BPA. If absent, look for a
+   beam table. If still absent, stop and ask; never assume a beam.
+3. Beam area in pixels:
+   area = pi * BMAJ * BMIN / (4 ln 2) / |CDELT1 * CDELT2|
+4. Integrated flux [Jy] = sum(pixels in region) [Jy/beam] / area.
+5. Keep every quantity as an astropy Quantity and print units.
+6. Report the error: rms * sqrt(N_pix / area), plus a calibration
+   term the user states (ask if unknown).
+```
+
+## How to check the result
+
+Measure a source whose flux is known (a catalogue value or a point source in a simulated image) and compare.
+
+## Where it fails
+
+To be documented after testing.

@@ -1,0 +1,31 @@
+---
+title: "Reviews"
+description: "A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist."
+toc: false
+listing:
+  contents: "*.qmd"
+  template: ../_templates/workflows.ejs
+  sort: "tested desc"
+  fields: [title, description, qflag, phase, model, tested, categories]
+---
+
+Peer review stops at publication. Here a language model reviews published papers a second time, as a demanding referee would: are the claims supported, are the statistics sound, are there missing comparisons, do the numbers in the text match the tables and figures?
+
+Each review states:
+
+- the paper reviewed, with a link to the published version;
+- the model, the date and the exact review prompt or skill used, so anyone can rerun it;
+- what the model found, separated into points a scientist has **checked and confirmed**, points **checked and rejected**, and points **not yet checked**;
+- a note of the authors' reply, when they send one.
+
+## Ground rules
+
+- Only published papers, preferably open access, and only the parts needed to discuss each point are quoted.
+- Nothing is published until a scientist in the field has checked every point marked as confirmed. Unchecked model output is never presented as a finding.
+- Authors are informed and can reply. Their response is added to the review.
+- The goal is to test what AI review can and cannot do, not to grade people.
+
+::: {.callout-note}
+## First reviews in preparation
+The review prompt and format are being defined. [Suggest a paper](https://github.com/astronomicalintelligence/site/issues/new).
+:::

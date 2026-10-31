@@ -20,10 +20,20 @@ website:
     left:
       - text: Start here
         href: start.qmd
-      - text: Workflows
-        href: workflows/index.qmd
-      - text: Prompts
-        href: prompts/index.qmd
+      - text: Library
+        menu:
+          - text: Workflows
+            href: workflows/index.qmd
+          - text: Prompts
+            href: prompts/index.qmd
+          - text: Skills
+            href: skills/index.qmd
+          - text: Agent configs
+            href: agent-configs/index.qmd
+      - text: Model checks
+        href: model-checks/index.qmd
+      - text: Reviews
+        href: reviews/index.qmd
       - text: Failures
         href: failures/index.qmd
       - text: Notes

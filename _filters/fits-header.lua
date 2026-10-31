@@ -34,11 +34,11 @@ function Pandoc(doc)
   for _, r in ipairs(rows) do
     if r[2] and r[2] ~= "" then
       local key = string.format("%-8s=", r[1])
-      local val = string.format(" %-22s", "'" .. r[2] .. "'")
+      local val = " '" .. r[2] .. "'"
       local cls = (r[1] == "QFLAG") and "flag" or "v"
       table.insert(lines, string.format(
-        '<span class="k">%s</span><span class="%s">%s</span><span class="c"> / %s</span>',
-        key, cls, esc(val), esc(r[3])))
+        '<span class="k">%s</span><span class="%s">%s</span>',
+        key, cls, esc(val)))
     end
   end
   table.insert(lines, '<span class="k">END</span>')
