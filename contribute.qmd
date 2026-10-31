@@ -7,7 +7,7 @@ Anyone can propose content. Every contribution is reviewed before it is publishe
 
 ## Two ways to contribute
 
-- **With Git:** fork the [repository](https://github.com/astronomicalintelligence/site), add a file in `workflows/`, `prompts/` or `failures/`, and open a pull request.
+- **With Git:** fork the [repository](https://github.com/astronomicalintelligence/site), add a file in `workflows/`, `prompts/`, `skills/`, `agent-configs/`, `model-checks/`, `reviews/` or `failures/`, and open a pull request.
 - **Without Git:** [open an issue](https://github.com/astronomicalintelligence/site/issues/new) and paste your text. We will turn it into a page.
 
 ## What a workflow needs

@@ -1,0 +1,16 @@
+---
+title: "Agent configs"
+description: "CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project."
+toc: false
+listing:
+  contents: "*.qmd"
+  template: ../_templates/workflows.ejs
+  sort: "tested desc"
+  categories: true
+  filter-ui: true
+  fields: [title, description, qflag, phase, model, tested, categories]
+---
+
+Coding agents read a file at the root of the repository (`CLAUDE.md`, `AGENTS.md`) before they start working. A good one tells them how the project is organised, which conventions matter (units, coordinate frames, random seeds) and how to check their own work.
+
+Each template here is meant to be copied into a repository and adapted.

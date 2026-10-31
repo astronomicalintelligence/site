@@ -19,8 +19,8 @@ listing:
 <div class="hero-copy">
 <p class="display" role="heading" aria-level="1">Science with language models, done properly.</p>
 <p class="display-sub">The first open collection of tested workflows.</p>
-<p class="lede">Step-by-step workflows for astronomers and other scientists. Each one says which model it was tested with, when, how to check the output and where it fails.</p>
-<p class="actions"><a class="btn-ai solid" href="workflows/index.html">Browse workflows</a> <a class="btn-ai" href="contribute.html">Contribute a workflow</a></p>
+<p class="lede">Workflows, prompts, skills and agent configs for astronomers and other scientists. Each one says which model it was tested with, when, how to check the output and where it fails.</p>
+<p class="actions"><a class="btn-ai solid" href="#whats-here">Explore the library</a> <a class="btn-ai" href="contribute.html">Contribute</a></p>
 </div>
 <figure class="hero-fits">
 <div class="fits" role="img" aria-label="Example of the header shown on every workflow"><span class="k">OBJECT  =</span><span class="v"> 'Literature search with ADS'</span>
@@ -30,10 +30,23 @@ listing:
 <span class="k">VERIFY  =</span><span class="v"> 'How to check'</span>
 <span class="k">FAILURES=</span><span class="v"> 3</span>
 <span class="k">END</span></div>
-<figcaption>Every workflow opens with a header like this. <a href="start.html#reading-a-workflow">How to read it</a></figcaption>
+<figcaption>Every entry opens with a header like this. <a href="start.html#reading-a-workflow">How to read it</a></figcaption>
 </figure>
 ```
 :::
+
+## What you'll find here {#whats-here}
+
+<dl class="kinds">
+<div><dt><a href="workflows/index.html">Workflows</a></dt><dd>Step-by-step procedures for a research task, with the exact prompts and the checks to run on the result.</dd></div>
+<div><dt><a href="prompts/index.html">Prompts</a></dt><dd>Single prompts that worked on real research tasks, with an example of the output and their known limits.</dd></div>
+<div><dt><a href="skills/index.html">Skills</a></dt><dd>Packaged instructions and scripts that an AI agent loads when a task needs them, ready to install.</dd></div>
+<div><dt><a href="agent-configs/index.html">Agent configs</a></dt><dd>CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project.</dd></div>
+<div><dt><a href="model-checks/index.html">Model checks</a></dt><dd>Small, repeatable tests of models on real scientific tasks, with dated results.</dd></div>
+<div><dt><a href="reviews/index.html">Reviews</a></dt><dd>Papers, guides and announcements about AI in science, read critically: what they claim and what holds up.</dd></div>
+</dl>
+
+Everything carries the same header: model, tool, date of the last test and verification level. Errors worth knowing about are collected in [Failures](failures/index.html).
 
 ## Workflows by research phase
 

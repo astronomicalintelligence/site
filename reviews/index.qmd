@@ -1,0 +1,20 @@
+---
+title: "Reviews"
+description: "Published papers, guides and announcements about AI in science, read critically."
+toc: false
+listing:
+  contents: "*.qmd"
+  type: table
+  sort: "date desc"
+  fields: [date, title, description]
+  field-display-names:
+    title: "Reviewed"
+    description: "Verdict in one line"
+---
+
+New claims about AI in science appear every week. Each review here says what a paper, guide or announcement claims, what evidence it gives, what holds up and what a researcher can actually use from it.
+
+::: {.callout-note}
+## First reviews in preparation
+[Suggest something to review](https://github.com/astronomicalintelligence/site/issues/new).
+:::

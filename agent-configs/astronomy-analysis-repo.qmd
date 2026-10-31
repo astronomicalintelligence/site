@@ -1,0 +1,53 @@
+---
+title: "AGENTS.md for an astronomy analysis repository"
+description: "A starting point for Python analysis code: units, cosmology, reproducibility and tests that an agent must respect."
+categories: [code, astronomy]
+phase: "Data and code"
+model: "to be tested"
+tool: "Any coding agent that reads AGENTS.md or CLAUDE.md"
+tested: "not yet"
+qflag: L0
+---
+
+::: {.callout-note}
+## Draft
+Template proposed, not yet tested on a real repository.
+:::
+
+Copy this into `AGENTS.md` (or `CLAUDE.md`) at the root of your repository and edit the parts in brackets.
+
+```markdown
+# Project: [short description]
+
+## Layout
+- `src/` analysis code, `scripts/` one-off runs, `data/` read-only inputs,
+  `results/` generated outputs (never edit by hand), `tests/` pytest.
+
+## Conventions
+- Physical quantities use astropy.units. No bare floats for fluxes,
+  distances, frequencies or angles.
+- Cosmology: astropy.cosmology.[Planck18]. Do not change it silently.
+- Coordinates: ICRS unless stated. Say the frame when you convert.
+- Random numbers: numpy.random.default_rng(seed) with the seed in config.
+
+## Working rules
+- Never modify files in `data/`.
+- Before changing an analysis step, write or update a test in `tests/`
+  that pins the expected numbers, then run `pytest`.
+- When a result changes, show the old and new value and explain why.
+- If a required input (beam, redshift, calibration error) is missing,
+  stop and ask. Do not assume a value.
+
+## Checks before you finish
+- `pytest` passes.
+- Every figure saved by the code has axis labels with units.
+- New numbers in text or tables come from code that is in the repo.
+```
+
+## How to check the result
+
+Give the agent a task that tempts it to break a rule (for example, a missing beam size) and see whether it stops and asks.
+
+## Where it fails
+
+To be documented after testing.

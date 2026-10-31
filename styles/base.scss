@@ -104,6 +104,21 @@ a { text-underline-offset: .18em; }
   .hero-fits { justify-self: start; }
 }
 
+.kinds {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 2.2rem;
+  margin: 1.2rem 0 1rem;
+  border-top: 1px solid var(--ai-rule);
+}
+.kinds > div { padding: 1rem 0 1.1rem; border-bottom: 1px solid var(--ai-rule); }
+.kinds dt { font-family: $headings-font-family; font-size: 1.2rem; font-weight: 600; margin-bottom: .3rem; }
+.kinds dt a { text-decoration: none; }
+.kinds dt a:hover { color: var(--ai-accent); }
+.kinds dd { margin: 0; color: var(--ai-text-soft); font-size: .95rem; }
+@media (max-width: 900px) { .kinds { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .kinds { grid-template-columns: 1fr; } }
+
 // Research phases drawn as an emission spectrum with line identifications
 .spectrum { margin: 1.2rem 0 .5rem; }
 .spec-id, .spec-id:hover { text-decoration: none; }
