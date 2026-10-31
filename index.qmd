@@ -43,10 +43,9 @@ listing:
 <div><dt><a href="skills/index.html">Skills</a></dt><dd>Packaged instructions and scripts that an AI agent loads when a task needs them, ready to install.</dd></div>
 <div><dt><a href="agent-configs/index.html">Agent configs</a></dt><dd>CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project.</dd></div>
 <div><dt><a href="model-checks/index.html">Model checks</a></dt><dd>Small, repeatable tests of models on real scientific tasks, with dated results.</dd></div>
-<div><dt><a href="reviews/index.html">Reviews</a></dt><dd>Papers, guides and announcements about AI in science, read critically: what they claim and what holds up.</dd></div>
+<div><dt><a href="reviews/index.html">Reviews</a></dt><dd>A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist.</dd></div>
 </dl>
 
-Everything carries the same header: model, tool, date of the last test and verification level. Errors worth knowing about are collected in [Failures](failures/index.html).
 
 ## Workflows by research phase
 

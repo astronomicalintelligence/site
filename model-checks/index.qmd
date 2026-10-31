@@ -6,7 +6,6 @@ listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs
   sort: "tested desc"
-  categories: true
   fields: [title, description, qflag, phase, model, tested, categories]
 ---
 
