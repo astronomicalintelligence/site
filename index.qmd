@@ -15,15 +15,13 @@ listing:
 ---
 
 ::: {.home-hero}
-:::: {}
-# Language models for research, tested like instruments.
-
-[Step-by-step workflows for astronomers and other scientists. Each one says which model it was tested with, when, how to check the output and where it fails.]{.lede}
-
-[Browse workflows](workflows/index.qmd){.btn-ai .solid} [Contribute a workflow](contribute.qmd){.btn-ai}
-::::
-
 ```{=html}
+<div class="hero-copy">
+<p class="display" role="heading" aria-level="1">Language models for research, tested like instruments.</p>
+<p class="lede">Step-by-step workflows for astronomers and other scientists. Each one says which model it was tested with, when, how to check the output and where it fails.</p>
+<p class="actions"><a class="btn-ai solid" href="workflows/index.html">Browse workflows</a> <a class="btn-ai" href="contribute.html">Contribute a workflow</a></p>
+</div>
+<figure class="hero-fits">
 <div class="fits" role="img" aria-label="Example of the header shown on every workflow"><span class="k">OBJECT  =</span><span class="v"> 'Literature search with ADS'</span>
 <span class="k">MODEL   =</span><span class="v"> 'name and version'</span><span class="c">  / always stated</span>
 <span class="k">TESTED  =</span><span class="v"> 'YYYY-MM-DD'</span><span class="c">        / models change</span>
@@ -31,18 +29,22 @@ listing:
 <span class="k">VERIFY  =</span><span class="v"> 'How to check'</span><span class="c">      / never skipped</span>
 <span class="k">FAILURES=</span><span class="v">                    3</span><span class="c"> / documented</span>
 <span class="k">END</span></div>
+<figcaption>Every workflow opens with a header like this. <a href="start.html#reading-a-workflow">How to read it</a></figcaption>
+</figure>
 ```
 :::
 
 ## Workflows by research phase
 
+{{< include _includes/spectrum.html >}}
+
 <ul class="phases">
-<li><a href="workflows/index.qmd#category=literature">Literature</a><span>Search, read and synthesise papers with ADS and arXiv</span></li>
-<li><a href="workflows/index.qmd#category=proposals">Proposals</a><span>Observing and funding proposals, within the rules</span></li>
-<li><a href="workflows/index.qmd#category=code">Data and code</a><span>Pipelines, legacy code, CASA and FITS handling</span></li>
-<li><a href="workflows/index.qmd#category=analysis">Analysis</a><span>Statistics, fits, units and derivations</span></li>
-<li><a href="workflows/index.qmd#category=writing">Writing</a><span>Drafts, figures and language review</span></li>
-<li><a href="workflows/index.qmd#category=review">Review</a><span>Pre-submission checks and referee replies</span></li>
+<li><a href="workflows/index.html#category=literature">Literature</a><span>Search, read and synthesise papers with ADS and arXiv</span></li>
+<li><a href="workflows/index.html#category=proposals">Proposals</a><span>Observing and funding proposals, within the rules</span></li>
+<li><a href="workflows/index.html#category=code">Data and code</a><span>Pipelines, legacy code, CASA and FITS handling</span></li>
+<li><a href="workflows/index.html#category=analysis">Analysis</a><span>Statistics, fits, units and derivations</span></li>
+<li><a href="workflows/index.html#category=writing">Writing</a><span>Drafts, figures and language review</span></li>
+<li><a href="workflows/index.html#category=review">Review</a><span>Pre-submission checks and referee replies</span></li>
 </ul>
 
 ## Latest workflows

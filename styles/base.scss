@@ -23,8 +23,9 @@ main p, main li { max-width: 72ch; }
 code { font-size: .88em; }
 
 .navbar { border-bottom: 1px solid var(--ai-rule); }
-.navbar-title { font-family: $headings-font-family; font-weight: 600; letter-spacing: .01em; }
-.navbar-logo { max-height: 26px; }
+.navbar-title { font-family: $headings-font-family; font-weight: 600; letter-spacing: .005em; font-size: 1.12rem; }
+.navbar-logo { max-height: 24px; margin-right: .15rem; }
+@media (max-width: 430px) { .navbar-title { font-size: .86rem; letter-spacing: 0; } .navbar-logo { max-height: 20px; } }
 
 a { text-underline-offset: .18em; }
 :focus-visible { outline: 2px solid var(--ai-accent); outline-offset: 2px; }
@@ -67,21 +68,55 @@ a { text-underline-offset: .18em; }
 // ---------------------------------------------------------------
 .home-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 2.5rem;
-  align-items: center;
-  margin: 1.5rem 0 3rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: end;
+  margin: 2.5rem 0 3.5rem;
 }
-.home-hero h1 {
-  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
-  line-height: 1.08;
-  margin: 0 0 1rem;
+.home-hero .display {
+  font-size: clamp(2.3rem, 4.6vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  max-width: 15ch;
+  margin: 0 0 1.2rem;
+  font-family: $headings-font-family;
+  font-weight: 600;
+  color: var(--ai-ink);
+  text-wrap: balance;
 }
-.home-hero .lede { font-size: 1.12rem; color: var(--ai-text-soft); max-width: 46ch; }
-.home-hero .actions { margin-top: 1.4rem; display: flex; gap: .8rem; flex-wrap: wrap; }
-.home-hero .fits { margin: 0; }
+.home-hero .lede { font-size: 1.12rem; color: var(--ai-text-soft); max-width: 44ch; margin-bottom: 0; }
+.home-hero .actions { margin: 1.6rem 0 0; display: flex; gap: .8rem; flex-wrap: wrap; }
+.hero-fits { margin: 0; justify-self: end; }
+.hero-fits .fits { margin: 0; }
+.hero-fits figcaption { margin-top: .6rem; font-size: .85rem; color: var(--ai-muted); }
 @media (max-width: 860px) {
-  .home-hero { grid-template-columns: 1fr; gap: 1.5rem; }
+  .home-hero { grid-template-columns: 1fr; gap: 2rem; margin-top: 1.5rem; }
+  .hero-fits { justify-self: start; }
+}
+
+// Research phases drawn as an emission spectrum with line identifications
+.spectrum { margin: 1.2rem 0 .5rem; }
+.spec-id, .spec-id:hover { text-decoration: none; }
+.spectrum svg { width: 100%; height: auto; display: block; overflow: visible; }
+.spec-line { fill: none; stroke: var(--ai-ink); stroke-width: 1.6; stroke-linejoin: round; }
+.spec-id line { stroke: var(--ai-ink-soft); stroke-width: 1.4; }
+.spec-id text {
+  font-family: $headings-font-family;
+  font-weight: 600;
+  font-size: 19px;
+  fill: var(--ai-ink);
+}
+.spec-id:hover text, .spec-id:focus-visible text { fill: var(--ai-accent); }
+.spec-id:hover line, .spec-id:focus-visible line { stroke: var(--ai-accent); }
+.spec-id:focus-visible { outline: none; }
+.spec-axis, .spec-axis-head { stroke: var(--ai-rule); stroke-width: 1.4; fill: none; }
+.spec-axis-label { font-family: $font-family-monospace; font-size: 14px; fill: var(--ai-muted); }
+
+// Phase list: the spectrum on wide screens, the list on narrow ones
+.phases { display: none; }
+@media (max-width: 760px) {
+  .spectrum { display: none; }
+  .phases { display: grid; }
 }
 
 .btn-ai {
@@ -100,7 +135,6 @@ a { text-underline-offset: .18em; }
   list-style: none;
   padding: 0;
   margin: 1rem 0 0;
-  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 0;
   border-top: 1px solid var(--ai-rule);
