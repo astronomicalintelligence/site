@@ -28,5 +28,5 @@ Each review states:
 
 ::: {.callout-note}
 ## First reviews in preparation
-The review prompt and format are being defined. [Suggest a paper](https://github.com/astronomicalintelligence/site/issues/new?template=suggest-paper.md).
+The review prompt and format are being defined. [Suggest a paper](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.md).
 :::
