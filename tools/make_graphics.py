@@ -1,7 +1,7 @@
-"""Generate the logo, favicon and the home-page spectrum.
+"""Generate the logo, favicon and the spectrum in the home-page hero.
 
 Run from the repository root:  python tools/make_graphics.py
-Outputs: images/logo.svg, images/logo-dark.svg, images/favicon.svg, _includes/spectrum.html
+Outputs: images/logo.svg, images/logo-dark.svg, images/favicon.svg, _includes/hero-spectrum.html
 """
 import math
 import random
@@ -63,50 +63,26 @@ def mark(ink, stroke):
 (ROOT / "images/logo-dark.svg").write_text(mark(INK_DARK, 2.6))
 (ROOT / "images/favicon.svg").write_text(mark(INK_LIGHT, 2.8))
 
-# ------------------------------------------------------------ spectrum
-# Research phases drawn as identified emission lines.
-W, H, BASEY = 1000, 210, 180
-LINES = [  # (label, category slug, x, height)
-    ("Literature", "literature", 105, 78),
-    ("Proposals", "proposals", 265, 50),
-    ("Data and code", "code", 445, 128),
-    ("Analysis", "analysis", 600, 92),
-    ("Writing", "writing", 760, 58),
-    ("Review", "review", 900, 70),
-]
-SIGMA = 5.5
-rng = random.Random(7)
+# ------------------------------------------------------- hero spectrum
+# A wide spectrum across the bottom of the home hero; the two strongest
+# lines and the red star echo the Ai logo.
+HW, HH, HB = 1600, 420, 380
+HERO_LINES = [(260, 70, 9), (330, 40, 4), (520, 60, 6), (760, 90, 7), (980, 340, 11),
+              (1060, 170, 4), (1240, 70, 6), (1420, 120, 7)]
+hrng = random.Random(11)
+hpts = []
+for x in range(0, HW + 1, 2):
+    v = sum(a * math.exp(-0.5 * ((x - x0) / s) ** 2) for x0, a, s in HERO_LINES)
+    hpts.append(f"{x},{HB - v + hrng.uniform(-2.0, 2.0):.1f}")
+hstar = _fmt(_star(1060, HB - 170 - 34, r=16, s=4.5))
+hero = (
+    "```{=html}\n"
+    '<div class="spectrum-bg" aria-hidden="true">'
+    f'<svg viewBox="0 0 {HW} {HH}" preserveAspectRatio="xMidYMax meet">'
+    f'<polyline points="{" ".join(hpts)}" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>'
+    f'<polygon points="{hstar}" fill="{HALPHA}"/></svg></div>\n'
+    "```\n"
+)
+(ROOT / "_includes/hero-spectrum.html").write_text(hero)
 
-
-def flux(x):
-    y = sum(h * math.exp(-0.5 * ((x - x0) / SIGMA) ** 2) for _, _, x0, h in LINES)
-    return y + rng.uniform(-2.2, 2.2)
-
-
-pts = " ".join(f"{x},{BASEY - flux(x):.1f}" for x in range(0, W + 1, 2))
-
-parts = [
-    "```{=html}",
-    f'<figure class="spectrum" aria-label="Workflows by research phase">',
-    f'<svg viewBox="0 0 {W} {H + 26}" role="group" preserveAspectRatio="xMidYMid meet">',
-    f'<polyline class="spec-line" points="{pts}"/>',
-]
-for label, slug, x0, h in LINES:
-    top = BASEY - h - 10
-    parts.append(
-        f'<a class="spec-id" href="workflows/index.html#category={slug}" aria-label="{label} workflows">'
-        f'<rect x="{x0 - 55}" y="{top - 44}" width="110" height="{h + 60}" fill="transparent"/>'
-        f'<line x1="{x0}" y1="{top - 4}" x2="{x0}" y2="{top - 20}"/>'
-        f'<text x="{x0}" y="{top - 28}" text-anchor="middle">{label}</text></a>'
-    )
-parts += [
-    f'<line class="spec-axis" x1="0" y1="{H + 4}" x2="{W - 8}" y2="{H + 4}"/>',
-    f'<path class="spec-axis-head" d="M{W - 12},{H} L{W},{H + 4} L{W - 12},{H + 8}"/>',
-    f'<text class="spec-axis-label" x="{W - 18}" y="{H + 22}" text-anchor="end">research phase</text>',
-    "</svg></figure>",
-    "```",
-]
-out = ROOT / "_includes/spectrum.html"
-out.parent.mkdir(exist_ok=True)
-out.write_text("\n".join(parts) + "\n")
-print("written:", "images/logo.svg, images/logo-dark.svg, images/favicon.svg,", out.relative_to(ROOT))
+print("written: images/logo.svg, images/logo-dark.svg, images/favicon.svg, _includes/hero-spectrum.html")

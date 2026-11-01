@@ -138,11 +138,7 @@ a { text-underline-offset: .18em; }
 .spec-axis-label { font-family: $font-family-monospace; font-size: 14px; fill: var(--ai-muted); }
 
 // Phase list: the spectrum on wide screens, the list on narrow ones
-.phases { display: none; }
-@media (max-width: 760px) {
-  .spectrum { display: none; }
-  .phases { display: grid; }
-}
+.phases { display: grid; }
 
 .btn-ai {
   display: inline-block;
@@ -190,4 +186,66 @@ a { text-underline-offset: .18em; }
 
 @media (max-width: 520px) {
   .fits { font-size: .72rem; padding: .7rem .8rem; }
+}
+
+// ---------------------------------------------------------------
+// Home hero: dark band with a spectrum across the bottom
+// (always dark, in both themes)
+// ---------------------------------------------------------------
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin: -47px 0 3rem;
+  min-height: 80vh;
+  display: flex;
+  align-items: flex-start;
+  color: #E3EAF2;
+  background-color: #0F1B2B;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1135px, calc(100% - 2.4rem));
+  margin: 0 auto;
+  padding: 9vh 0 0;
+}
+.hero-title {
+  font-family: $headings-font-family;
+  font-weight: 600;
+  font-size: clamp(2.8rem, 5.6vw, 5rem);
+  line-height: .98;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+  margin: 0 0 1.2rem;
+  color: #EEF3F9;
+}
+.hero-sub {
+  font-family: $headings-font-family;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1.9vw, 1.5rem);
+  line-height: 1.3;
+  max-width: 34ch;
+  margin: 0 0 1.8rem;
+  color: #BFD3EA;
+}
+.hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin: 0; }
+.btn-hero {
+  display: inline-block;
+  padding: .6rem 1.1rem;
+  border: 1px solid #E3EAF2;
+  border-radius: 3px;
+  color: #E3EAF2;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btn-hero.solid { background: #E3EAF2; color: #0F1B2B; }
+.btn-hero:hover, .btn-hero:focus-visible { background: #C8323C; border-color: #C8323C; color: #fff; }
+.hero .spectrum-bg {
+  position: absolute; z-index: 1; left: 0; right: 0; bottom: 0;
+  color: #8EA8C6;
+}
+.hero .spectrum-bg svg { width: 100%; height: auto; display: block; }
+@media (max-width: 760px) {
+  .hero { min-height: 0; }
+  .hero-inner { padding: 3rem 0 9rem; }
 }
