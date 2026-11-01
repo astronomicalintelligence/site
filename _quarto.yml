@@ -60,7 +60,7 @@ format:
     respect-user-color-scheme: true
     toc: true
     toc-title: "On this page"
-    css: styles/fonts.css
+    css: [styles/fonts.css, styles/hero.css]
     code-copy: true
     code-overflow: wrap
     smooth-scroll: false

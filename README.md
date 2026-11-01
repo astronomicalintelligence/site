@@ -22,6 +22,10 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 
 To contribute, see [contribute.qmd](contribute.qmd).
 
+## Image credits
+
+`images/hero-xdf.jpg`: Hubble eXtreme Deep Field (HubbleSite release 2012-37). NASA, ESA, G. Illingworth, D. Magee, P. Oesch (UCSC), R. Bouwens (Leiden) and the HUDF09 Team. NASA images are in the public domain; the credit line is kept on the home page.
+
 ## Licence
 
 Text: CC BY 4.0. Code: MIT.

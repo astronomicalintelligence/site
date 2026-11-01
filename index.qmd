@@ -1,5 +1,5 @@
 ---
-pagetitle: "Astronomical Intelligence: the first open collection of tested workflows for science with language models"
+pagetitle: "Astronomical Intelligence: the first open collection of tested workflows, prompts and skills for science"
 toc: false
 page-layout: full
 title-block-style: none
@@ -14,26 +14,23 @@ listing:
   fields: [title, description, qflag, phase, model, tested]
 ---
 
-::: {.home-hero}
+::: {.column-screen}
 ```{=html}
-<div class="hero-copy">
-<p class="display" role="heading" aria-level="1">Science with language models, done properly.</p>
-<p class="display-sub">The first open collection of tested workflows.</p>
-<p class="lede">Workflows, prompts, skills and agent configs for astronomers and other scientists. Each one says which model it was tested with, when, how to check the output and where it fails.</p>
-<p class="actions"><a class="btn-ai solid" href="#whats-here">Explore the library</a> <a class="btn-ai" href="contribute.html">Contribute</a></p>
+<section class="hero">
+<div class="hero-inner">
+<p class="hero-title" role="heading" aria-level="1">Science with large language models.</p>
+<p class="hero-sub">The first open collection of tested workflows, prompts and skills for science.</p>
+<p class="hero-actions"><a class="btn-hero solid" href="#whats-here">Explore the library</a> <a class="btn-hero" href="contribute.html">Contribute</a></p>
 </div>
-<figure class="hero-fits">
-<div class="fits" role="img" aria-label="Example of the header shown on every workflow"><span class="k">OBJECT  =</span><span class="v"> 'Literature search with ADS'</span>
-<span class="k">MODEL   =</span><span class="v"> 'name and version'</span>
-<span class="k">TESTED  =</span><span class="v"> 'YYYY-MM-DD'</span>
-<span class="k">QFLAG   =</span><span class="flag"> 'L2'</span>
-<span class="k">VERIFY  =</span><span class="v"> 'How to check'</span>
-<span class="k">FAILURES=</span><span class="v"> 3</span>
-<span class="k">END</span></div>
-<figcaption>Every entry opens with a header like this. <a href="start.html#reading-a-workflow">How to read it</a></figcaption>
-</figure>
+```
+{{< include _includes/hero-spectrum.html >}}
+```{=html}
+<p class="hero-credit">Background: Hubble XDF, NASA/ESA</p>
+</section>
 ```
 :::
+
+::: {.column-page .home-body}
 
 ## What you'll find here {#whats-here}
 
@@ -48,8 +45,6 @@ listing:
 
 
 ## Workflows by research phase
-
-{{< include _includes/spectrum.html >}}
 
 <ul class="phases">
 <li><a href="workflows/index.html#category=literature">Literature</a><span>Search, read and synthesise papers with ADS and arXiv</span></li>
@@ -84,4 +79,6 @@ Where a model got it wrong, the page says so. The [Failures](failures/index.qmd)
 ### Keep it open
 Text is CC BY 4.0, code is MIT, and anyone can propose a workflow through GitHub. See [Contribute](contribute.qmd).
 ::::
+:::
+
 :::

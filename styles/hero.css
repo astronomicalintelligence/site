@@ -1,0 +1,24 @@
+/* Home hero background: the Hubble eXtreme Deep Field at the top,
+   fading into night blue behind the spectrum. Image: NASA/ESA, public domain. */
+.hero {
+  background-image:
+    linear-gradient(180deg,
+      rgba(10, 19, 32, 0.18) 0%,
+      rgba(10, 19, 32, 0.55) 30%,
+      rgba(15, 27, 43, 0.92) 58%,
+      #0F1B2B 72%,
+      #13233A 100%),
+    url("../images/hero-xdf.jpg");
+  background-size: cover, cover;
+  background-position: center top, center top;
+  background-repeat: no-repeat;
+}
+.hero-title, .hero-sub { text-shadow: 0 1px 18px rgba(5, 10, 18, 0.65); }
+.hero-credit {
+  position: absolute; z-index: 2; right: 1rem; bottom: .45rem; margin: 0;
+  font: 11px "IBM Plex Mono", ui-monospace, monospace; color: #8EA8C6; opacity: .8;
+}
+.hero .spectrum-bg { bottom: 1.7rem; }
+@media (max-width: 760px) {
+  .hero-credit { left: 1.2rem; right: auto; font-size: 10px; }
+}
