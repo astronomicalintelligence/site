@@ -1,0 +1,25 @@
+/* The red star from the logo, used as list bullet.
+   Drawn as a mask so it takes the theme accent (light and dark). */
+#quarto-document-content ul:not([class]) { list-style: none; padding-left: 1.5rem; }
+#quarto-document-content ul:not([class]) > li { position: relative; }
+#quarto-document-content ul:not([class]) > li::before,
+.phases a::before {
+  content: "";
+  background-color: var(--ai-accent);
+  -webkit-mask: url("../images/star.svg") center / contain no-repeat;
+          mask: url("../images/star.svg") center / contain no-repeat;
+}
+#quarto-document-content ul:not([class]) > li::before {
+  position: absolute; left: -1.3rem; top: .4em; width: .8em; height: .8em;
+}
+/* nested lists: smaller, quieter star */
+#quarto-document-content ul:not([class]) ul:not([class]) > li::before {
+  width: .6em; height: .6em; top: .5em; left: -1.15rem; background-color: var(--ai-ink-soft);
+}
+/* numbered lists: accent numbers */
+#quarto-document-content ol > li::marker { color: var(--ai-accent); font-weight: 600; }
+
+/* phase list on the home page */
+.phases a::before {
+  display: inline-block; width: .7em; height: .7em; margin-right: .4em; vertical-align: -.02em;
+}

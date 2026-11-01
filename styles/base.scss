@@ -168,9 +168,10 @@ a { text-underline-offset: .18em; }
 .phases a { font-weight: 600; text-decoration: none; }
 .phases span { display: block; color: var(--ai-muted); font-size: .92rem; }
 
-.principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.5rem; }
-.principles h3 { margin-top: .4rem; font-size: 1.1rem; }
-.principles p { color: var(--ai-text-soft); font-size: .95rem; }
+.home-intro { margin: 0 0 3rem; }
+.home-intro p { font-size: 1.22rem; line-height: 1.55; max-width: 62ch; color: var(--ai-text); }
+.home-intro p + p { color: var(--ai-text-soft); }
+@media (max-width: 560px) { .home-intro p { font-size: 1.08rem; } }
 
 // ---------------------------------------------------------------
 // Workflow listing (custom EJS template)
