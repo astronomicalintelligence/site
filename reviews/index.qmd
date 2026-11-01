@@ -2,11 +2,12 @@
 title: "Reviews"
 description: "A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist."
 toc: false
+citation: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs
   sort: "tested desc"
-  fields: [title, description, qflag, phase, model, tested, categories]
+  fields: [title, description, qflag, author, phase, model, tested, categories]
 ---
 
 Peer review stops at publication. Here a language model reviews published papers a second time, as a demanding referee would: are the claims supported, are the statistics sound, are there missing comparisons, do the numbers in the text match the tables and figures?
@@ -27,5 +28,5 @@ Each review states:
 
 ::: {.callout-note}
 ## First reviews in preparation
-The review prompt and format are being defined. [Suggest a paper](https://github.com/astronomicalintelligence/site/issues/new).
+The review prompt and format are being defined. [Suggest a paper](https://github.com/astronomicalintelligence/site/issues/new?template=suggest-paper.md).
 :::

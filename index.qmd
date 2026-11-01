@@ -1,5 +1,6 @@
 ---
 pagetitle: "Astronomical Intelligence: the first open collection of tested workflows, prompts and skills for science"
+description: "The first open collection of tested workflows, prompts and skills for doing science with large language models, with the model, the date and how to check the result."
 toc: false
 page-layout: full
 title-block-style: none
@@ -11,7 +12,7 @@ listing:
   template: _templates/workflows.ejs
   sort: "tested desc"
   max-items: 4
-  fields: [title, description, qflag, phase, model, tested]
+  fields: [title, description, qflag, author, phase, model, tested]
 ---
 
 ::: {.column-screen}

@@ -23,3 +23,14 @@
 .phases a::before {
   display: inline-block; width: .7em; height: .7em; margin-right: .4em; vertical-align: -.02em;
 }
+
+/* "How to cite" box: readable in both themes */
+#quarto-appendix pre.quarto-appendix-bibtex,
+#quarto-appendix .quarto-appendix-citeas {
+  background: var(--ai-panel);
+  color: var(--ai-text);
+  border: 1px solid var(--ai-rule);
+  border-radius: 3px;
+}
+#quarto-appendix pre.quarto-appendix-bibtex code { color: var(--ai-text); background: transparent; }
+#quarto-appendix .appendix-heading, #quarto-appendix h2 { color: var(--ai-ink); }

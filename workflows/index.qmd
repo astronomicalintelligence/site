@@ -2,6 +2,7 @@
 title: "Workflows"
 description: "Step-by-step procedures for research tasks, each tested on a real case."
 toc: false
+citation: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs
@@ -9,7 +10,7 @@ listing:
   categories: true
   sort-ui: [title, tested]
   filter-ui: true
-  fields: [title, description, qflag, phase, model, tested, categories]
+  fields: [title, description, qflag, author, phase, model, tested, categories]
 ---
 
 Each workflow follows the same structure: goal, what it was tested with, steps with the exact prompts, how to check the result, and where it fails.

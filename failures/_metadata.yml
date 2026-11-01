@@ -1,0 +1,7 @@
+filters:
+  - ../_filters/fits-header.lua
+# Every contributed page shows its authors and a "How to cite" box
+# (Quarto builds the citation from title, author, date and the page URL).
+citation:
+  type: webpage
+  container-title: "Astronomical Intelligence"

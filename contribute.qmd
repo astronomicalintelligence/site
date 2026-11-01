@@ -1,6 +1,6 @@
 ---
 title: "Contribute"
-description: "How to propose a workflow, a prompt or a failure."
+description: "How to propose a workflow, a prompt, a skill or any other page."
 ---
 
 Anyone can propose content. Every contribution is reviewed before it is published.
@@ -8,7 +8,7 @@ Anyone can propose content. Every contribution is reviewed before it is publishe
 ## Two ways to contribute
 
 - **With Git:** fork the [repository](https://github.com/astronomicalintelligence/site), add a file in `workflows/`, `prompts/`, `skills/`, `agent-configs/`, `model-checks/`, `reviews/` or `failures/`, and open a pull request.
-- **Without Git:** [open an issue](https://github.com/astronomicalintelligence/site/issues/new) and paste your text. We will turn it into a page.
+- **Without Git:** [open an issue](https://github.com/astronomicalintelligence/site/issues/new/choose), choose a template and fill it in. We will turn it into a page.
 
 ## What a workflow needs
 
@@ -18,13 +18,22 @@ Start from this header and keep the sections in this order:
 ---
 title: "Short, task-based title"
 description: "One sentence: what the workflow does."
-categories: [literature]        # literature, proposals, code, analysis, writing, review
+# categories: literature, proposals, code,
+#   analysis, writing, review
+categories: [literature]
 phase: "Literature"
 model: "Model name and version"
 tool: "Interface or tool"
 tested: 2026-10-31
 qflag: L1
 time-saved: "3 h -> 40 min (measured)"
+# date of publication
+date: 2026-10-31
+author:
+  - name: "First Last"   # orcid is optional
+    orcid: 0000-0000-0000-0000
+    affiliations:
+      - name: "Institute"
 ---
 
 ## Goal
@@ -33,6 +42,14 @@ time-saved: "3 h -> 40 min (measured)"
 ## How to check the result
 ## Where it fails
 ````
+
+The same header, with `author` and `date`, applies to prompts, skills, agent configs, model checks, reviews and failures.
+
+## Credit and citation
+
+Every contributed page shows its authors and ends with a **How to cite** box, with a ready-made reference and BibTeX entry built from the title, the authors, the date and the page address.
+
+Contributions are published under the site licences: text under CC BY 4.0, code under MIT.
 
 ## Review criteria
 

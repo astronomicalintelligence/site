@@ -11,6 +11,9 @@ website:
   repo-url: https://github.com/astronomicalintelligence/site
   repo-actions: [edit, issue]
   favicon: images/favicon.svg
+  image: images/social-card.jpg
+  open-graph: true
+  twitter-card: true
   search:
     location: navbar
     type: overlay
@@ -66,3 +69,8 @@ format:
     smooth-scroll: false
     link-external-newwindow: true
     include-after-body: _includes/analytics.html
+
+language:
+  section-title-citation: "How to cite"
+  appendix-attribution-cite-as: "Cite this page as:"
+  appendix-attribution-bibtex: "BibTeX:"

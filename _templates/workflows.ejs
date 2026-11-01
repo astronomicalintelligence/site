@@ -1,5 +1,5 @@
 ```{=html}
-<ul class="wf-list">
-<% for (const item of items) { %><li <%= metadataAttrs(item) %>><a class="wf-title" href="<%- item.path %>"><%= item.title %></a><% if (item.description) { %><p class="wf-desc"><%= item.description %></p><% } %><div class="wf-meta"><% if (item.qflag) { %><span class="qflag qflag-<%= item.qflag %>" title="Verification level"><%= item.qflag %></span><% } %><% if (item.phase) { %><span><%= item.phase %></span><% } %><% if (item.model) { %><span>model: <%= item.model %></span><% } %><% if (item.tested) { %><span>tested: <%= item.tested %></span><% } %></div></li>
+<ul class="wf-list list">
+<% for (const item of items) { %><li <%= metadataAttrs(item) %>><a class="wf-title listing-title" href="<%- item.path %>"><%= item.title %></a><% if (item.description) { %><p class="wf-desc listing-description"><%= item.description %></p><% } %><div class="wf-meta"><% if (item.qflag) { %><span class="qflag qflag-<%= item.qflag %> listing-qflag" title="Verification level"><%= item.qflag %></span><% } %><% if (item.author) { %><span class="wf-author">by <span class="listing-author"><%= Array.isArray(item.author) ? item.author.join(", ") : item.author %></span></span><% } %><% if (item.phase) { %><span class="listing-phase"><%= item.phase %></span><% } %><% if (item.model) { %><span>model: <span class="listing-model"><%= item.model %></span></span><% } %><% if (item.tested) { %><span>tested: <span class="listing-tested"><%= item.tested %></span></span><% } %></div></li>
 <% } %></ul>
 ```
