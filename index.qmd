@@ -32,6 +32,12 @@ listing:
 
 ::: {.column-page .home-body}
 
+::: {.home-intro}
+Large language models are changing the way research is done, and fast. Knowing how to use them well is now part of a researcher's job.
+
+This is a place to share what works: workflows, skills, prompts and agent configurations for modern language models, each tested on real research. Anyone can [contribute](contribute.qmd). If you use material from this site, please cite it: that is how the people who shared it get credit for their work.
+:::
+
 ## What you'll find here {#whats-here}
 
 <dl class="kinds">
@@ -58,27 +64,6 @@ listing:
 ## Latest workflows
 
 ::: {#latest}
-:::
-
-## How this site works
-
-::: {.principles}
-:::: {}
-### Test before trusting
-Every workflow is run on a real research task before it is published, and says how to check what the model produced.
-::::
-:::: {}
-### Date everything
-Models change every few months. Each page records the model, the tool and the date of the last test.
-::::
-:::: {}
-### Publish the failures
-Where a model got it wrong, the page says so. The [Failures](failures/index.qmd) section collects the errors worth knowing about.
-::::
-:::: {}
-### Keep it open
-Text is CC BY 4.0, code is MIT, and anyone can propose a workflow through GitHub. See [Contribute](contribute.qmd).
-::::
 :::
 
 :::
