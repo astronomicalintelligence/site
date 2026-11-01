@@ -1,14 +1,13 @@
 ---
 title: "Start here"
-description: "Four rules and a minimal setup for using language models in research."
+description: "Three rules and a minimal setup for using language models in research."
 ---
 
-## Four rules
+## Three rules
 
 1. **Check every output you use.** Each workflow has a *How to check the result* section. Do not skip it.
 2. **Know what you are sharing.** Unpublished data, proposals under review and other people's manuscripts may not be yours to upload. See [Policies](policies.qmd).
 3. **Keep a record.** Save prompts, model names and dates with your analysis, as you would for any instrument setting.
-4. **Declare the use.** Most journals now ask how AI tools were used. Write it down while you work, not at submission.
 
 ## Minimal setup
 
@@ -18,7 +17,7 @@ description: "Four rules and a minimal setup for using language models in resear
 
 ## Reading a workflow
 
-Every workflow starts with a header like a FITS header. The line that matters most is `QFLAG`:
+Every workflow starts with a header. The line that matters most is `QFLAG`:
 
 | Level | Meaning |
 |---|---|
