@@ -1,8 +1,8 @@
 # Contributing
 
-Thank you for helping. The full guide, with the page template and the review
-criteria, is on the site: <https://astronomicalintelligence.org/contribute.html>
-(source: [contribute.qmd](contribute.qmd)).
+Thank you for helping. The full guide, with the page template, the sections for each type of
+page and the review criteria, is in [contribute.qmd](contribute.qmd)
+(the Contribute page of the site).
 
 In short:
 
