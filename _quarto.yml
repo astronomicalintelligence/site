@@ -65,3 +65,4 @@ format:
     code-overflow: wrap
     smooth-scroll: false
     link-external-newwindow: true
+    include-after-body: _includes/analytics.html
