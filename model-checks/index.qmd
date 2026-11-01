@@ -2,11 +2,12 @@
 title: "Model checks"
 description: "Small, repeatable tests of language models on real scientific tasks, with dated results."
 toc: false
+citation: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs
   sort: "tested desc"
-  fields: [title, description, qflag, phase, model, tested, categories]
+  fields: [title, description, qflag, author, phase, model, tested, categories]
 ---
 
 Benchmarks rarely look like the work scientists actually do. A model check is a short, fixed task taken from real research (a unit conversion with a trap, a derivation with a known sign error, a FITS header to interpret) run on several models, with the exact prompt, the expected answer and the date.

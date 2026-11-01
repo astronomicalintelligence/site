@@ -1,0 +1,14 @@
+---
+title: "Page not found"
+description: "This page does not exist, or it has moved."
+toc: false
+search: false
+---
+
+The address may be mistyped, or the page may have moved while the site grows.
+
+- Go to the [home page](index.qmd) or [Start here](start.qmd).
+- Browse the [Workflows](workflows/index.qmd), [Prompts](prompts/index.qmd) or [Skills](skills/index.qmd).
+- Use the search icon at the top right.
+
+If a link on this site brought you here, please [report it](https://github.com/astronomicalintelligence/site/issues/new).

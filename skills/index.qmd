@@ -2,13 +2,14 @@
 title: "Skills"
 description: "Packaged instructions and scripts that an AI agent loads when a task needs them, ready to install."
 toc: false
+citation: false
 listing:
   contents: "*/index.qmd"
   template: ../_templates/workflows.ejs
   sort: "tested desc"
   categories: true
   filter-ui: true
-  fields: [title, description, qflag, phase, model, tested, categories]
+  fields: [title, description, qflag, author, phase, model, tested, categories]
 ---
 
 A skill is a folder with a `SKILL.md` file (instructions, conventions, examples) and, when needed, scripts. Agents such as Claude Code load a skill only when the task calls for it, so it can be long and specific without cluttering every conversation.

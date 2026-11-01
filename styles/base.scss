@@ -15,7 +15,7 @@ $navbar-padding-y: .6rem;
 /*-- scss:rules --*/
 
 // Type scale (roughly 1.25) and measure
-h1, .title { font-size: 2.3rem; letter-spacing: -0.01em; line-height: 1.15; }
+h1, h1.title { font-size: 2.3rem; letter-spacing: -0.01em; line-height: 1.15; }
 h2 { font-size: 1.6rem; margin-top: 2.4rem; border-bottom: none !important; padding-bottom: 0 !important; }
 .quarto-category { text-transform: none !important; font-size: .78rem; }
 h3 { font-size: 1.25rem; margin-top: 1.8rem; }
@@ -180,7 +180,7 @@ a { text-underline-offset: .18em; }
 .wf-list li { max-width: none; padding: 1rem 0; border-bottom: 1px solid var(--ai-rule); }
 .wf-list .wf-title { font-family: $headings-font-family; font-size: 1.2rem; font-weight: 600; text-decoration: none; }
 .wf-list .wf-desc { margin: .25rem 0 .4rem; color: var(--ai-text-soft); max-width: 72ch; }
-.wf-list .wf-meta { font-family: $font-family-monospace; font-size: .8rem; color: var(--ai-muted); display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: center; }
+.wf-list .wf-meta { font-family: $font-family-monospace; font-size: .8rem; color: var(--ai-muted); display: flex; gap: .35rem 1.1rem; flex-wrap: wrap; align-items: center; }
 
 // Callouts used for "How to verify" and "Where it fails"
 .callout { border-radius: 2px; }
@@ -249,4 +249,29 @@ a { text-underline-offset: .18em; }
 @media (max-width: 760px) {
   .hero { min-height: 0; }
   .hero-inner { padding: 3rem 0 9rem; }
+}
+
+// Page subtitle (front-matter description): a little air under the title
+#title-block-header .description { margin-top: .55rem; font-size: 1.1rem; color: var(--ai-text-soft); max-width: 72ch; }
+
+// Table listings (Failures): headers alike, titles at body scale
+.quarto-listing-table th, .quarto-listing-table th a.sort {
+  font-weight: 600; color: var(--ai-ink); text-decoration: none;
+}
+.quarto-listing-table .listing-title {
+  font-family: $headings-font-family; font-weight: 600; font-size: 1.1rem; text-decoration: none;
+}
+
+// Link under the FITS header to its explanation
+.fits-wrap { margin: 0 0 2rem; }
+.fits-wrap .fits { margin-bottom: .35rem; }
+.fits-help { font-size: .82rem; color: var(--ai-muted); }
+
+// Footer on phones: no tall empty gaps between its three parts
+@media (max-width: 767.98px) {
+  .nav-footer { padding-top: .8rem; padding-bottom: .8rem; }
+  .nav-footer > div { min-height: 0 !important; padding-top: .15rem !important; padding-bottom: .15rem !important; margin-top: 0 !important; margin-bottom: .2rem !important; }
+  .nav-footer .nav-footer-center { margin-top: .4rem !important; }
+  .nav-footer p { margin-bottom: 0; }
+  .nav-footer .toc-actions ul { margin-bottom: 0; }
 }

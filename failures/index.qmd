@@ -2,11 +2,12 @@
 title: "Failures"
 description: "Errors made by language models on research tasks, with how they were caught and how to prevent them."
 toc: false
+citation: false
 listing:
   contents: "*.qmd"
   type: table
   sort: "date desc"
-  fields: [title, description, date]
+  fields: [title, description, author, date]
   field-display-names:
     title: "Failure"
     description: "What happened"

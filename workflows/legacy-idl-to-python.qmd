@@ -8,6 +8,12 @@ tool: "Coding agent (e.g. Claude Code, Codex)"
 tested: "not yet"
 qflag: L0
 time-saved: "to be measured"
+date: 2026-10-31
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
 ---
 
 ::: {.callout-note}

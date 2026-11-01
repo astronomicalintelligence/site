@@ -7,6 +7,12 @@ model: "to be tested"
 tool: "Any chat model with file upload"
 tested: "not yet"
 qflag: L0
+date: 2026-10-31
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
 ---
 
 ::: {.callout-note}

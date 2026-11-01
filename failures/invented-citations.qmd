@@ -2,6 +2,11 @@
 title: "Invented citations"
 description: "Plausible references that do not exist, or real papers credited with results they never contain."
 date: 2026-10-31
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
 ---
 
 ## What happens
