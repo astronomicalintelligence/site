@@ -4,10 +4,10 @@ title: "About"
 
 Astronomical Intelligence is an open collection of tested workflows, prompts, skills and agent configurations for doing research with language models, started by astronomers and open to every field.
 
-The site is independent of any AI company. Models are named because results depend on them, not as endorsements.
+The site is independent of any AI company.
 
 Text is released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) and code under the [MIT licence](https://opensource.org/license/mit).
 
 ## Privacy
 
-The site uses no cookies. Visits are counted with [GoatCounter](https://www.goatcounter.com), an open-source service that does not track visitors across sites and does not store personal data. The fonts are served from this site, so no requests go to third-party font services.
+The site uses no cookies. Visits are counted with [GoatCounter](https://www.goatcounter.com), an open-source service that does not track visitors across sites and does not store personal data.

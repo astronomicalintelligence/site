@@ -26,7 +26,7 @@ listing:
 ```
 {{< include _includes/hero-spectrum.html >}}
 ```{=html}
-<p class="hero-credit">Background: Hubble XDF, NASA/ESA</p>
+<p class="hero-credit">Background: LOFAR uv-coverage</p>
 </section>
 ```
 :::
