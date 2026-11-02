@@ -34,3 +34,29 @@
 }
 #quarto-appendix pre.quarto-appendix-bibtex code { color: var(--ai-text); background: transparent; }
 #quarto-appendix .appendix-heading, #quarto-appendix h2 { color: var(--ai-ink); }
+
+/* "BETA" badge next to the site name, in the red of the logo star */
+.navbar-brand .navbar-title::after {
+  content: "BETA";
+  display: inline-block;
+  margin-left: .5em;
+  padding: .12em .38em .08em;
+  border: 1.5px solid #C8323C;
+  border-radius: 3px;
+  color: #C8323C;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .56em;
+  font-weight: 500;
+  letter-spacing: .08em;
+  line-height: 1.1;
+  vertical-align: .28em;
+}
+@media (max-width: 430px) {
+  .navbar-brand .navbar-title { font-size: .72rem !important; }
+  .navbar-brand-container .navbar-brand { overflow: visible; text-overflow: clip; }
+  .navbar-brand-container .navbar-brand-logo { margin-right: 0; }
+  .navbar-brand .navbar-title::after { margin-left: .35em; font-size: .6em; padding: .1em .3em .06em; border-width: 1px; }
+}
+@media (max-width: 375px) {
+  .navbar-brand .navbar-title { font-size: .64rem !important; }
+}

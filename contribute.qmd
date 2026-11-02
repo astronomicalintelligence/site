@@ -1,6 +1,6 @@
 ---
 title: "Contribute"
-description: "How to propose a workflow, a prompt, a skill or any other page."
+description: "How to propose a workflow, a prompt, a skill or any other contribution."
 ---
 
 Anyone can propose content. Every contribution is reviewed before it is published.
@@ -10,9 +10,9 @@ Anyone can propose content. Every contribution is reviewed before it is publishe
 - **With Git:** fork the [repository](https://github.com/astronomicalintelligence/site), add a file in `workflows/`, `prompts/`, `skills/`, `agent-configs/`, `model-checks/`, `reviews/` or `failures/`, and open a pull request.
 - **Without Git:** [open an issue](https://github.com/astronomicalintelligence/site/issues/new/choose), choose a template and fill it in. We will turn it into a page.
 
-## What every page needs
+## What every contribution needs
 
-Every page starts with the same header. Copy it into a new `.qmd` file and fill it in:
+Every contribution (a workflow, a prompt, a skill, an agent config, a model check, a review or a failure) is one page of the site, written as a `.qmd` file that starts with this header. Copy it into a new file and fill it in:
 
 ````markdown
 ---
@@ -61,9 +61,9 @@ Contributions are published under the site licences: text under CC BY 4.0, code 
 
 ## Review criteria
 
-- A colleague in the same field can follow the page and reuse it.
+- A colleague in the same field can follow the contribution and reuse it.
 - Prompts are given exactly as used.
 - *How to check the result* is concrete, not "verify the output".
 - Nothing confidential or under embargo is included.
 
-A page enters at **L1** when the author has tested it on a real case. It moves to **L2** when someone else reproduces it. Untested proposals are welcome too: they are published as **L0** drafts.
+A contribution enters at **L1** when the author has tested it on a real case. It moves to **L2** when someone else reproduces it. Untested contributions are welcome too: they are published as **L0** drafts.

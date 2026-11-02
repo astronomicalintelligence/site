@@ -68,6 +68,9 @@ format:
     code-overflow: wrap
     smooth-scroll: false
     link-external-newwindow: true
+    # Internal links must stay in the same tab, also while the site is served
+    # from astronomicalintelligence.github.io (before the custom domain is live).
+    link-external-filter: '^(?:http:|https:)\/\/(?:www\.)?astronomicalintelligence\.(?:org|github\.io)(?:\/|$)'
     include-after-body: _includes/analytics.html
 
 language:
