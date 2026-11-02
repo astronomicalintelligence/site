@@ -23,6 +23,8 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 | `_templates/workflows.ejs` | Layout of the lists (workflows, prompts, skills, ...) |
 | `*/_metadata.yml` | Per-section settings: FITS header filter and "How to cite" box |
 | `404.qmd` | Page shown for addresses that do not exist |
+| `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W001, AI P001, ...); run by the publish workflow on every push to `main` |
+| `styles/types.css` | One colour per kind of contribution |
 | `styles/` | Fonts, colours (`light.scss`, `dark.scss`) and layout (`base.scss`) |
 | `.github/workflows/publish.yml` | Builds the site and publishes it to GitHub Pages on every push to `main` |
 

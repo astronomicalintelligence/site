@@ -1,5 +1,6 @@
 ---
 title: "Pre-submission referee report"
+catalog: "AI P001"
 description: "Ask a model to review your draft the way a demanding referee would, before a real one does."
 categories: [review, writing]
 phase: "Review"

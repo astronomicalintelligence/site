@@ -39,6 +39,8 @@ author:
 
 A failure needs only `title`, `description`, `date` and `author`.
 
+Leave out the `catalog` field. When a contribution is published it gets a catalogue number automatically: the letter of its type and the next free number, for example **AI W003** for a workflow or **AI P002** for a prompt. The number never changes, so you can use it to cite or mention the contribution.
+
 ## Sections for each type
 
 After the header, use these sections, in this order:

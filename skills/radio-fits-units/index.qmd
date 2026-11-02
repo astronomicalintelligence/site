@@ -1,5 +1,6 @@
 ---
 title: "Radio FITS images and flux units"
+catalog: "AI S001"
 description: "A skill that makes an agent read radio FITS images safely: degenerate axes, beams, and Jy/beam to Jy conversions with units."
 categories: [code, analysis, astronomy]
 phase: "Data and code"

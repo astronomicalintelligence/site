@@ -5,3 +5,4 @@ filters:
 citation:
   type: webpage
   container-title: "Astronomical Intelligence"
+body-classes: type-reviews

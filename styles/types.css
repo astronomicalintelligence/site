@@ -1,0 +1,47 @@
+/* One colour per kind of contribution, named after a spectral line:
+   workflows H-alpha, prompts Na D, skills [O III], agent configs H-beta,
+   model checks H-gamma, reviews [O II], failures (an absorption band) in slate.
+   Every light-theme colour has at least 4.5:1 contrast on the page background. */
+:root {
+  --t-workflows: #C8323C; --t-prompts: #A35F00; --t-skills: #1A7A4E; --t-agent-configs: #0B6E8C;
+  --t-model-checks: #3653C9; --t-reviews: #7338B8; --t-failures: #4A6382;
+}
+body.quarto-dark {
+  --t-workflows: #FF7A6E; --t-prompts: #F2B44A; --t-skills: #5ED29A; --t-agent-configs: #5CC8E6;
+  --t-model-checks: #8EA6FF; --t-reviews: #B48CF0; --t-failures: #8EA8C6;
+}
+.type-workflows { --type: var(--t-workflows); }
+.type-prompts { --type: var(--t-prompts); }
+.type-skills { --type: var(--t-skills); }
+.type-agent-configs { --type: var(--t-agent-configs); }
+.type-model-checks { --type: var(--t-model-checks); }
+.type-reviews { --type: var(--t-reviews); }
+.type-failures { --type: var(--t-failures); }
+
+/* Home: the seven kinds, each under a rule in its colour */
+.kinds { border-top: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 1.8rem; }
+.kinds > div { border-bottom: 0; border-top: 3px solid var(--type, var(--ai-rule)); padding-top: .75rem; }
+.kinds dt a { color: var(--type, var(--ai-ink)); }
+.kinds dt a:hover { color: var(--type, var(--ai-accent)); text-decoration: underline; }
+@media (max-width: 900px) { .kinds { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .kinds { grid-template-columns: 1fr; } }
+
+/* Lists: catalogue number on the left, a bar in the type colour */
+.wf-list li { display: grid; grid-template-columns: 6.4rem minmax(0, 1fr); column-gap: 1.1rem;
+  border-left: 3px solid var(--type, var(--ai-rule)); padding-left: .9rem; }
+.wf-list li > * { grid-column: 2; }
+.wf-list li > .wf-cat { grid-column: 1; grid-row: 1 / span 3; padding-top: .2rem;
+  font: 500 1.08rem/1.2 "IBM Plex Mono", ui-monospace, monospace; color: var(--type, var(--ai-ink)); white-space: nowrap; }
+@media (max-width: 560px) {
+  .wf-list li { grid-template-columns: minmax(0, 1fr); }
+  .wf-list li > .wf-cat { grid-column: 1; grid-row: auto; font-size: .9rem; padding-top: 0; margin-bottom: .1rem; }
+  .wf-list li > * { grid-column: 1; }
+}
+
+/* Contribution pages and section lists: the type colour on the title rule and the FITS header */
+body[class*="type-"] #title-block-header { border-bottom: 3px solid var(--type); padding-bottom: .9rem; margin-bottom: 1.4rem; }
+body[class*="type-"] .fits { border-left-color: var(--type); }
+body[class*="type-"] .fits .k:first-child + .v { color: var(--type); }
+
+/* Failures table: catalogue column */
+.quarto-listing-table .listing-catalog { font-family: "IBM Plex Mono", ui-monospace, monospace; color: var(--type); white-space: nowrap; }

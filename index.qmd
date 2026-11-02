@@ -12,7 +12,7 @@ listing:
   template: _templates/workflows.ejs
   sort: "tested desc"
   max-items: 4
-  fields: [title, description, qflag, author, phase, model, tested]
+  fields: [catalog, title, description, qflag, author, phase, model, tested]
 ---
 
 ::: {.column-screen}
@@ -42,12 +42,13 @@ This is a place to share what works: workflows, skills, prompts and agent config
 ## What you'll find here {#whats-here}
 
 <dl class="kinds">
-<div><dt><a href="workflows/index.html">Workflows</a></dt><dd>Step-by-step procedures for a research task, with the exact prompts and the checks to run on the result.</dd></div>
-<div><dt><a href="prompts/index.html">Prompts</a></dt><dd>Single prompts that worked on real research tasks, with an example of the output and their known limits.</dd></div>
-<div><dt><a href="skills/index.html">Skills</a></dt><dd>Packaged instructions and scripts that an AI agent loads when a task needs them, ready to install.</dd></div>
-<div><dt><a href="agent-configs/index.html">Agent configs</a></dt><dd>CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project.</dd></div>
-<div><dt><a href="model-checks/index.html">Model checks</a></dt><dd>Small, repeatable tests of models on real scientific tasks, with dated results.</dd></div>
-<div><dt><a href="reviews/index.html">Reviews</a></dt><dd>A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist.</dd></div>
+<div class="type-workflows"><dt><a href="workflows/index.html">Workflows</a></dt><dd>Step-by-step procedures for a research task, with the exact prompts and the checks to run on the result.</dd></div>
+<div class="type-prompts"><dt><a href="prompts/index.html">Prompts</a></dt><dd>Single prompts that worked on real research tasks, with an example of the output and their known limits.</dd></div>
+<div class="type-skills"><dt><a href="skills/index.html">Skills</a></dt><dd>Packaged instructions and scripts that an AI agent loads when a task needs them, ready to install.</dd></div>
+<div class="type-agent-configs"><dt><a href="agent-configs/index.html">Agent configs</a></dt><dd>CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project.</dd></div>
+<div class="type-model-checks"><dt><a href="model-checks/index.html">Model checks</a></dt><dd>Small, repeatable tests of models on real scientific tasks, with dated results.</dd></div>
+<div class="type-reviews"><dt><a href="reviews/index.html">Reviews</a></dt><dd>A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist.</dd></div>
+<div class="type-failures"><dt><a href="failures/index.html">Failures</a></dt><dd>Real errors made by models on research tasks, how they were caught and the check that would have prevented them.</dd></div>
 </dl>
 
 

@@ -7,7 +7,7 @@ listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs
   sort: "tested desc"
-  fields: [title, description, qflag, author, phase, model, tested, categories]
+  fields: [catalog, title, description, qflag, author, phase, model, tested, categories]
 ---
 
 Peer review stops at publication. Here a language model reviews published papers a second time, as a demanding referee would: are the claims supported, are the statistics sound, are there missing comparisons, do the numbers in the text match the tables and figures?
