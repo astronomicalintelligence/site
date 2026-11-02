@@ -1,5 +1,6 @@
 ---
 title: "Literature search with NASA ADS and a language model"
+catalog: "AI W002"
 description: "Build the query yourself, export abstracts from ADS, and let the model map the field with every claim tied to a bibcode you can check."
 categories: [literature, astronomy]
 phase: "Literature"

@@ -1,5 +1,6 @@
 ---
 title: "Porting legacy IDL code to Python"
+catalog: "AI W001"
 description: "Translate an IDL routine with a coding agent and prove the Python version gives the same numbers."
 categories: [code, astronomy]
 phase: "Data and code"

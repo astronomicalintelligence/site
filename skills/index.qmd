@@ -9,7 +9,7 @@ listing:
   sort: "tested desc"
   categories: true
   filter-ui: true
-  fields: [title, description, qflag, author, phase, model, tested, categories]
+  fields: [catalog, title, description, qflag, author, phase, model, tested, categories]
 ---
 
 A skill is a folder with a `SKILL.md` file (instructions, conventions, examples) and, when needed, scripts. Agents such as Claude Code load a skill only when the task calls for it, so it can be long and specific without cluttering every conversation.

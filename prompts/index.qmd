@@ -9,7 +9,7 @@ listing:
   sort: "tested desc"
   categories: true
   filter-ui: true
-  fields: [title, description, qflag, author, phase, model, tested, categories]
+  fields: [catalog, title, description, qflag, author, phase, model, tested, categories]
 ---
 
 A prompt is listed here only with an example of real input and output and a note on where it stops working. Longer procedures live in [Workflows](../workflows/index.qmd).

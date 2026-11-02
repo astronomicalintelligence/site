@@ -1,5 +1,6 @@
 ---
 title: "Invented citations"
+catalog: "AI F001"
 description: "Plausible references that do not exist, or real papers credited with results they never contain."
 date: 2026-10-31
 author:

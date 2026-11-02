@@ -39,6 +39,7 @@ function Pandoc(doc)
   if not m.qflag then return doc end
 
   local rows = {
+    { "CATALOG",  s(m.catalog),       "catalogue number" },
     { "AUTHOR",   authors(m.author),  "who wrote and tested it" },
     { "MODEL",    s(m.model),         "model and version" },
     { "TOOL",     s(m.tool),          "interface or tool" },
