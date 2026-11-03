@@ -1,0 +1,106 @@
+name: Prompt
+description: A single prompt that worked on a real research task
+title: '[Prompt] '
+labels:
+- prompt
+body:
+- type: markdown
+  attributes:
+    value: Thank you for proposing a prompt. A maintainer checks it; when it is marked **ready** it is turned into a page
+      and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+- type: input
+  id: description
+  attributes:
+    label: What it does, in one sentence
+  validations:
+    required: true
+- type: dropdown
+  id: phase
+  attributes:
+    label: Research phase
+    options:
+    - Literature
+    - Proposals
+    - Data and code
+    - Analysis
+    - Writing
+    - Review
+    multiple: false
+  validations:
+    required: true
+- type: input
+  id: field
+  attributes:
+    label: Field
+    description: For example astronomy, physics, biology.
+    placeholder: astronomy
+  validations:
+    required: false
+- type: textarea
+  id: prompt
+  attributes:
+    label: Prompt
+    description: Exactly as used.
+    render: text
+  validations:
+    required: true
+- type: textarea
+  id: example
+  attributes:
+    label: Example
+    description: A real input and the output you got (shorten if long).
+  validations:
+    required: false
+- type: textarea
+  id: limits
+  attributes:
+    label: Known limits
+  validations:
+    required: true
+- type: input
+  id: model
+  attributes:
+    label: Model and version
+    description: Leave empty if not tested yet.
+    placeholder: for example Claude Opus 5.5
+  validations:
+    required: false
+- type: input
+  id: tool
+  attributes:
+    label: Tool or interface
+    placeholder: for example claude.ai, Claude Code, ChatGPT
+  validations:
+    required: false
+- type: input
+  id: tested
+  attributes:
+    label: Date of your test
+    placeholder: YYYY-MM-DD
+  validations:
+    required: false
+- type: dropdown
+  id: level
+  attributes:
+    label: Verification level
+    options:
+    - 'L0: not tested yet'
+    - 'L1: I tested it on a real case'
+    multiple: false
+  validations:
+    required: true
+- type: textarea
+  id: authors
+  attributes:
+    label: Authors to credit
+    description: 'One per line: name, ORCID (optional), affiliation.'
+    placeholder: First Last, 0000-0000-0000-0000, Institute
+  validations:
+    required: true
+- type: checkboxes
+  id: licence
+  attributes:
+    label: Licence
+    options:
+    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
+      required: true

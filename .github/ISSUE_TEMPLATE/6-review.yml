@@ -1,0 +1,58 @@
+name: Review
+description: Suggest a published paper for a second, AI-assisted peer review
+title: '[Review] '
+labels:
+- review
+body:
+- type: markdown
+  attributes:
+    value: Thank you for proposing a paper for review. A maintainer checks it; when it is marked **ready** it is turned into
+      a page and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+- type: input
+  id: paper
+  attributes:
+    label: Paper
+    description: Link to the published version, DOI or ADS bibcode.
+  validations:
+    required: true
+- type: input
+  id: field
+  attributes:
+    label: Field
+    description: For example astronomy, physics, biology.
+    placeholder: astronomy
+  validations:
+    required: false
+- type: textarea
+  id: why
+  attributes:
+    label: Why this paper
+  validations:
+    required: true
+- type: dropdown
+  id: is_author
+  attributes:
+    label: Are you one of the authors?
+    options:
+    - 'No'
+    - 'Yes'
+    multiple: false
+  validations:
+    required: true
+- type: dropdown
+  id: can_check
+  attributes:
+    label: Could you check the model's points as a scientist in the field?
+    options:
+    - 'Yes'
+    - 'No'
+    multiple: false
+  validations:
+    required: true
+- type: input
+  id: name
+  attributes:
+    label: Your name
+    description: Optional, to credit the suggestion.
+  validations:
+    required: false

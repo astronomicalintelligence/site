@@ -24,6 +24,8 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 | `*/_metadata.yml` | Per-section settings: FITS header filter and "How to cite" box |
 | `404.qmd` | Page shown for addresses that do not exist |
 | `tools/make_hero_uv.py` | Draws the home background (`images/hero-uv.jpg`) |
+| `tools/ISSUE_TO_PAGE.md` | How an issue labelled `ready` becomes a page and a pull request (followed daily by a scheduled Claude task) |
+| `_filters/include-code.lua` | Shows a file (SKILL.md, AGENTS.md) in a page exactly as it is downloaded |
 | `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W001, AI P001, ...); run by the publish workflow on every push to `main` |
 | `styles/types.css` | One colour per kind of contribution |
 | `styles/` | Fonts, colours (`light.scss`, `dark.scss`) and layout (`base.scss`) |
@@ -39,3 +41,7 @@ To contribute, see [contribute.qmd](contribute.qmd).
 
 Text: CC BY 4.0 ([LICENSE-CONTENT.md](LICENSE-CONTENT.md)). Code: MIT ([LICENSE](LICENSE)).
 To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Review labels
+
+Only maintainers can set labels. `needs-info`: something is missing, see the comment. `ready`: complete and accepted; once a day it is turned into a page and a pull request (`tools/ISSUE_TO_PAGE.md`), and the label becomes `in-pr`. The contribution is published, with its catalogue number, when the pull request is merged.

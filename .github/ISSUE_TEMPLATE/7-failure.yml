@@ -1,0 +1,79 @@
+name: Failure
+description: A real error made by a language model on a research task
+title: '[Failure] '
+labels:
+- failure
+body:
+- type: markdown
+  attributes:
+    value: Thank you for proposing a failure. A maintainer checks it; when it is marked **ready** it is turned into a page
+      and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+- type: input
+  id: description
+  attributes:
+    label: What it does, in one sentence
+  validations:
+    required: true
+- type: textarea
+  id: what
+  attributes:
+    label: What happens
+  validations:
+    required: true
+- type: textarea
+  id: prompt
+  attributes:
+    label: Prompt
+    description: Exactly as used, if you can share it.
+    render: text
+  validations:
+    required: false
+- type: textarea
+  id: caught
+  attributes:
+    label: How you caught it
+  validations:
+    required: true
+- type: textarea
+  id: prevent
+  attributes:
+    label: How to prevent it
+    description: The check that would have caught it.
+  validations:
+    required: true
+- type: input
+  id: model
+  attributes:
+    label: Model and version
+    description: Leave empty if not tested yet.
+    placeholder: for example Claude Opus 5.5
+  validations:
+    required: false
+- type: input
+  id: tool
+  attributes:
+    label: Tool or interface
+    placeholder: for example claude.ai, Claude Code, ChatGPT
+  validations:
+    required: false
+- type: input
+  id: tested
+  attributes:
+    label: Date of your test
+    placeholder: YYYY-MM-DD
+  validations:
+    required: false
+- type: textarea
+  id: authors
+  attributes:
+    label: Authors to credit
+    description: 'One per line: name, ORCID (optional), affiliation. Or write ''anonymous''.'
+  validations:
+    required: true
+- type: checkboxes
+  id: licence
+  attributes:
+    label: Licence
+    options:
+    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
+      required: true

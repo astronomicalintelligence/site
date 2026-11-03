@@ -8,7 +8,9 @@ Anyone can propose content. Every contribution is reviewed before it is publishe
 ## Two ways to contribute
 
 - **With Git:** fork the [repository](https://github.com/astronomicalintelligence/site), add a file in `workflows/`, `prompts/`, `skills/`, `agent-configs/`, `model-checks/`, `reviews/` or `failures/`, and open a pull request.
-- **Without Git:** [open an issue](https://github.com/astronomicalintelligence/site/issues/new/choose), choose a template and fill it in. We will turn it into a page.
+- **Without Git:** [open an issue](https://github.com/astronomicalintelligence/site/issues/new/choose) and fill in the form for your kind of contribution.
+
+A maintainer reads every proposal. If something is missing, the issue gets the label **needs-info** and a comment that says what. When it is complete, it gets the label **ready**: it is then turned into a page and a pull request within a day, and published when the pull request is merged.
 
 ## What every contribution needs
 
@@ -47,7 +49,7 @@ After the header, use these sections, in this order:
 
 - **Workflow**, in `workflows/name.qmd`: Goal · What you need · Steps · How to check the result · Where it fails.
 - **Prompt**, in `prompts/name.qmd`: Prompt (exactly as used) · Example (real input and output) · Known limits.
-- **Skill**, in `skills/name/index.qmd`, with the skill files (`SKILL.md` and any scripts) in the same folder: What it does · SKILL.md · How to check the result · Where it fails.
+- **Skill**, in `skills/name/index.qmd`, with `SKILL.md` and any scripts in the same folder. The page shows the file itself with a ```` ```{.markdown include="SKILL.md"} ```` block and lists it under `resources` so it can be downloaded: What it does · SKILL.md · How to check the result · Where it fails.
 - **Agent config**, in `agent-configs/name.qmd`: The file to copy (`AGENTS.md` or `CLAUDE.md`) · How to check the result · Where it fails.
 - **Model check**, in `model-checks/name.qmd`: Task · Prompt · Expected answer · Results (model, date, answer, pass or fail).
 - **Review**, in `reviews/name.qmd`: Paper reviewed · Model, date and review prompt · Points checked and confirmed · Points checked and rejected · Points not yet checked · Authors' reply.
@@ -89,6 +91,6 @@ If the method itself changes, propose a new contribution instead. It gets a new 
 - Update `model`, `tested` and `qflag`, and add `date-modified` with the date of the update. It appears under the title as *Modified*.
 - Add a line to the History section: the date, what changed, who made the change and with which model.
 
-**Without Git:** [open an Update issue](https://github.com/astronomicalintelligence/site/issues/new?template=8-update.md) with the catalogue number and what changed.
+**Without Git:** [open an Update issue](https://github.com/astronomicalintelligence/site/issues/new?template=8-update.yml) with the catalogue number and what changed.
 
 Whoever reproduces a contribution (L2) or rewrites a substantial part of it is added to its authors. Smaller changes are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.

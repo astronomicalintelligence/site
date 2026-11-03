@@ -1,0 +1,121 @@
+name: Skill
+description: Instructions and scripts an AI agent loads when a task needs them
+title: '[Skill] '
+labels:
+- skill
+body:
+- type: markdown
+  attributes:
+    value: Thank you for proposing a skill. A maintainer checks it; when it is marked **ready** it is turned into a page and
+      a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+- type: input
+  id: description
+  attributes:
+    label: What it does, in one sentence
+  validations:
+    required: true
+- type: dropdown
+  id: phase
+  attributes:
+    label: Research phase
+    options:
+    - Literature
+    - Proposals
+    - Data and code
+    - Analysis
+    - Writing
+    - Review
+    multiple: false
+  validations:
+    required: true
+- type: input
+  id: field
+  attributes:
+    label: Field
+    description: For example astronomy, physics, biology.
+    placeholder: astronomy
+  validations:
+    required: false
+- type: textarea
+  id: what
+  attributes:
+    label: What it does
+    description: What changes in the agent's behaviour when the skill is loaded.
+  validations:
+    required: true
+- type: textarea
+  id: skill_md
+  attributes:
+    label: SKILL.md
+    description: The whole file, front matter included.
+    render: markdown
+  validations:
+    required: true
+- type: textarea
+  id: files
+  attributes:
+    label: Other files
+    description: 'Scripts or references in the skill folder: paste them or link to them.'
+  validations:
+    required: false
+- type: textarea
+  id: check
+  attributes:
+    label: How to check the result
+    description: 'Concrete: what to compare, recompute or look up. Not ''verify the output''.'
+  validations:
+    required: true
+- type: textarea
+  id: fails
+  attributes:
+    label: Where it fails
+    description: Cases where it gave wrong results, or limits you know of. Write 'not known yet' if none.
+  validations:
+    required: true
+- type: input
+  id: model
+  attributes:
+    label: Model and version
+    description: Leave empty if not tested yet.
+    placeholder: for example Claude Opus 5.5
+  validations:
+    required: false
+- type: input
+  id: tool
+  attributes:
+    label: Tool or interface
+    placeholder: for example claude.ai, Claude Code, ChatGPT
+  validations:
+    required: false
+- type: input
+  id: tested
+  attributes:
+    label: Date of your test
+    placeholder: YYYY-MM-DD
+  validations:
+    required: false
+- type: dropdown
+  id: level
+  attributes:
+    label: Verification level
+    options:
+    - 'L0: not tested yet'
+    - 'L1: I tested it on a real case'
+    multiple: false
+  validations:
+    required: true
+- type: textarea
+  id: authors
+  attributes:
+    label: Authors to credit
+    description: 'One per line: name, ORCID (optional), affiliation.'
+    placeholder: First Last, 0000-0000-0000-0000, Institute
+  validations:
+    required: true
+- type: checkboxes
+  id: licence
+  attributes:
+    label: Licence
+    options:
+    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
+      required: true

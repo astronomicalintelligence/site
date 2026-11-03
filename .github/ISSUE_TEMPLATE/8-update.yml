@@ -1,0 +1,57 @@
+name: Update
+description: 'Update an existing contribution: new test, fix, new failure case, reproduction'
+title: '[Update] AI '
+labels:
+- update
+body:
+- type: markdown
+  attributes:
+    value: Thank you for proposing an update. A maintainer checks it; when it is marked **ready** it is turned into a page
+      and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+- type: input
+  id: catalog
+  attributes:
+    label: Catalogue number
+    description: Shown in the list and in the page header.
+    placeholder: AI W002
+  validations:
+    required: true
+- type: textarea
+  id: changes
+  attributes:
+    label: What changes
+  validations:
+    required: true
+- type: textarea
+  id: test
+  attributes:
+    label: New test
+    description: Model and version, tool, date, result.
+  validations:
+    required: false
+- type: dropdown
+  id: level
+  attributes:
+    label: Does this change the verification level?
+    options:
+    - 'No'
+    - 'L2: I reproduced it from scratch'
+    - 'L3: I checked it across models or dates'
+    multiple: false
+  validations:
+    required: true
+- type: textarea
+  id: authors
+  attributes:
+    label: Authors to credit
+    description: 'One per line: name, ORCID (optional), affiliation.'
+    placeholder: First Last, 0000-0000-0000-0000, Institute
+  validations:
+    required: true
+- type: checkboxes
+  id: licence
+  attributes:
+    label: Licence
+    options:
+    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
+      required: true
