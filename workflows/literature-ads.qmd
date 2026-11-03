@@ -110,3 +110,7 @@ If something is not supported by the abstracts, say so instead of guessing.
 
 - Ask for a table instead of prose: theme, key result, bibcodes, open question.
 - Repeat the same prompt with a second model and compare the themes.
+
+## History
+
+- 2026-10-31: first draft (L0), Francesco De Gasperin.

@@ -26,3 +26,7 @@ Give the model the papers (or their abstracts) and require it to cite only from 
 ## Cases
 
 To be added: dated examples with the model and the prompt used.
+
+## History
+
+- 2026-10-31: first version, Francesco De Gasperin.

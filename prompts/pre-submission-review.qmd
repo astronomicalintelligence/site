@@ -44,3 +44,7 @@ To be added: a short excerpt of a real draft and the report obtained.
 
 - The model cannot check numbers it cannot recompute. Treat silence on a result as "not checked", not "correct".
 - Do not upload manuscripts or proposals that are not yours to share.
+
+## History
+
+- 2026-10-31: first draft (L0), Francesco De Gasperin.

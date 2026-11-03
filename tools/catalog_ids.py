@@ -5,14 +5,16 @@ type and a counter: workflows W, prompts P, skills S, agent configs A, model
 checks M, reviews R, failures F. Numbers are never reused or changed once
 given.
 
-    python3 tools/catalog_ids.py           # check: list missing numbers, fail on duplicates
-    python3 tools/catalog_ids.py --write   # write the missing numbers into the front matter
+    python3 tools/catalog_ids.py                    # check: list missing numbers, fail on duplicates
+    python3 tools/catalog_ids.py --base origin/main # also fail if a number given on main was changed
+    python3 tools/catalog_ids.py --write            # write the missing numbers into the front matter
 
 The publish workflow runs it with --write on every push to main, so a new
 contribution is numbered automatically when it is merged. Contributors leave the
 `catalog` field out.
 """
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -38,7 +40,21 @@ def front_matter(text):
     return None, lines
 
 
-def main(write):
+def number_on(base, path):
+    """Catalogue number of a file as it is on the branch `base`, or None if new there."""
+    rel = path.relative_to(ROOT).as_posix()
+    r = subprocess.run(["git", "show", f"{base}:{rel}"], cwd=ROOT, capture_output=True, text=True)
+    if r.returncode != 0:
+        return None
+    span, lines = front_matter(r.stdout)
+    for ln in (lines[span[0]:span[1]] if span else []):
+        m = CAT_RE.match(ln)
+        if m:
+            return f"AI {m.group(1)}{int(m.group(2)):03d}"
+    return None
+
+
+def main(write, base=None):
     problems, changes = [], []
     for folder, code in TYPES.items():
         items = []
@@ -60,6 +76,11 @@ def main(write):
                 if d:
                     date = d.group(1)
             items.append({"path": path, "num": num, "date": date, "lines": lines, "span": span})
+            if base:
+                old = number_on(base, path)
+                new = f"AI {code}{num:03d}" if num is not None else None
+                if old and old != new:
+                    problems.append(f"{path.relative_to(ROOT)}: catalogue number changed from {old} to {new or 'nothing'}; numbers never change")
 
         # duplicates: the earliest contribution keeps the number, later ones get a new one
         seen = {}
@@ -95,4 +116,6 @@ def main(write):
 
 
 if __name__ == "__main__":
-    sys.exit(main("--write" in sys.argv))
+    args = sys.argv[1:]
+    base = args[args.index("--base") + 1] if "--base" in args else None
+    sys.exit(main("--write" in args, base))

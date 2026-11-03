@@ -53,6 +53,8 @@ After the header, use these sections, in this order:
 - **Review**, in `reviews/name.qmd`: Paper reviewed · Model, date and review prompt · Points checked and confirmed · Points checked and rejected · Points not yet checked · Authors' reply.
 - **Failure**, in `failures/name.qmd`: What happens · How to catch it · How to prevent it · Cases.
 
+Every contribution ends with a **History** section: one dated line per change, starting with the first version, for example `- 2026-10-31: first version (L1), First Last.`
+
 Reviews follow the extra [ground rules](reviews/index.qmd#ground-rules): only published papers, every confirmed point checked by a scientist in the field, and a right of reply for the authors.
 
 ## Credit and citation
@@ -69,3 +71,24 @@ Contributions are published under the site licences: text under CC BY 4.0, code 
 - Nothing confidential or under embargo is included.
 
 A contribution enters at **L1** when the author has tested it on a real case. It moves to **L2** when someone else reproduces it. Untested contributions are welcome too: they are published as **L0** drafts.
+
+## Updating a contribution
+
+A contribution keeps its catalogue number for life. Update it when:
+
+- you tested it again, with another model or on another date;
+- you fixed or clarified a step, or improved a prompt;
+- you found a new case where it fails;
+- you reproduced it (L1 to L2) or checked it across models or dates (L3).
+
+If the method itself changes, propose a new contribution instead. It gets a new number and says *Supersedes AI W002* at the top, and the old page links to it.
+
+**With Git:** edit the existing file and open a pull request.
+
+- Leave `catalog` and `date` as they are. A pull request that changes a catalogue number is rejected automatically.
+- Update `model`, `tested` and `qflag`, and add `date-modified` with the date of the update. It appears under the title as *Modified*.
+- Add a line to the History section: the date, what changed, who made the change and with which model.
+
+**Without Git:** [open an Update issue](https://github.com/astronomicalintelligence/site/issues/new?template=8-update.md) with the catalogue number and what changed.
+
+Whoever reproduces a contribution (L2) or rewrites a substantial part of it is added to its authors. Smaller changes are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
