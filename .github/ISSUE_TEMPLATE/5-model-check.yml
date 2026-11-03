@@ -1,0 +1,82 @@
+name: Model check
+description: A short, repeatable test of language models on a real scientific task
+title: '[Model check] '
+labels:
+- model-check
+body:
+- type: markdown
+  attributes:
+    value: Thank you for proposing a model check. A maintainer checks it; when it is marked **ready** it is turned into a
+      page and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+- type: input
+  id: description
+  attributes:
+    label: What it does, in one sentence
+  validations:
+    required: true
+- type: dropdown
+  id: phase
+  attributes:
+    label: Research phase
+    options:
+    - Literature
+    - Proposals
+    - Data and code
+    - Analysis
+    - Writing
+    - Review
+    multiple: false
+  validations:
+    required: true
+- type: input
+  id: field
+  attributes:
+    label: Field
+    description: For example astronomy, physics, biology.
+    placeholder: astronomy
+  validations:
+    required: false
+- type: textarea
+  id: task
+  attributes:
+    label: Task
+    description: What is asked, and why it is a good test.
+  validations:
+    required: true
+- type: textarea
+  id: prompt
+  attributes:
+    label: Prompt
+    description: Exactly as used.
+    render: text
+  validations:
+    required: true
+- type: textarea
+  id: expected
+  attributes:
+    label: Expected answer
+    description: And how it is checked.
+  validations:
+    required: true
+- type: textarea
+  id: results
+  attributes:
+    label: Results
+    description: 'One line per model: model and version, date, answer, pass or fail.'
+  validations:
+    required: false
+- type: textarea
+  id: authors
+  attributes:
+    label: Authors to credit
+    description: 'One per line: name, ORCID (optional), affiliation.'
+    placeholder: First Last, 0000-0000-0000-0000, Institute
+  validations:
+    required: true
+- type: checkboxes
+  id: licence
+  attributes:
+    label: Licence
+    options:
+    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
+      required: true

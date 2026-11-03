@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: _site
+  # Only .qmd files are pages; .md files (README, CONTRIBUTING, SKILL.md, ...) are not
+  render:
+    - "**/*.qmd"
   resources:
     - fonts/
 
