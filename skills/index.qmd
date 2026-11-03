@@ -3,6 +3,7 @@ title: "Skills"
 description: "Packaged instructions and scripts that an AI agent loads when a task needs them, ready to install."
 toc: false
 citation: false
+comments: false
 listing:
   contents: "*/index.qmd"
   template: ../_templates/workflows.ejs

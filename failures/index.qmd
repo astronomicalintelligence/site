@@ -3,6 +3,7 @@ title: "Failures"
 description: "Errors made by language models on research tasks, with how they were caught and how to prevent them."
 toc: false
 citation: false
+comments: false
 listing:
   contents: "*.qmd"
   type: table

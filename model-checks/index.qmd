@@ -3,6 +3,7 @@ title: "Model checks"
 description: "Small, repeatable tests of language models on real scientific tasks, with dated results."
 toc: false
 citation: false
+comments: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs

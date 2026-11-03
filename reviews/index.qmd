@@ -3,6 +3,7 @@ title: "Reviews"
 description: "A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist."
 toc: false
 citation: false
+comments: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs

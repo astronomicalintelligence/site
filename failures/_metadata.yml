@@ -6,3 +6,16 @@ citation:
   type: webpage
   container-title: "Astronomical Intelligence"
 body-classes: type-failures
+# Comments: one GitHub Discussion per contribution (giscus), category "Comments"
+comments:
+  giscus:
+    repo: astronomicalintelligence/site
+    repo-id: "R_kgDOVeKQmg"
+    category: "Comments"
+    category-id: "DIC_kwDOVeKQms4DKRzA"
+    mapping: pathname
+    reactions-enabled: true
+    input-position: top
+    theme:
+      light: light
+      dark: dark_dimmed
