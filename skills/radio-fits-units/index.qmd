@@ -61,3 +61,7 @@ Measure a source whose flux is known (a catalogue value or a point source in a s
 ## Where it fails
 
 To be documented after testing.
+
+## History
+
+- 2026-10-31: first draft (L0), Francesco De Gasperin.

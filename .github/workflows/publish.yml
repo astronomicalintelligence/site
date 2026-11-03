@@ -21,10 +21,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: quarto-dev/quarto-actions/setup@v2
-      # Pull requests: only check (fails if two contributions share a number).
+      # Pull requests: only check (fails if two contributions share a number
+      # or a number already given on main was changed).
       # Main: give the next free number to every new contribution.
+      - name: Fetch main to compare catalogue numbers
+        if: github.event_name == 'pull_request'
+        run: git fetch --depth=1 origin main:refs/remotes/origin/main
       - name: Catalogue numbers
-        run: python3 tools/catalog_ids.py ${{ github.event_name != 'pull_request' && '--write' || '' }}
+        run: python3 tools/catalog_ids.py ${{ github.event_name != 'pull_request' && '--write' || '--base origin/main' }}
       - name: Render site
         run: quarto render
       - name: Save new catalogue numbers
