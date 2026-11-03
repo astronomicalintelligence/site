@@ -3,6 +3,7 @@ title: "Agent configs"
 description: "CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project."
 toc: false
 citation: false
+comments: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs

@@ -3,6 +3,7 @@ title: "Prompts"
 description: "Prompts that worked on real research tasks, with the model, the date and the known limits."
 toc: false
 citation: false
+comments: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs

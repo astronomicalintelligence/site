@@ -3,6 +3,7 @@ title: "Workflows"
 description: "Step-by-step procedures for research tasks, each tested on a real case."
 toc: false
 citation: false
+comments: false
 listing:
   contents: "*.qmd"
   template: ../_templates/workflows.ejs

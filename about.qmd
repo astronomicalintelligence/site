@@ -10,4 +10,4 @@ Text is released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ## Privacy
 
-The site uses no cookies. Visits are counted with [GoatCounter](https://www.goatcounter.com), an open-source service that does not track visitors across sites and does not store personal data.
+The site uses no cookies. Visits are counted with [GoatCounter](https://www.goatcounter.com), an open-source service that does not track visitors across sites and does not store personal data. Comments on contributions are stored as GitHub Discussions in the site's repository and shown with [giscus](https://giscus.app), which uses no cookies; the comment box is loaded from giscus.app and shows GitHub profile pictures, and writing a comment needs a GitHub account.
