@@ -6,18 +6,38 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: Thank you for proposing a failure. A maintainer checks it; when it is marked **ready** it is turned into a page
-      and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+    value: 'Thank you for proposing a failure. Write a short, task-based title after the prefix, for example "[Failure] Invented
+      citations".
+
+
+      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
+      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
 - type: input
   id: description
   attributes:
-    label: What it does, in one sentence
+    label: What went wrong, in one sentence
+    placeholder: The model cited a paper that does not exist.
+  validations:
+    required: true
+- type: dropdown
+  id: kind
+  attributes:
+    label: Kind of error
+    options:
+    - Invented reference
+    - Wrong number or unit
+    - Wrong derivation
+    - Code that runs but is wrong
+    - Misread source
+    - Other
+    multiple: false
   validations:
     required: true
 - type: textarea
   id: what
   attributes:
-    label: What happens
+    label: What happened
+    description: The task, what the model answered and what the right answer was.
   validations:
     required: true
 - type: textarea
@@ -32,6 +52,7 @@ body:
   id: caught
   attributes:
     label: How you caught it
+    placeholder: The DOI did not resolve and ADS had no paper with that title.
   validations:
     required: true
 - type: textarea
@@ -45,21 +66,21 @@ body:
   id: model
   attributes:
     label: Model and version
-    description: Leave empty if not tested yet.
+    description: The model that made the error.
     placeholder: for example Claude Opus 5.5
   validations:
-    required: false
+    required: true
 - type: input
   id: tool
   attributes:
     label: Tool or interface
-    placeholder: for example claude.ai, Claude Code, ChatGPT
+    placeholder: for example claude.ai, Claude Code, Codex, ChatGPT, the API
   validations:
     required: false
 - type: input
   id: tested
   attributes:
-    label: Date of your test
+    label: When it happened
     placeholder: YYYY-MM-DD
   validations:
     required: false
@@ -67,7 +88,7 @@ body:
   id: authors
   attributes:
     label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation. Or write ''anonymous''.'
+    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation. Or write ''anonymous''.'
   validations:
     required: true
 - type: checkboxes

@@ -52,7 +52,7 @@ phase: "<phase as in the issue>"
 model: "<model and version, or 'to be tested'>"
 tool: "<tool, if given>"
 tested: <YYYY-MM-DD, or "not yet">
-qflag: <L0 or L1, from the verification level>
+qflag: <L0 or L1, from the verification level; L1 only if model, date and test case are given>
 time-saved: "<workflows only, if given>"
 date: <today, YYYY-MM-DD>
 author:
@@ -64,10 +64,27 @@ author:
 ```
 
 Phase categories: Literature → `literature`, Proposals → `proposals`, Data and code → `code`, Analysis → `analysis`,
-Writing → `writing`, Review → `review`. Failures have only `title`, `description`, `date` and `author`.
+Writing → `writing`, Pre-submission review → `review` (with `phase: "Pre-submission review"`). For *General (any phase)*
+write `phase: "General"` and no phase category. Model checks have no phase.
 
-Body: the sections listed for the type in `contribute.qmd` ("Sections for each type"), in that order, as `##`
-headings, then `## History` with one line: `- YYYY-MM-DD: first version (L0 or L1), First Last.`
+Field categories: Astronomy and astrophysics → `astronomy`, Physics → `physics`, Earth and planetary sciences →
+`earth-sciences`, Chemistry → `chemistry`, Biology and medicine → `biology`, Computer science → `computer-science`,
+Other or empty → none.
+
+Failures have only `title`, `description`, `date`, `author` and `categories: [<kind of error, lowercase, hyphenated>]`
+(for example `invented-reference`); the model, tool and date go in the text of *What happens*.
+
+Body: these sections, in this order, as `##` headings, then `## History` with one line:
+`- YYYY-MM-DD: first version (L0 or L1), First Last.`
+
+| Type | Sections |
+|---|---|
+| Workflow | Goal · What you need · Steps · How to check the result · Where it fails |
+| Prompt | Prompt · Example · How to check the result · Where it fails |
+| Skill | What it does · SKILL.md · How to check the result · Where it fails |
+| Agent config | What it is for · The file to copy · How to check the result · Where it fails |
+| Model check | Task · Prompt · Expected answer and pass rule · Results |
+| Failure | What happens · How to catch it · How to prevent it · Cases |
 For L0, start the body with:
 
 ```markdown
@@ -76,6 +93,8 @@ For L0, start the body with:
 Proposed content, not yet tested.
 :::
 ```
+
+If a test case is given, start *How to check the result* with a paragraph `**Tested on:** <test case>`.
 
 Copy prompts, SKILL.md, AGENTS.md and code **exactly** as given. Everything else may be lightly edited for clarity
 (typos, plain English, short sentences) without changing its meaning.

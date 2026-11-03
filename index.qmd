@@ -73,7 +73,7 @@ This is a place to share what works: workflows, skills, prompts and agent config
 <li><a href="workflows/index.html#category=code">Data and code</a><span>Pipelines, legacy code, CASA and FITS handling</span></li>
 <li><a href="workflows/index.html#category=analysis">Analysis</a><span>Statistics, fits, units and derivations</span></li>
 <li><a href="workflows/index.html#category=writing">Writing</a><span>Drafts, figures and language review</span></li>
-<li><a href="workflows/index.html#category=review">Review</a><span>Pre-submission checks and referee replies</span></li>
+<li><a href="workflows/index.html#category=review">Pre-submission review</a><span>Referee reports on your own draft, and replies to referees</span></li>
 </ul>
 
 ## Latest contributions

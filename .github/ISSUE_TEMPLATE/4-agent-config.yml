@@ -6,12 +6,17 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: Thank you for proposing an agent config. A maintainer checks it; when it is marked **ready** it is turned into
-      a page and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+    value: 'Thank you for proposing an agent config. Write a short, task-based title after the prefix, for example "[Agent
+      config] AGENTS.md for an astronomy analysis repository".
+
+
+      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
+      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
 - type: input
   id: description
   attributes:
     label: What it does, in one sentence
+    placeholder: 'Conventions for a Python analysis repository: units, cosmology, reproducibility and tests.'
   validations:
     required: true
 - type: dropdown
@@ -24,23 +29,38 @@ body:
     - Data and code
     - Analysis
     - Writing
-    - Review
+    - Pre-submission review
+    - General (any phase)
     multiple: false
   validations:
     required: true
-- type: input
+- type: dropdown
   id: field
   attributes:
     label: Field
-    description: For example astronomy, physics, biology.
-    placeholder: astronomy
+    options:
+    - Astronomy and astrophysics
+    - Physics
+    - Earth and planetary sciences
+    - Chemistry
+    - Biology and medicine
+    - Computer science
+    - Other
+    multiple: false
   validations:
     required: false
+- type: textarea
+  id: project
+  attributes:
+    label: What kind of project it is for
+    placeholder: A Python analysis repository with astropy, data in data/ and tests in tests/.
+  validations:
+    required: true
 - type: textarea
   id: config
   attributes:
     label: The file to copy
-    description: AGENTS.md or CLAUDE.md, whole.
+    description: AGENTS.md or CLAUDE.md, whole. Mark the parts to adapt in [square brackets].
     render: markdown
   validations:
     required: true
@@ -49,6 +69,7 @@ body:
   attributes:
     label: How to check the result
     description: 'Concrete: what to compare, recompute or look up. Not ''verify the output''.'
+    placeholder: Give the agent a task that tempts it to break a rule (a missing beam size) and see whether it stops and asks.
   validations:
     required: true
 - type: textarea
@@ -62,7 +83,7 @@ body:
   id: model
   attributes:
     label: Model and version
-    description: Leave empty if not tested yet.
+    description: 'Needed for L1: the exact model and version you used.'
     placeholder: for example Claude Opus 5.5
   validations:
     required: false
@@ -70,14 +91,23 @@ body:
   id: tool
   attributes:
     label: Tool or interface
-    placeholder: for example claude.ai, Claude Code, ChatGPT
+    placeholder: for example claude.ai, Claude Code, Codex, ChatGPT, the API
   validations:
     required: false
 - type: input
   id: tested
   attributes:
     label: Date of your test
+    description: Needed for L1.
     placeholder: YYYY-MM-DD
+  validations:
+    required: false
+- type: textarea
+  id: test_case
+  attributes:
+    label: Test case
+    description: 'Needed for L1: the real task you ran it on and what came out.'
+    placeholder: 50 refereed abstracts on AGN feedback (2018-2026); all 31 cited bibcodes were in the file.
   validations:
     required: false
 - type: dropdown
@@ -85,8 +115,8 @@ body:
   attributes:
     label: Verification level
     options:
-    - 'L0: not tested yet'
-    - 'L1: I tested it on a real case'
+    - 'L0: a proposal, not tested yet'
+    - 'L1: tested on a real case (fill in model, date and test case)'
     multiple: false
   validations:
     required: true
@@ -94,7 +124,7 @@ body:
   id: authors
   attributes:
     label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation.'
+    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation.'
     placeholder: First Last, 0000-0000-0000-0000, Institute
   validations:
     required: true

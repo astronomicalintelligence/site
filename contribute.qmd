@@ -3,65 +3,35 @@ title: "Contribute"
 description: "How to propose a workflow, a prompt, a skill or any other contribution."
 ---
 
-Anyone can propose content. Every contribution is reviewed before it is published.
+Anyone can propose a contribution by filling in a short form on GitHub (a free GitHub account is needed). Every proposal is reviewed before it is published.
 
-## Two ways to contribute
+## How to propose
 
-- **With Git:** fork the [repository](https://github.com/astronomicalintelligence/site), add a file in `workflows/`, `prompts/`, `skills/`, `agent-configs/`, `model-checks/`, `reviews/` or `failures/`, and open a pull request.
-- **Without Git:** [open an issue](https://github.com/astronomicalintelligence/site/issues/new/choose) and fill in the form for your kind of contribution.
+1. **Open the form** for your kind of contribution: [workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml), [prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml), [skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml), [agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml), [model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml), [paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml) or [failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml). You can also [see all the forms](https://github.com/astronomicalintelligence/site/issues/new/choose).
+2. **Fill it in.** Required fields are marked; the list below says what each form asks for.
+3. **Wait for the review.** A maintainer reads every proposal. If something is missing, the issue gets the label **needs-info** and a comment that says what: answer in a comment. When it is complete, it gets the label **ready**. Within a day it is turned into a page, and it is published as soon as a maintainer approves the page.
 
-A maintainer reads every proposal. If something is missing, the issue gets the label **needs-info** and a comment that says what. When it is complete, it gets the label **ready**: it is then turned into a page and a pull request within a day, and published when the pull request is merged.
+You do not need to know Git, Quarto or the structure of the site: the page is written for you, and you can comment on it before it is published.
 
-## What every contribution needs
+## What each form asks for
 
-Every contribution (a workflow, a prompt, a skill, an agent config, a model check, a review or a failure) is one page of the site, written as a `.qmd` file that starts with this header. Copy it into a new file and fill it in:
+- **Workflow:** goal, what you need, the steps with the prompts exactly as used, how to check the result, where it fails.
+- **Prompt:** the prompt exactly as used, a real example of input and output, how to check the result, where it fails.
+- **Skill:** what it does, the whole `SKILL.md` and any other files of the skill, how to check the result, where it fails.
+- **Agent config:** what kind of project it is for, the whole `AGENTS.md` or `CLAUDE.md`, how to check the result, where it fails.
+- **Model check:** the task, the prompt, the expected answer with the rule to mark a reply pass or fail, and the results for each model you tried.
+- **Paper to review:** the published paper, whether it is open access, why it is worth a second review, and whether you could check the model's points. Reviews follow the [ground rules](reviews/index.qmd#ground-rules).
+- **Failure:** the kind of error, what happened, the model that made it, how you caught it and the check that would have prevented it.
 
-````markdown
----
-title: "Short, task-based title"
-description: "One sentence: what it does."
-# categories: literature, proposals, code,
-#   analysis, writing, review
-categories: [literature]
-phase: "Literature"
-model: "Model name and version"
-tool: "Interface or tool"
-tested: 2026-10-31
-qflag: L1
-time-saved: "3 h -> 40 min (measured)"  # workflows only
-# date of publication
-date: 2026-10-31
-author:
-  - name: "First Last"   # orcid is optional
-    orcid: 0000-0000-0000-0000
-    affiliations:
-      - name: "Institute"
----
-````
+The forms for workflows, prompts, skills and agent configs also ask how you tested it: model, tool, date and the real case you ran it on (needed for L1). Every form asks for the authors to credit and your agreement to the licences.
 
-A failure needs only `title`, `description`, `date` and `author`.
+## Catalogue numbers
 
-Leave out the `catalog` field. When a contribution is published it gets a catalogue number automatically: the letter of its type and the next free number, for example **AI W003** for a workflow or **AI P002** for a prompt. The number never changes, so you can use it to cite or mention the contribution.
-
-## Sections for each type
-
-After the header, use these sections, in this order:
-
-- **Workflow**, in `workflows/name.qmd`: Goal · What you need · Steps · How to check the result · Where it fails.
-- **Prompt**, in `prompts/name.qmd`: Prompt (exactly as used) · Example (real input and output) · Known limits.
-- **Skill**, in `skills/name/index.qmd`, with `SKILL.md` and any scripts in the same folder. The page shows the file itself with a ```` ```{.markdown include="SKILL.md"} ```` block and lists it under `resources` so it can be downloaded: What it does · SKILL.md · How to check the result · Where it fails.
-- **Agent config**, in `agent-configs/name.qmd`: The file to copy (`AGENTS.md` or `CLAUDE.md`) · How to check the result · Where it fails.
-- **Model check**, in `model-checks/name.qmd`: Task · Prompt · Expected answer · Results (model, date, answer, pass or fail).
-- **Review**, in `reviews/name.qmd`: Paper reviewed · Model, date and review prompt · Points checked and confirmed · Points checked and rejected · Points not yet checked · Authors' reply.
-- **Failure**, in `failures/name.qmd`: What happens · How to catch it · How to prevent it · Cases.
-
-Every contribution ends with a **History** section: one dated line per change, starting with the first version, for example `- 2026-10-31: first version (L1), First Last.`
-
-Reviews follow the extra [ground rules](reviews/index.qmd#ground-rules): only published papers, every confirmed point checked by a scientist in the field, and a right of reply for the authors.
+When a contribution is published it gets a catalogue number: the letter of its type and the next free number, for example **AI W003** for a workflow or **AI P002** for a prompt. The number never changes, so you can use it to cite or mention the contribution.
 
 ## Credit and citation
 
-Every contributed page shows its authors and ends with a **How to cite** box, with a ready-made reference and BibTeX entry built from the title, the authors, the date and the page address.
+Every contributed page shows its authors and ends with a **How to cite** box, with a ready-made reference and BibTeX entry built from the title, the authors, the date and the page address. Each page also keeps a **History** of its versions.
 
 Contributions are published under the site licences: text under CC BY 4.0, code under MIT.
 
@@ -76,21 +46,13 @@ A contribution enters at **L1** when the author has tested it on a real case. It
 
 ## Updating a contribution
 
-A contribution keeps its catalogue number for life. Update it when:
+A contribution keeps its catalogue number for life. [Open an Update form](https://github.com/astronomicalintelligence/site/issues/new?template=8-update.yml) with its catalogue number when:
 
 - you tested it again, with another model or on another date;
 - you fixed or clarified a step, or improved a prompt;
 - you found a new case where it fails;
 - you reproduced it (L1 to L2) or checked it across models or dates (L3).
 
+The update goes through the same review, and the page records it in its History. Whoever reproduces a contribution (L2) or rewrites a substantial part of it is added to its authors; smaller changes are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
+
 If the method itself changes, propose a new contribution instead. It gets a new number and says *Supersedes AI W002* at the top, and the old page links to it.
-
-**With Git:** edit the existing file and open a pull request.
-
-- Leave `catalog` and `date` as they are. A pull request that changes a catalogue number is rejected automatically.
-- Update `model`, `tested` and `qflag`, and add `date-modified` with the date of the update. It appears under the title as *Modified*.
-- Add a line to the History section: the date, what changed, who made the change and with which model.
-
-**Without Git:** [open an Update issue](https://github.com/astronomicalintelligence/site/issues/new?template=8-update.yml) with the catalogue number and what changed.
-
-Whoever reproduces a contribution (L2) or rewrites a substantial part of it is added to its authors. Smaller changes are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.

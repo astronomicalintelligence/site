@@ -6,12 +6,17 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: Thank you for proposing a workflow. A maintainer checks it; when it is marked **ready** it is turned into a page
-      and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+    value: 'Thank you for proposing a workflow. Write a short, task-based title after the prefix, for example "[Workflow]
+      Literature search with NASA ADS".
+
+
+      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
+      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
 - type: input
   id: description
   attributes:
     label: What it does, in one sentence
+    placeholder: Map a research field from ADS abstracts, with every claim tied to a bibcode you can check.
   validations:
     required: true
 - type: dropdown
@@ -24,22 +29,32 @@ body:
     - Data and code
     - Analysis
     - Writing
-    - Review
+    - Pre-submission review
+    - General (any phase)
     multiple: false
   validations:
     required: true
-- type: input
+- type: dropdown
   id: field
   attributes:
     label: Field
-    description: For example astronomy, physics, biology.
-    placeholder: astronomy
+    options:
+    - Astronomy and astrophysics
+    - Physics
+    - Earth and planetary sciences
+    - Chemistry
+    - Biology and medicine
+    - Computer science
+    - Other
+    multiple: false
   validations:
     required: false
 - type: textarea
   id: goal
   attributes:
     label: Goal
+    description: The task it solves, when to use it and when not to.
+    placeholder: Get a first map of a topic from papers you chose, without invented references.
   validations:
     required: true
 - type: textarea
@@ -47,13 +62,14 @@ body:
   attributes:
     label: What you need
     description: Accounts, software, data.
+    placeholder: A NASA ADS account and API token; Python with requests; a model that accepts file uploads.
   validations:
     required: false
 - type: textarea
   id: steps
   attributes:
     label: Steps
-    description: With the prompts exactly as used.
+    description: Numbered steps. Put each prompt in a code block, exactly as you used it.
   validations:
     required: true
 - type: textarea
@@ -61,6 +77,7 @@ body:
   attributes:
     label: How to check the result
     description: 'Concrete: what to compare, recompute or look up. Not ''verify the output''.'
+    placeholder: Check that every cited bibcode is in the exported file; compare five claims with their abstracts.
   validations:
     required: true
 - type: textarea
@@ -68,13 +85,14 @@ body:
   attributes:
     label: Where it fails
     description: Cases where it gave wrong results, or limits you know of. Write 'not known yet' if none.
+    placeholder: 'Results that are only in the body of papers are invisible: the model sees abstracts only.'
   validations:
     required: true
 - type: input
   id: time_saved
   attributes:
-    label: Time saved
-    description: Measured, before and after.
+    label: Time saved (measured)
+    description: How long the task took without and with the workflow. Leave empty if you did not measure it.
     placeholder: 3 h -> 40 min
   validations:
     required: false
@@ -82,7 +100,7 @@ body:
   id: model
   attributes:
     label: Model and version
-    description: Leave empty if not tested yet.
+    description: 'Needed for L1: the exact model and version you used.'
     placeholder: for example Claude Opus 5.5
   validations:
     required: false
@@ -90,14 +108,23 @@ body:
   id: tool
   attributes:
     label: Tool or interface
-    placeholder: for example claude.ai, Claude Code, ChatGPT
+    placeholder: for example claude.ai, Claude Code, Codex, ChatGPT, the API
   validations:
     required: false
 - type: input
   id: tested
   attributes:
     label: Date of your test
+    description: Needed for L1.
     placeholder: YYYY-MM-DD
+  validations:
+    required: false
+- type: textarea
+  id: test_case
+  attributes:
+    label: Test case
+    description: 'Needed for L1: the real task you ran it on and what came out.'
+    placeholder: 50 refereed abstracts on AGN feedback (2018-2026); all 31 cited bibcodes were in the file.
   validations:
     required: false
 - type: dropdown
@@ -105,8 +132,8 @@ body:
   attributes:
     label: Verification level
     options:
-    - 'L0: not tested yet'
-    - 'L1: I tested it on a real case'
+    - 'L0: a proposal, not tested yet'
+    - 'L1: tested on a real case (fill in model, date and test case)'
     multiple: false
   validations:
     required: true
@@ -114,7 +141,7 @@ body:
   id: authors
   attributes:
     label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation.'
+    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation.'
     placeholder: First Last, 0000-0000-0000-0000, Institute
   validations:
     required: true
