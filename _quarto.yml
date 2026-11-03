@@ -12,7 +12,7 @@ website:
   description: "Tested, dated workflows for doing science with language models."
   site-url: https://astronomicalintelligence.org
   repo-url: https://github.com/astronomicalintelligence/site
-  repo-actions: [edit, issue]
+  repo-actions: [issue]
   favicon: images/favicon.svg
   image: images/social-card.jpg
   open-graph: true

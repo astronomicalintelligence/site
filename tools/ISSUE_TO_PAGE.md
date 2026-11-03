@@ -66,8 +66,17 @@ author:
 Phase categories: Literature → `literature`, Proposals → `proposals`, Data and code → `code`, Analysis → `analysis`,
 Writing → `writing`, Review → `review`. Failures have only `title`, `description`, `date` and `author`.
 
-Body: the sections listed for the type in `contribute.qmd` ("Sections for each type"), in that order, as `##`
-headings, then `## History` with one line: `- YYYY-MM-DD: first version (L0 or L1), First Last.`
+Body: these sections, in this order, as `##` headings, then `## History` with one line:
+`- YYYY-MM-DD: first version (L0 or L1), First Last.`
+
+| Type | Sections |
+|---|---|
+| Workflow | Goal · What you need · Steps · How to check the result · Where it fails |
+| Prompt | Prompt · Example · Known limits |
+| Skill | What it does · SKILL.md · How to check the result · Where it fails |
+| Agent config | The file to copy · How to check the result · Where it fails |
+| Model check | Task · Prompt · Expected answer · Results |
+| Failure | What happens · How to catch it · How to prevent it · Cases |
 For L0, start the body with:
 
 ```markdown
