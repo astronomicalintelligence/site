@@ -16,14 +16,14 @@ You do not need to know Git, Quarto or the structure of the site: the page is wr
 ## What each form asks for
 
 - **Workflow:** goal, what you need, the steps with the prompts exactly as used, how to check the result, where it fails.
-- **Prompt:** the prompt exactly as used, a real example of input and output, its known limits.
+- **Prompt:** the prompt exactly as used, a real example of input and output, how to check the result, where it fails.
 - **Skill:** what it does, the whole `SKILL.md` and any other files of the skill, how to check the result, where it fails.
-- **Agent config:** the whole `AGENTS.md` or `CLAUDE.md`, how to check the result, where it fails.
-- **Model check:** the task, the prompt, the expected answer, and the results for each model you tried.
-- **Paper to review:** the published paper, why it is worth a second review, and whether you could check the model's points. Reviews follow the [ground rules](reviews/index.qmd#ground-rules).
-- **Failure:** what happened, how you caught it and the check that would have prevented it.
+- **Agent config:** what kind of project it is for, the whole `AGENTS.md` or `CLAUDE.md`, how to check the result, where it fails.
+- **Model check:** the task, the prompt, the expected answer with the rule to mark a reply pass or fail, and the results for each model you tried.
+- **Paper to review:** the published paper, whether it is open access, why it is worth a second review, and whether you could check the model's points. Reviews follow the [ground rules](reviews/index.qmd#ground-rules).
+- **Failure:** the kind of error, what happened, the model that made it, how you caught it and the check that would have prevented it.
 
-Every form also asks for the model, tool and date of your test (if any), the authors to credit, and your agreement to the licences.
+The forms for workflows, prompts, skills and agent configs also ask how you tested it: model, tool, date and the real case you ran it on (needed for L1). Every form asks for the authors to credit and your agreement to the licences.
 
 ## Catalogue numbers
 

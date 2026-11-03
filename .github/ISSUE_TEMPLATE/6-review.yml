@@ -6,27 +6,51 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: Thank you for proposing a paper for review. A maintainer checks it; when it is marked **ready** it is turned into
-      a page and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+    value: 'Thank you for proposing a paper for review. Write a short, task-based title after the prefix, for example "[Review]
+      Title of the paper".
+
+
+      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
+      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
 - type: input
   id: paper
   attributes:
     label: Paper
     description: Link to the published version, DOI or ADS bibcode.
+    placeholder: https://doi.org/10.xxxx/...
   validations:
     required: true
-- type: input
+- type: dropdown
+  id: open_access
+  attributes:
+    label: Is it open access?
+    options:
+    - 'Yes'
+    - 'No'
+    - Don't know
+    multiple: false
+  validations:
+    required: true
+- type: dropdown
   id: field
   attributes:
     label: Field
-    description: For example astronomy, physics, biology.
-    placeholder: astronomy
+    options:
+    - Astronomy and astrophysics
+    - Physics
+    - Earth and planetary sciences
+    - Chemistry
+    - Biology and medicine
+    - Computer science
+    - Other
+    multiple: false
   validations:
     required: false
 - type: textarea
   id: why
   attributes:
     label: Why this paper
+    description: For example a widely cited result, a claim you doubt, or a method many people reuse.
   validations:
     required: true
 - type: dropdown

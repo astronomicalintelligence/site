@@ -6,34 +6,32 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: Thank you for proposing a model check. A maintainer checks it; when it is marked **ready** it is turned into a
-      page and a pull request, and it gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).
+    value: 'Thank you for proposing a model check. Write a short, task-based title after the prefix, for example "[Model check]
+      K-correction in radio luminosities".
+
+
+      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
+      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
 - type: input
   id: description
   attributes:
     label: What it does, in one sentence
+    placeholder: Does the model apply the K-correction when converting a radio flux density to a luminosity?
   validations:
     required: true
 - type: dropdown
-  id: phase
-  attributes:
-    label: Research phase
-    options:
-    - Literature
-    - Proposals
-    - Data and code
-    - Analysis
-    - Writing
-    - Review
-    multiple: false
-  validations:
-    required: true
-- type: input
   id: field
   attributes:
     label: Field
-    description: For example astronomy, physics, biology.
-    placeholder: astronomy
+    options:
+    - Astronomy and astrophysics
+    - Physics
+    - Earth and planetary sciences
+    - Chemistry
+    - Biology and medicine
+    - Computer science
+    - Other
+    multiple: false
   validations:
     required: false
 - type: textarea
@@ -41,21 +39,23 @@ body:
   attributes:
     label: Task
     description: What is asked, and why it is a good test.
+    placeholder: Convert a 1.4 GHz flux density of 12 mJy to a luminosity at z = 0.05, a step where models often drop the
+      K-correction.
   validations:
     required: true
 - type: textarea
   id: prompt
   attributes:
     label: Prompt
-    description: Exactly as used.
+    description: Exactly as given to every model, with nothing added.
     render: text
   validations:
     required: true
 - type: textarea
   id: expected
   attributes:
-    label: Expected answer
-    description: And how it is checked.
+    label: Expected answer and pass rule
+    description: The correct answer and the rule to mark a reply pass or fail, for example "within 5%, with units".
   validations:
     required: true
 - type: textarea
@@ -69,7 +69,7 @@ body:
   id: authors
   attributes:
     label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation.'
+    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation.'
     placeholder: First Last, 0000-0000-0000-0000, Institute
   validations:
     required: true

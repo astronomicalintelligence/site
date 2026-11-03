@@ -3,7 +3,7 @@ title: "Pre-submission referee report"
 catalog: "AI P001"
 description: "Ask a model to review your draft the way a demanding referee would, before a real one does."
 categories: [review, writing]
-phase: "Review"
+phase: "Pre-submission review"
 model: "to be tested"
 tool: "Any chat model with file upload"
 tested: "not yet"
@@ -40,7 +40,11 @@ error, say so and explain what would settle it.
 
 To be added: a short excerpt of a real draft and the report obtained.
 
-## Known limits
+## How to check the result
+
+Recompute every number the report questions, and look up each reference it mentions in ADS before acting on it.
+
+## Where it fails
 
 - The model cannot check numbers it cannot recompute. Treat silence on a result as "not checked", not "correct".
 - Do not upload manuscripts or proposals that are not yours to share.
