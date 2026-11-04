@@ -8,7 +8,7 @@ Anyone can propose a contribution by filling in a short form on GitHub (a free G
 ## How to propose
 
 1. **Open the form** for your kind of contribution: [workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml), [prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml), [skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml), [agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml), [model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml), [paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml) or [failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml). You can also check [all the forms](https://github.com/astronomicalintelligence/site/issues/new/choose).
-2. **Fill it in.** Required fields are marked.
+2. **Fill it in.** Required fields are marked. You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use only images you made or may share under CC BY 4.0.
 3. **Wait for the review.** A maintainer reads every proposed content. If something is missing, the issue gets the label **needs-info** and a comment that says what: please answer in a GitHub comment. When it is complete it is turned into a page.
 
 ## What each form asks for

@@ -26,6 +26,8 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 | `tools/make_hero_uv.py` | Draws the home background (`images/hero-uv.jpg`) |
 | `tools/ISSUE_TO_PAGE.md` | How an issue labelled `ready` becomes a page and a pull request (followed daily by a scheduled Claude task) |
 | `_filters/include-code.lua` | Shows a file (SKILL.md, AGENTS.md) in a page exactly as it is downloaded |
+| `tools/localize_images.py` | Copies images dragged into an issue form into `figures/` next to the page (resized, metadata removed) |
+| `tools/check_images.py` | Fails the build if a page shows an image from another site |
 | `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W001, AI P001, ...); run by the publish workflow on every push to `main` |
 | `styles/types.css` | One colour per kind of contribution |
 | `styles/` | Fonts, colours (`light.scss`, `dark.scss`) and layout (`base.scss`) |

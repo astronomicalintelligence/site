@@ -29,6 +29,8 @@ jobs:
         run: git fetch --depth=1 origin main:refs/remotes/origin/main
       - name: Catalogue numbers
         run: python3 tools/catalog_ids.py ${{ github.event_name != 'pull_request' && '--write' || '--base origin/main' }}
+      - name: No external images
+        run: python3 tools/check_images.py
       - name: Render site
         run: quarto render
       - name: Save new catalogue numbers
