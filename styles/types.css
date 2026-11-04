@@ -32,8 +32,15 @@ body.quarto-dark {
 .wf-list li > * { grid-column: 2; }
 .wf-list li > .wf-cat { grid-column: 1; grid-row: 1 / span 3; padding-top: .2rem;
   font: 500 1.08rem/1.2 "IBM Plex Mono", ui-monospace, monospace; color: var(--type, var(--ai-ink)); white-space: nowrap; }
+.wf-list .wf-cat > span { display: block; }
+/* the kind of contribution, small, under the number */
+.wf-list .wf-type { margin-top: .3rem; font: 500 .74rem/1.25 "IBM Plex Sans", system-ui, sans-serif;
+  letter-spacing: .02em; color: var(--type, var(--ai-muted)); opacity: .85; white-space: normal; }
 @media (max-width: 560px) {
   .wf-list li { grid-template-columns: minmax(0, 1fr); }
+  .wf-list .wf-cat > span { display: inline; }
+  .wf-list .wf-type { margin: 0 0 0 .6rem; }
+  .wf-list .wf-type br { display: none; }
   .wf-list li > .wf-cat { grid-column: 1; grid-row: auto; font-size: .9rem; padding-top: 0; margin-bottom: .1rem; }
   .wf-list li > * { grid-column: 1; }
 }
