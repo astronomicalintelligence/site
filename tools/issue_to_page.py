@@ -512,7 +512,7 @@ def process(issue, open_prs, args, today):
         relabel(n, "ready", "in-pr", False)
         return f"pull request opened: {pr['html_url']}"
     finally:
-        git("checkout", "-q", "-f", "main")
+        git("checkout", "-q", "-f", START_BRANCH)
         git("clean", "-q", "-fd", "--", "workflows", "prompts", "skills", "agent-configs", "model-checks",
             "failures", check=False)
         if not args.dry_run:
@@ -536,6 +536,8 @@ def main():
     if git("status", "--porcelain", "--untracked-files=no").stdout.strip():
         sys.exit("the working tree has uncommitted changes")
     git("fetch", "-q", "origin", "main")
+    global START_BRANCH
+    START_BRANCH = git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
 
     if args.issue:
         issue = gh("GET", f"/repos/{REPO}/issues/{args.issue}")
@@ -568,6 +570,7 @@ def main():
 
 
 TEMPLATES = {}
+START_BRANCH = "main"
 
 if __name__ == "__main__":
     sys.exit(main())
