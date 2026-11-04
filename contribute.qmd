@@ -7,11 +7,9 @@ Anyone can propose a contribution by filling in a short form on GitHub (a free G
 
 ## How to propose
 
-1. **Open the form** for your kind of contribution: [workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml), [prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml), [skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml), [agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml), [model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml), [paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml) or [failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml). You can also [see all the forms](https://github.com/astronomicalintelligence/site/issues/new/choose).
-2. **Fill it in.** Required fields are marked; the list below says what each form asks for.
-3. **Wait for the review.** A maintainer reads every proposal. If something is missing, the issue gets the label **needs-info** and a comment that says what: answer in a comment. When it is complete, it gets the label **ready**. Within a day it is turned into a page, and it is published as soon as a maintainer approves the page.
-
-You do not need to know Git, Quarto or the structure of the site: the page is written for you, and you can comment on it before it is published.
+1. **Open the form** for your kind of contribution: [workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml), [prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml), [skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml), [agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml), [model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml), [paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml) or [failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml). You can also check [all the forms](https://github.com/astronomicalintelligence/site/issues/new/choose).
+2. **Fill it in.** Required fields are marked.
+3. **Wait for the review.** A maintainer reads every proposed content. If something is missing, the issue gets the label **needs-info** and a comment that says what: plase answer in a github comment. When it is complete it is turned into a page.
 
 ## What each form asks for
 
@@ -23,11 +21,11 @@ You do not need to know Git, Quarto or the structure of the site: the page is wr
 - **Paper to review:** the published paper, whether it is open access, why it is worth a second review, and whether you could check the model's points. Reviews follow the [ground rules](reviews/index.qmd#ground-rules).
 - **Failure:** the kind of error, what happened, the model that made it, how you caught it and the check that would have prevented it.
 
-The forms for workflows, prompts, skills and agent configs also ask how you tested it: model, tool, date and the real case you ran it on (needed for L1). Every form asks for the authors to credit and your agreement to the licences.
+The forms for workflows, prompts, skills and agent configs also ask how you tested it: model, tool, date and the real case you ran it on (needed for L1).
 
 ## Catalogue numbers
 
-When a contribution is published it gets a catalogue number: the letter of its type and the next free number, for example **AI W003** for a workflow or **AI P002** for a prompt. The number never changes, so you can use it to cite or mention the contribution.
+When a contribution is published it gets a catalogue number: the letter of its type and a number, for example **AI W003** for a workflow or **AI P002** for a prompt. The number never changes, so you can use it to cite or mention the contribution.
 
 ## Credit and citation
 
@@ -39,7 +37,6 @@ Contributions are published under the site licences: text under CC BY 4.0, code 
 
 - A colleague in the same field can follow the contribution and reuse it.
 - Prompts are given exactly as used.
-- *How to check the result* is concrete, not "verify the output".
 - Nothing confidential or under embargo is included.
 
 A contribution enters at **L1** when the author has tested it on a real case. It moves to **L2** when someone else reproduces it. Untested contributions are welcome too: they are published as **L0** drafts.
@@ -51,7 +48,7 @@ A contribution keeps its catalogue number for life. [Open an Update form](https:
 - you tested it again, with another model or on another date;
 - you fixed or clarified a step, or improved a prompt;
 - you found a new case where it fails;
-- you reproduced it (L1 to L2) or checked it across models or dates (L3).
+- you reproduced it (L1 to L2) or checked it across models (L3).
 
 The update goes through the same review, and the page records it in its History. Whoever reproduces a contribution (L2) or rewrites a substantial part of it is added to its authors; smaller changes are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
 
