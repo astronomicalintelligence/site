@@ -2,10 +2,11 @@
 title: "Notes"
 description: "Case studies, model comparisons on research tasks, and critical reading of the news."
 toc: false
+citation: false
 listing:
   contents: "posts/*.qmd"
   type: default
   sort: "date desc"
   categories: true
-  fields: [date, title, description, categories]
+  fields: [date, title, author, description, categories]
 ---
