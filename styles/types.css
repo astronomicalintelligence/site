@@ -32,8 +32,17 @@ body.quarto-dark {
 .wf-list li > * { grid-column: 2; }
 .wf-list li > .wf-cat { grid-column: 1; grid-row: 1 / span 3; padding-top: .2rem;
   font: 500 1.08rem/1.2 "IBM Plex Mono", ui-monospace, monospace; color: var(--type, var(--ai-ink)); white-space: nowrap; }
+.wf-list .wf-cat > span { display: block; }
+/* the kind of contribution, small, under the number */
+.wf-list .wf-cat > span.wf-type { display: inline-block; }
+.wf-list .wf-type { margin-top: .4rem; padding: .12rem .4rem; border: 1px solid var(--type, var(--ai-rule));
+  border-radius: 3px; font: 500 .7rem/1.2 "IBM Plex Sans", system-ui, sans-serif; letter-spacing: .02em;
+  color: var(--type, var(--ai-muted)); white-space: nowrap; }
 @media (max-width: 560px) {
   .wf-list li { grid-template-columns: minmax(0, 1fr); }
+  .wf-list .wf-cat > span { display: inline; }
+  .wf-list .wf-cat > span.wf-type { display: inline-block; }
+  .wf-list .wf-type { margin: 0 0 0 .6rem; vertical-align: .1rem; }
   .wf-list li > .wf-cat { grid-column: 1; grid-row: auto; font-size: .9rem; padding-top: 0; margin-bottom: .1rem; }
   .wf-list li > * { grid-column: 1; }
 }

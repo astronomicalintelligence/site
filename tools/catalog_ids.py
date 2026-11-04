@@ -4,10 +4,11 @@ Every contribution lives in its own folder, named after its catalogue number and
 index.qmd and its images and files next to it:
 
     prompts/AIP0001-pre-submission-review/index.qmd
-    skills/AIS0001-radio-fits-units/index.qmd, SKILL.md
+    skills/AIS0002-astro-research/index.qmd, SKILL.md, figure-1.png
 
 The number is "AI", a letter for the type (workflows W, prompts P, skills S, agent configs A, model checks M,
-reviews R, failures F) and four digits. Numbers are never reused or changed once given.
+reviews R, failures F) and four digits. Numbers are never reused or changed once given. To remove a contribution,
+delete its folder and add its number to tools/retired.txt, so the number is not given again.
 
 A new contribution arrives with XXXX in place of the number and no `catalog` field: skills/AISXXXX-astro-research/.
 With --write, this script gives it the next free number, writes `catalog: "AI S0002"` into the front matter and
@@ -33,6 +34,14 @@ FOLDER_RE = re.compile(r"^AI([A-Z])(\d{4}|XXXX)-([a-z0-9][a-z0-9-]*)$")
 CAT_RE = re.compile(r'^catalog:\s*["\']?AI ([A-Z])(\d{4})["\']?\s*$', re.M)
 DATE_RE = re.compile(r'^date:\s*["\']?(\d{4}-\d{2}-\d{2})', re.M)
 SECTION_FILES = {"index.qmd", "_metadata.yml"}           # the section's own list page and settings
+RETIRED_FILE = ROOT / "tools" / "retired.txt"
+
+
+def retired():
+    """{(letter, number)} of removed contributions, from tools/retired.txt."""
+    if not RETIRED_FILE.exists():
+        return set()
+    return {(m.group(1), int(m.group(2))) for m in re.finditer(r"^AI ([A-Z])(\d{4})\b", RETIRED_FILE.read_text(), re.M)}
 
 
 def front(text):
@@ -48,6 +57,7 @@ def run(*cmd):
 def main(write, base=None):
     problems, done, new = [], [], []
     numbered = {}                                      # (letter, number) -> folder
+    gone = retired()
     for section, code in TYPES.items():
         for entry in sorted((ROOT / section).iterdir()):
             name, rel = entry.name, entry.relative_to(ROOT).as_posix()
@@ -79,6 +89,8 @@ def main(write, base=None):
                 if not cat or cat.group(1) != code or cat.group(2) != num:
                     problems.append(f'{rel}: the folder says AI {code}{num} but the page says '
                                     f'{"AI " + cat.group(1) + cat.group(2) if cat else "no catalogue number"}')
+                if (code, int(num)) in gone:
+                    problems.append(f"{rel}: AI {code}{num} was removed (tools/retired.txt) and cannot be used again")
                 if (code, int(num)) in numbered:
                     problems.append(f"AI {code}{num} used twice: {numbered[code, int(num)]} and {rel}")
                 numbered[code, int(num)] = rel
@@ -87,12 +99,13 @@ def main(write, base=None):
         listing = run("git", "ls-tree", "-d", "--name-only", base, *[f"{s}/" for s in TYPES]).stdout.split()
         for rel in listing:
             m = FOLDER_RE.match(rel.split("/")[-1])
-            if m and m.group(2) != "XXXX" and not (ROOT / rel).is_dir():
-                problems.append(f"{rel} is on {base} but not here: catalogue numbers and folders never change")
+            if m and m.group(2) != "XXXX" and not (ROOT / rel).is_dir() and (m.group(1), int(m.group(2))) not in gone:
+                problems.append(f"{rel} is on {base} but not here: catalogue numbers and folders never change "
+                                f"(to remove a contribution, add its number to tools/retired.txt)")
 
     for date, section, entry, text in sorted(new, key=lambda x: (x[0], x[2].name)):
         code = TYPES[section]
-        num = max([n for (c, n) in numbered if c == code], default=0) + 1
+        num = max([n for (c, n) in list(numbered) + list(gone) if c == code], default=0) + 1
         numbered[code, num] = section
         label, slug = f"AI {code}{num:04d}", FOLDER_RE.match(entry.name).group(3)
         target = entry.parent / f"AI{code}{num:04d}-{slug}"

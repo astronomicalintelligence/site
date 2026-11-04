@@ -1,0 +1,3 @@
+# Catalogue numbers of contributions removed from the site. They are never given again.
+# One per line: number, folder, date removed, reason.
+AI S0001  skills/AIS0001-radio-fits-units  2026-11-04  removed by the maintainer
