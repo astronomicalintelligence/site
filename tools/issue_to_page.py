@@ -10,8 +10,10 @@ For every open issue labelled `ready` (oldest first) it:
 2. reads the form answers (the `### <field label>` sections, using the labels in .github/ISSUE_TEMPLATE/) and checks
    that every required field is filled, that the licence box is ticked and that L1 comes with model, date and
    test case. If not, it comments with what is missing and swaps `ready` for `needs-info`;
-3. writes the page (and SKILL.md and other files of a skill) on the branch `contrib/issue-N`, copying the text as
-   written;
+3. writes the page (and SKILL.md and other files of a skill) in a new folder `<type>/AI<letter>XXXX-<name>/` on the
+   branch `contrib/issue-N`, copying the text as written; XXXX becomes the catalogue number when the pull request is
+   merged (tools/catalog_ids.py). Text that Quarto would run or treat as page settings (```{python} blocks,
+   shortcodes, `---` lines, <script>) sends the issue to needs-info;
 4. copies the images with tools/localize_images.py, runs tools/check_images.py, tools/catalog_ids.py and, unless
    --no-render, `quarto render`;
 5. commits, pushes, opens the pull request with the REST API, comments on the issue and swaps `ready` for `in-pr`.
@@ -54,6 +56,7 @@ BOT_EMAIL = "41898282+github-actions[bot]@users.noreply.github.com"
 
 FOLDERS = {"workflow": "workflows", "prompt": "prompts", "skill": "skills", "agent-config": "agent-configs",
            "model-check": "model-checks", "failure": "failures"}
+LETTERS = {"workflow": "W", "prompt": "P", "skill": "S", "agent-config": "A", "model-check": "M", "failure": "F"}
 TYPE_NAMES = {"workflow": "workflow", "prompt": "prompt", "skill": "skill", "agent-config": "agent config",
               "model-check": "model check", "failure": "failure"}
 PHASES = {"Literature": ("Literature", "literature"), "Proposals": ("Proposals", "proposals"),
@@ -64,7 +67,17 @@ FIELDS = {"Astronomy and astrophysics": "astronomy", "Physics": "physics",
           "Earth and planetary sciences": "earth-sciences", "Chemistry": "chemistry",
           "Biology and medicine": "biology", "Computer science": "computer-science"}
 ORCID = re.compile(r"\b(\d{4}-\d{4}-\d{4}-\d{3}[\dX])\b")
-SAFE_PATH = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.-]*(/[A-Za-z0-9_][A-Za-z0-9_.-]*)*$")
+# file names of a skill's other files: no hidden or _quarto/_metadata files, nothing Quarto would render or run
+SAFE_PATH = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]*(/[A-Za-z0-9][A-Za-z0-9_.-]*)*$")
+UNSAFE_EXT = {".qmd", ".ipynb", ".rmd", ".lua", ".yml", ".yaml", ".html", ".htm", ".js", ".css", ".scss"}
+# constructs that Quarto would run or treat as page settings when they appear in the text of a field
+UNSAFE_TEXT = [
+    (re.compile(r"^\s*(`{3,}|~{3,})\s*\{\s*[A-Za-z]", re.M), "an executable code block (a fence like ```{python})"),
+    (re.compile(r"\{\{<"), "a Quarto shortcode ({{< ... >}})"),
+    (re.compile(r"^---\s*$", re.M), "a line with only `---` (it would start a block of page settings)"),
+    (re.compile(r"\{=(?:html|latex|tex|openxml|typst)\}"), "a raw output block ({=html})"),
+    (re.compile(r"<\s*(?:script|iframe|style|object|embed|form|link|meta)\b", re.I), "HTML that runs or loads code"),
+]
 DRAFT = "::: {.callout-note}\n## Draft\nProposed content, not yet tested.\n:::\n\n"
 
 
@@ -222,11 +235,13 @@ def other_files(text):
             j += 1
         content = "\n".join(lines[i + 1:j])
         name = re.sub(r"^[#>*\s-]*(?:file(?:name)?\s*:\s*)?", "", prev, flags=re.I).strip("`*_: ")
-        if SAFE_PATH.match(name) and ".." not in name.split("/") and name not in {"SKILL.md", "index.qmd"} \
-                and not name.startswith("figures/"):
+        if SAFE_PATH.match(name) and ".." not in name.split("/") and name != "SKILL.md" \
+                and Path(name).suffix.lower() not in UNSAFE_EXT and not re.match(r"figure-\d+\.", name):
             files[name] = content + "\n"
         else:
-            problems.append(f"a block whose file name could not be read (line before it: {prev[:80]!r})")
+            problems.append(f"a block whose file name could not be read or is not allowed (line before it: {prev[:80]!r}; "
+                            "names are like scripts/beam_area.py; .qmd, .lua, .yml, .html, .js and names starting "
+                            "with _ or . are not accepted)")
         prev, i = "", j + 1
     if not files and not problems:
         problems.append("text without code blocks")
@@ -323,23 +338,29 @@ def build(kind, issue, v, today):
             missing.append("**Other files** as one code block per file, each preceded by a line with its file name ("
                            + "; ".join(problems) + ")")
         slug = name or slugify(title)
-        page = f"skills/{slug}/index.qmd"
-        files[f"skills/{slug}/SKILL.md"] = skill + "\n"
-        for p, c in extra.items():
-            files[f"skills/{slug}/{p}"] = c
     else:
         slug = slugify(title) or f"issue-{issue['number']}"
-        page = f"{FOLDERS[kind]}/{slug}.qmd"
 
+    for f in TEMPLATES[kind]:                         # prompts and files are shown as code; the rest is page text
+        if f["type"] == "textarea" and not f.get("render") and f["label"] not in {"Other files"}:
+            for pat, what in UNSAFE_TEXT:
+                if pat.search(v.get(f["label"], "")):
+                    missing.append(f"**{f['label']}** without {what}")
     if missing:
         raise NeedsInfo(missing)
 
-    if on_main(str(Path(page).parent) if kind == "skill" else page):
+    if slug_taken(FOLDERS[kind], slug):
         if kind == "skill":
             raise NeedsInfo([f"a different skill `name`: a skill called `{slug}` already exists"])
         slug = f"{slug}-{issue['number']}"
-        page = f"{FOLDERS[kind]}/{slug}.qmd"
-        notes.append(f"A page with the same name already exists, so this one is `{page}`.")
+        notes.append(f"A {TYPE_NAMES[kind]} with the same name already exists, so this one is called `{slug}`.")
+    # the number is given when the pull request is merged (tools/catalog_ids.py renames the folder)
+    folder = f"{FOLDERS[kind]}/AI{LETTERS[kind]}XXXX-{slug}"
+    page = f"{folder}/index.qmd"
+    if kind == "skill":
+        files[f"{folder}/SKILL.md"] = skill + "\n"
+        for p, c in extra.items():
+            files[f"{folder}/{p}"] = c
 
     check = v.get("How to check the result", "").strip()
     if test_case:
@@ -368,7 +389,7 @@ def build(kind, issue, v, today):
         phase, phase_cat = PHASES.get(v["Research phase"], (v["Research phase"], None))
         meta = {"title": title}
         if kind == "skill":
-            meta["resources"] = ["SKILL.md"] + sorted(p.split(f"skills/{slug}/", 1)[1] for p in files
+            meta["resources"] = ["SKILL.md"] + sorted(p.split(f"{folder}/", 1)[1] for p in files
                                                        if not p.endswith("/SKILL.md"))
         meta.update({"description": description, "categories": [c for c in (phase_cat, field) if c] or None,
                      "phase": phase, "model": model or "to be tested", "tool": tool or None,
@@ -399,8 +420,8 @@ def build(kind, issue, v, today):
 
 # --------------------------------------------------------------------------- git and the pull request
 
-def run(cmd, check=True):
-    r = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True)
+def run(cmd, check=True, env=None):
+    r = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True, env=env)
     if check and r.returncode:
         raise RuntimeError(f"{' '.join(cmd)} failed:\n{r.stdout[-2000:]}\n{r.stderr[-2000:]}")
     return r
@@ -410,8 +431,10 @@ def git(*args, check=True):
     return run(["git", *args], check=check)
 
 
-def on_main(path):
-    return git("cat-file", "-e", f"origin/main:{path}", check=False).returncode == 0
+def slug_taken(section, slug):
+    """True if main already has a contribution of this type with this short name (AIP0001-<slug>)."""
+    names = git("ls-tree", "-d", "--name-only", "origin/main", f"{section}/", check=False).stdout.split()
+    return any(re.fullmatch(r"AI[A-Z](?:\d{4}|XXXX)-" + re.escape(slug), n.split("/")[-1]) for n in names)
 
 
 def comment(n, text, dry):
@@ -468,10 +491,10 @@ def process(issue, open_prs, args, today):
         no_alt = [l.split(": ", 1)[1] for l in img.stdout.splitlines() if l.startswith("NEEDS ALT TEXT")]
         run([sys.executable, "tools/check_images.py"])
         run([sys.executable, "tools/catalog_ids.py", "--base", "origin/main"])
-        if not args.no_render:
-            run(["quarto", "render"])
-        git("add", "--", str(Path(page).parent if kind == "skill" else page),
-            *([str(Path(page).parent / "figures")] if (ROOT / Path(page).parent / "figures").exists() else []))
+        if not args.no_render:                        # contributor text is rendered: no tokens in its environment
+            run(["quarto", "render"], env={k: v for k, v in os.environ.items()
+                                           if not re.search(r"TOKEN|SECRET|KEY|PASSWORD", k, re.I)})
+        git("add", "--", str(Path(page).parent))
         type_name = TYPE_NAMES[kind]
         git("-c", f"user.name={BOT_NAME}", "-c", f"user.email={BOT_EMAIL}", "commit", "-q",
             "-m", f"Add {type_name}: {title} (closes #{n})")
@@ -535,6 +558,8 @@ def main():
 
     if git("status", "--porcelain", "--untracked-files=no").stdout.strip():
         sys.exit("the working tree has uncommitted changes")
+    if git("status", "--porcelain", "--", *FOLDERS.values()).stdout.strip():   # they would be cleaned at the end
+        sys.exit("the contribution folders have untracked files: commit, move or delete them first")
     git("fetch", "-q", "origin", "main")
     global START_BRANCH
     START_BRANCH = git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip()

@@ -9,9 +9,9 @@ This script, run on a page written from such an issue, downloads every GitHub at
 resizes it to at most 1600 px wide, removes its metadata (EXIF, GPS), saves it in the contribution's folder, next to
 index.qmd, and rewrites the reference in place:
 
-    workflows/literature-ads/index.qmd  ->  workflows/literature-ads/figure-1.png, figure-2.jpg, ...
+    workflows/AIWXXXX-literature-ads/index.qmd  ->  workflows/AIWXXXX-literature-ads/figure-1.png, figure-2.jpg, ...
 
-    python3 tools/localize_images.py workflows/literature-ads/index.qmd [more pages ...]
+    python3 tools/localize_images.py workflows/AIWXXXX-literature-ads/index.qmd [more pages ...]
 
 It prints one line per image. Images that cannot be downloaded, are not images, or come from other websites are left
 out of the page, replaced by a note `<!-- MISSING image ... -->` where they were, and listed under MISSING, so the
