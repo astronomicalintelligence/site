@@ -10,6 +10,10 @@ body:
       W002 tested with a new model".
 
 
+      You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
+      only images you made or may share under CC BY 4.0.
+
+
       A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
       gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
 - type: input

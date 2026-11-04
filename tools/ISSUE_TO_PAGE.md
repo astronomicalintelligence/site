@@ -118,6 +118,13 @@ rewrote a substantial part.
 
 ## 4. Check, then open the pull request
 
+- Images: contributors drag images into the form, so the text holds links to GitHub's servers. Keep each one
+  where the contributor put it, then copy them into the repository:
+  `pip install pillow requests` and `GH_TOKEN=$(gh auth token) python3 tools/localize_images.py <page>`.
+  The script saves them in `figures/` next to the page (at most 1600 px wide, metadata removed) and rewrites the
+  references. List every `MISSING` line in the pull request and in the issue comment (the image must be added by
+  hand), and every `NEEDS ALT TEXT` line in the pull request. Never leave a link to an image on another site.
+- `python3 tools/check_images.py` must pass.
 - `python3 tools/catalog_ids.py --base origin/main` must pass.
 - If Quarto is available (`pip install quarto-cli`), run `quarto render` and fix any error.
 - Commit: `Add <type>: <title> (closes #N)` or `Update <catalogue number>: <what> (closes #N)`.
