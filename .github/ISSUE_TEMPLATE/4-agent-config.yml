@@ -7,7 +7,7 @@ body:
 - type: markdown
   attributes:
     value: 'Thank you for proposing an agent config. Write a short, task-based title after the prefix, for example "[Agent
-      config] AGENTS.md for an astronomy analysis repository".
+      config] AGENTS.md for a Python data-analysis repository".
 
 
       You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
@@ -20,7 +20,7 @@ body:
   id: description
   attributes:
     label: What it does, in one sentence
-    placeholder: 'Conventions for a Python analysis repository: units, cosmology, reproducibility and tests.'
+    placeholder: 'Conventions for a Python analysis repository: units, random seeds, reproducibility and tests.'
   validations:
     required: true
 - type: dropdown
@@ -57,7 +57,7 @@ body:
   id: project
   attributes:
     label: What kind of project it is for
-    placeholder: A Python analysis repository with astropy, data in data/ and tests in tests/.
+    placeholder: A Python analysis repository with NumPy and pandas, data in data/ and tests in tests/.
   validations:
     required: true
 - type: textarea
@@ -73,7 +73,8 @@ body:
   attributes:
     label: How to check the result
     description: 'Concrete: what to compare, recompute or look up. Not ''verify the output''.'
-    placeholder: Give the agent a task that tempts it to break a rule (a missing beam size) and see whether it stops and asks.
+    placeholder: Give the agent a task that tempts it to break a rule (a measurement without its unit) and see whether it
+      stops and asks.
   validations:
     required: true
 - type: textarea
@@ -111,7 +112,7 @@ body:
   attributes:
     label: Test case
     description: 'Needed for L1: the real task you ran it on and what came out.'
-    placeholder: 50 refereed abstracts on AGN feedback (2018-2026); all 31 cited bibcodes were in the file.
+    placeholder: 'Asked to add a plot from a column without units: the agent stopped and asked.'
   validations:
     required: false
 - type: dropdown

@@ -13,7 +13,7 @@ description: "Three rules and a minimal setup for using language models in resea
 
 - **A frontier chat model** for reading, writing and reasoning tasks.
 - **A coding agent** for anything that touches code or data: it runs and tests what it writes.
-- **Your usual tools**: ADS, arXiv, Python and Astropy. The workflows plug models into these rather than replacing them.
+- **Your usual tools**: ADS, arXiv or PubMed, Python and the libraries of your field. The workflows plug models into these rather than replacing them.
 
 ## Reading a workflow
 

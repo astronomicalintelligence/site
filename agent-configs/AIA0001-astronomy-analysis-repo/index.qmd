@@ -11,6 +11,7 @@ tool: "Any coding agent that reads AGENTS.md or CLAUDE.md"
 tested: "not yet"
 qflag: L0
 date: 2026-10-31
+date-modified: 2026-11-05
 author:
   - name: "Francesco De Gasperin"
     orcid: 0000-0003-4439-2627
@@ -33,8 +34,8 @@ Copy this into `AGENTS.md` (or `CLAUDE.md`) at the root of your repository and e
   `results/` generated outputs (never edit by hand), `tests/` pytest.
 
 ## Conventions
-- Physical quantities use astropy.units. No bare floats for fluxes,
-  distances, frequencies or angles.
+- Physical quantities carry units (astropy.units). No bare floats for
+  distances, times, masses or angles.
 - Cosmology: astropy.cosmology.[Planck18]. Do not change it silently.
 - Coordinates: ICRS unless stated. Say the frame when you convert.
 - Random numbers: numpy.random.default_rng(seed) with the seed in config.
@@ -44,7 +45,7 @@ Copy this into `AGENTS.md` (or `CLAUDE.md`) at the root of your repository and e
 - Before changing an analysis step, write or update a test in `tests/`
   that pins the expected numbers, then run `pytest`.
 - When a result changes, show the old and new value and explain why.
-- If a required input (beam, redshift, calibration error) is missing,
+- If a required input (a unit, an uncertainty, a redshift) is missing,
   stop and ask. Do not assume a value.
 
 ## Checks before you finish
@@ -55,7 +56,7 @@ Copy this into `AGENTS.md` (or `CLAUDE.md`) at the root of your repository and e
 
 ## How to check the result
 
-Give the agent a task that tempts it to break a rule (for example, a missing beam size) and see whether it stops and asks.
+Give the agent a task that tempts it to break a rule (for example, a measurement without its unit) and see whether it stops and asks.
 
 ## Known failures
 
@@ -64,3 +65,4 @@ None known yet.
 ## History
 
 - 2026-10-31: first draft (L0), Francesco De Gasperin.
+- 2026-11-05: examples made more general, Francesco De Gasperin.
