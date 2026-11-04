@@ -22,7 +22,7 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 | `_filters/include-code.lua` | Shows a file (SKILL.md, AGENTS.md) in a page exactly as it is downloaded |
 | `tools/localize_images.py` | Copies images dragged into an issue form into the contribution's folder (resized, metadata removed) |
 | `tools/check_images.py` | Fails the build if a page shows an image from another site |
-| `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W0001, AI P0001, ...) and renames its folder to `AIW0001-<name>`; run by the publish workflow on every push to `main` |
+| `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W0001, AI P0001, ...) and renames its folder from `AIWXXXX-<name>` to `AIW0001-<name>`; run by the publish workflow on every push to `main` |
 | `styles/types.css` | One colour per kind of contribution |
 | `styles/` | Fonts, colours (`light.scss`, `dark.scss`) and layout (`base.scss`) |
 | `.github/workflows/publish.yml` | Builds the site and publishes it to GitHub Pages on every push to `main` |

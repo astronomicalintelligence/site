@@ -33,18 +33,19 @@ Work on a branch `contrib/issue-N` made from `main`.
 
 | Label | File(s) |
 |---|---|
-| `workflow` | `workflows/<slug>/index.qmd` |
-| `prompt` | `prompts/<slug>/index.qmd` |
-| `skill` | `skills/<slug>/index.qmd` and `skills/<slug>/SKILL.md` (plus any other files of the skill) |
-| `agent-config` | `agent-configs/<slug>/index.qmd` |
-| `model-check` | `model-checks/<slug>/index.qmd` |
-| `failure` | `failures/<slug>/index.qmd` |
+| `workflow` | `workflows/AIWXXXX-<slug>/index.qmd` |
+| `prompt` | `prompts/AIPXXXX-<slug>/index.qmd` |
+| `skill` | `skills/AISXXXX-<slug>/index.qmd` and `skills/AISXXXX-<slug>/SKILL.md` (plus any other files of the skill) |
+| `agent-config` | `agent-configs/AIAXXXX-<slug>/index.qmd` |
+| `model-check` | `model-checks/AIMXXXX-<slug>/index.qmd` |
+| `failure` | `failures/AIFXXXX-<slug>/index.qmd` |
 | `update` | the existing `index.qmd` in the folder named after the number given (`AI W0002` → `workflows/AIW0002-*/`) |
 
 Every contribution has its own folder; images and other files go next to its `index.qmd`. `<slug>`: short,
-lowercase, words joined by hyphens, from the title; for a skill, the `name` in its SKILL.md front matter. Do not
-put a number in the folder name: when the pull request is merged, `tools/catalog_ids.py` gives the next free number
-and renames the folder, for example `prompts/pre-submission-review/` → `prompts/AIP0001-pre-submission-review/`.
+lowercase, words joined by hyphens, from the title; for a skill, the `name` in its SKILL.md front matter. `XXXX`
+stands for the number, which is not known yet: when the pull request is merged, `tools/catalog_ids.py` gives the
+next free number and renames the folder, for example `skills/AISXXXX-astro-research/` →
+`skills/AIS0002-astro-research/`.
 
 Front matter of a new page (leave out what the issue does not give; never write `catalog`, it is assigned on publication):
 

@@ -11,10 +11,11 @@ name, with the page in index.qmd and any images or files next to it:
     prompts/AIP0001-pre-submission-review/index.qmd
     skills/AIS0001-radio-fits-units/index.qmd, SKILL.md
 
-A new contribution arrives without a number, as prompts/<name>/index.qmd (or
-prompts/<name>.qmd). With --write, this script gives it the next free number,
-writes it into the front matter as `catalog: "AI P0002"` and renames the folder
-to prompts/AIP0002-<name>/.
+A new contribution arrives without a number, in a folder with XXXX in place of
+the number: prompts/AIPXXXX-<name>/index.qmd (prompts/<name>/index.qmd and
+prompts/<name>.qmd are accepted too). With --write, this script gives it the next
+free number, writes it into the front matter as `catalog: "AI P0002"` and renames
+the folder to prompts/AIP0002-<name>/.
 
     python3 tools/catalog_ids.py                    # check: list what would change, fail on problems
     python3 tools/catalog_ids.py --base origin/main # also fail if a number given on main was changed
@@ -35,7 +36,7 @@ TYPES = {"workflows": "W", "prompts": "P", "skills": "S", "agent-configs": "A",
          "model-checks": "M", "reviews": "R", "failures": "F"}
 DIGITS = 4
 CAT_RE = re.compile(r'^catalog:\s*["\']?AI ([A-Z])(\d+)["\']?\s*$')
-PREFIX_RE = re.compile(r"^AI([A-Z])(\d+)-(.+)$")          # folder name AIP0001-pre-submission-review
+PREFIX_RE = re.compile(r"^AI([A-Z])(\d+|XXXX)-(.+)$")     # AIP0001-pre-submission-review, or AIPXXXX-... before publication
 
 
 def label(code, num):
@@ -123,7 +124,12 @@ def main(write, base=None):
                 d = re.match(r"^date:\s*[\"']?(\d{4}-\d{2}-\d{2})", ln)
                 if d:
                     date = d.group(1)
-            if m and (num is None or m.group(1) != code or int(m.group(2)) != num):
+            if m and m.group(1) != code:
+                problems.append(f"{rel}: the folder name starts with AI{m.group(1)} but should start with AI{code}")
+            elif m and m.group(2) == "XXXX":
+                if num is not None:
+                    problems.append(f"{rel}: the page already has {label(code, num)} but its folder says XXXX")
+            elif m and (num is None or int(m.group(2)) != num):
                 problems.append(f"{rel}: the folder name says AI {m.group(1)}{m.group(2)} but the page says "
                                 f"{label(code, num) if num is not None else 'no number'}")
             if rel in old and (old[rel][0] != code or old[rel][1] != num):
