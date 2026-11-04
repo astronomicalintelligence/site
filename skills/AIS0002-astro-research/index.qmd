@@ -1,5 +1,6 @@
 ---
 title: "General scientific research in astronomy"
+catalog: "AI S0002"
 resources: [SKILL.md]
 description: "This is a general skill to run whenever you start an astrophysical discussion with an LLM, helps tuning the model to be honest and precise. It is small enough to contribute a negligible amount of tokens."
 categories: [astronomy]
