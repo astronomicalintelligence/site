@@ -1,0 +1,4 @@
+# Every note shows its author and date and ends with a "How to cite" box
+citation:
+  type: webpage
+  container-title: "Astronomical Intelligence"
