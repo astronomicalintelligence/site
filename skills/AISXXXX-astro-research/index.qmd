@@ -1,0 +1,47 @@
+---
+title: "General scientific research in astronomy"
+resources: [SKILL.md]
+description: "This is a general skill to run whenever you start an astrophysical discussion with an LLM, helps tuning the model to be honest and precise. It is small enough to contribute a negligible amount of tokens."
+categories: [astronomy]
+phase: "General"
+model: "Claude Opus 5.5"
+tool: "Claude Code"
+tested: 2026-11-01
+qflag: L1
+date: 2026-11-04
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
+---
+
+## What it does
+
+The agent is much more careful in dealing with astronomical data, answers are more precise and often with citations.
+
+## SKILL.md
+
+[Download SKILL.md](SKILL.md){download="SKILL.md"} and put it in a folder `astro-research` in your agent's skills directory.
+
+```{.markdown include="SKILL.md"}
+```
+
+## How to check the result
+
+**Tested on:** Ask for a definition, for instance "spectral index" and check if references are generated.
+
+A test with the active skill on the prompt
+`definition of spectral index`
+produced 3 references and explained how to evaluate the error of such quantity. These information was missing in the call without the skill.
+
+Definition when the skill is loaded:
+![Definition when the skill is loaded:](figure-1.png)
+
+## Known failures
+
+None known yet.
+
+## History
+
+- 2026-11-04: first version (L1), Francesco De Gasperin.
