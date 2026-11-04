@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # to commit the catalogue numbers given to new contributions
+  contents: write   # to commit the catalogue numbers and folder names given to new contributions
   pages: write
   id-token: write
 
@@ -23,7 +23,8 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
       # Pull requests: only check (fails if two contributions share a number
       # or a number already given on main was changed).
-      # Main: give the next free number to every new contribution.
+      # Main: give the next free number to every new contribution and rename its
+      # folder to AI<letter><number>-<name>, before rendering.
       - name: Fetch main to compare catalogue numbers
         if: github.event_name == 'pull_request'
         run: git fetch --depth=1 origin main:refs/remotes/origin/main
@@ -36,10 +37,11 @@ jobs:
       - name: Save new catalogue numbers
         if: github.event_name != 'pull_request'
         run: |
-          if ! git diff --quiet; then
+          if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -am "Assign catalogue numbers [skip ci]"
+            git add -A
+            git commit -m "Assign catalogue numbers and folders [skip ci]"
             # if main moved meanwhile, the next run assigns the numbers again
             git pull --rebase origin main && git push || echo "::warning::catalogue numbers not saved; they will be assigned on the next run"
           fi

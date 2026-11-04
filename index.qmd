@@ -8,20 +8,13 @@ listing:
   id: latest
   # newest contributions of every kind
   contents:
-    - "workflows/*.qmd"
-    - "prompts/*.qmd"
+    - "workflows/*/index.qmd"
+    - "prompts/*/index.qmd"
     - "skills/*/index.qmd"
-    - "agent-configs/*.qmd"
-    - "model-checks/*.qmd"
-    - "reviews/*.qmd"
-    - "failures/*.qmd"
-    - "!workflows/index.qmd"
-    - "!prompts/index.qmd"
-    - "!skills/index.qmd"
-    - "!agent-configs/index.qmd"
-    - "!model-checks/index.qmd"
-    - "!reviews/index.qmd"
-    - "!failures/index.qmd"
+    - "agent-configs/*/index.qmd"
+    - "model-checks/*/index.qmd"
+    - "reviews/*/index.qmd"
+    - "failures/*/index.qmd"
   template: _templates/workflows.ejs
   sort: ["date desc", "catalog desc"]
   max-items: 6

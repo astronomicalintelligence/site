@@ -6,13 +6,12 @@ Images that contributors drag into a GitHub issue form arrive in the text as lin
     <img width="812" alt="residuals" src="https://github.com/user-attachments/assets/4f2c9a1e-..." />
 
 This script, run on a page written from such an issue, downloads every GitHub attachment, checks that it is an image,
-resizes it to at most 1600 px wide, removes its metadata (EXIF, GPS), saves it next to the page in `figures/` and
-rewrites the reference in place:
+resizes it to at most 1600 px wide, removes its metadata (EXIF, GPS), saves it in the contribution's folder, next to
+index.qmd, and rewrites the reference in place:
 
-    workflows/literature-ads.qmd  ->  workflows/figures/literature-ads-1.png
-    skills/radio-fits-units/index.qmd  ->  skills/radio-fits-units/figures/radio-fits-units-1.png
+    workflows/literature-ads/index.qmd  ->  workflows/literature-ads/figure-1.png, figure-2.jpg, ...
 
-    python3 tools/localize_images.py workflows/literature-ads.qmd [more pages ...]
+    python3 tools/localize_images.py workflows/literature-ads/index.qmd [more pages ...]
 
 It prints one line per image. Images that cannot be downloaded, are not images, or come from other websites are left
 out of the page, replaced by a note `<!-- MISSING image ... -->` where they were, and listed under MISSING, so the
@@ -93,9 +92,8 @@ def nearby_text(text, pos):
 def localize(page):
     page = Path(page)
     text = page.read_text(encoding="utf-8")
-    stem = page.parent.name if page.name == "index.qmd" else page.stem
-    figdir = page.parent / "figures"
-    existing = sorted(figdir.glob(f"{stem}-*")) if figdir.exists() else []
+    figdir = page.parent                                  # the contribution's own folder
+    existing = sorted(figdir.glob("figure-*"))
     n = max([int(m.group(1)) for p in existing if (m := re.search(r"-(\d+)$", p.stem))], default=0)
     missing, no_alt, done = [], [], {}
 
@@ -108,9 +106,8 @@ def localize(page):
                 done[url] = None
             else:
                 n += 1
-                figdir.mkdir(exist_ok=True)
                 try:
-                    path, size = save(download(url), figdir / f"{stem}-{n}")
+                    path, size = save(download(url), figdir / f"figure-{n}")
                     done[url] = path.relative_to(page.parent).as_posix()
                     print(f"saved {done[url]}  {size[0]}x{size[1]}")
                 except Exception as e:                    # network, not an image, too large ...

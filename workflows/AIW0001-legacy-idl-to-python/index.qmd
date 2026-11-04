@@ -1,6 +1,8 @@
 ---
 title: "Porting legacy IDL code to Python"
-catalog: "AI W001"
+catalog: "AI W0001"
+# the address before the move into its own folder keeps working
+aliases: ["../legacy-idl-to-python.html"]
 description: "Translate an IDL routine with a coding agent and prove the Python version gives the same numbers."
 categories: [code, astronomy]
 phase: "Data and code"

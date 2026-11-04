@@ -1,6 +1,8 @@
 ---
 title: "Pre-submission referee report"
-catalog: "AI P001"
+catalog: "AI P0001"
+# the address before the move into its own folder keeps working
+aliases: ["../pre-submission-review.html"]
 description: "Ask a model to review your draft the way a demanding referee would, before a real one does."
 categories: [review, writing]
 phase: "Pre-submission review"

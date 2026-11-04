@@ -33,16 +33,18 @@ Work on a branch `contrib/issue-N` made from `main`.
 
 | Label | File(s) |
 |---|---|
-| `workflow` | `workflows/<slug>.qmd` |
-| `prompt` | `prompts/<slug>.qmd` |
-| `skill` | `skills/<name>/index.qmd` and `skills/<name>/SKILL.md` (plus any other files of the skill) |
-| `agent-config` | `agent-configs/<slug>.qmd` |
-| `model-check` | `model-checks/<slug>.qmd` |
-| `failure` | `failures/<slug>.qmd` |
-| `update` | the existing file whose `catalog` matches the number given |
+| `workflow` | `workflows/<slug>/index.qmd` |
+| `prompt` | `prompts/<slug>/index.qmd` |
+| `skill` | `skills/<slug>/index.qmd` and `skills/<slug>/SKILL.md` (plus any other files of the skill) |
+| `agent-config` | `agent-configs/<slug>/index.qmd` |
+| `model-check` | `model-checks/<slug>/index.qmd` |
+| `failure` | `failures/<slug>/index.qmd` |
+| `update` | the existing `index.qmd` in the folder named after the number given (`AI W0002` → `workflows/AIW0002-*/`) |
 
-`<slug>`: short, lowercase, words joined by hyphens, from the title. For a skill, `<name>` is the `name` in its
-SKILL.md front matter.
+Every contribution has its own folder; images and other files go next to its `index.qmd`. `<slug>`: short,
+lowercase, words joined by hyphens, from the title; for a skill, the `name` in its SKILL.md front matter. Do not
+put a number in the folder name: when the pull request is merged, `tools/catalog_ids.py` gives the next free number
+and renames the folder, for example `prompts/pre-submission-review/` → `prompts/AIP0001-pre-submission-review/`.
 
 Front matter of a new page (leave out what the issue does not give; never write `catalog`, it is assigned on publication):
 
@@ -124,7 +126,7 @@ rewrote a substantial part.
 - Images: contributors drag images into the form, so the text holds links to GitHub's servers. Keep each one
   where the contributor put it, then copy them into the repository:
   `pip install pillow requests` and `GH_TOKEN=$(gh auth token) python3 tools/localize_images.py <page>`.
-  The script saves them in `figures/` next to the page (at most 1600 px wide, metadata removed) and rewrites the
+  The script saves them as `figure-1.png`, `figure-2.jpg`, ... in the contribution's folder (at most 1600 px wide, metadata removed) and rewrites the
   references. List every `MISSING` line in the pull request and in the issue comment (the image must be added by
   hand), and every `NEEDS ALT TEXT` line in the pull request. Never leave a link to an image on another site.
 - `python3 tools/check_images.py` must pass.

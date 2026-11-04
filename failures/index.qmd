@@ -5,7 +5,7 @@ toc: false
 citation: false
 comments: false
 listing:
-  contents: "*.qmd"
+  contents: "*/index.qmd"
   type: table
   sort: "date desc"
   fields: [catalog, title, description, author, date]
