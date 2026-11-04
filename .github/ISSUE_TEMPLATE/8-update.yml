@@ -7,7 +7,7 @@ body:
 - type: markdown
   attributes:
     value: 'Thank you for proposing an update. Write a short, task-based title after the prefix, for example "[Update] AI
-      W002 tested with a new model".
+      W0002 tested with a new model".
 
 
       You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
@@ -21,7 +21,7 @@ body:
   attributes:
     label: Catalogue number
     description: Shown in the list and in the page header.
-    placeholder: AI W002
+    placeholder: AI W0002
   validations:
     required: true
 - type: textarea

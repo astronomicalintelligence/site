@@ -5,7 +5,7 @@ toc: false
 citation: false
 comments: false
 listing:
-  contents: "*.qmd"
+  contents: "*/index.qmd"
   template: ../_templates/workflows.ejs
   sort: "tested desc"
   fields: [catalog, title, description, qflag, author, phase, model, tested, categories]

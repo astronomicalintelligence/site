@@ -1,19 +1,27 @@
-"""Catalogue numbers for contributions (AI W001, AI P001, ...).
+"""Catalogue numbers and folders of contributions (AI W0001, AI P0001, ...).
 
-Every contribution gets a number made of the site prefix "AI", a letter for its
-type and a counter: workflows W, prompts P, skills S, agent configs A, model
-checks M, reviews R, failures F. Numbers are never reused or changed once
-given.
+Every contribution lives in its own folder, named after its catalogue number and a short name, with the page in
+index.qmd and its images and files next to it:
 
-    python3 tools/catalog_ids.py                    # check: list missing numbers, fail on duplicates
-    python3 tools/catalog_ids.py --base origin/main # also fail if a number given on main was changed
-    python3 tools/catalog_ids.py --write            # write the missing numbers into the front matter
+    prompts/AIP0001-pre-submission-review/index.qmd
+    skills/AIS0001-radio-fits-units/index.qmd, SKILL.md
 
-The publish workflow runs it with --write on every push to main, so a new
-contribution is numbered automatically when it is merged. Contributors leave the
-`catalog` field out.
+The number is "AI", a letter for the type (workflows W, prompts P, skills S, agent configs A, model checks M,
+reviews R, failures F) and four digits. Numbers are never reused or changed once given.
+
+A new contribution arrives with XXXX in place of the number and no `catalog` field: skills/AISXXXX-astro-research/.
+With --write, this script gives it the next free number, writes `catalog: "AI S0002"` into the front matter and
+renames the folder to skills/AIS0002-astro-research/.
+
+    python3 tools/catalog_ids.py                    # check
+    python3 tools/catalog_ids.py --base origin/main # also fail if a number on main has disappeared
+    python3 tools/catalog_ids.py --write            # number the new contributions and rename their folders
+
+The publish workflow runs it with --write on every push to main, before rendering, so a contribution is numbered
+when its pull request is merged.
 """
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -21,101 +29,90 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TYPES = {"workflows": "W", "prompts": "P", "skills": "S", "agent-configs": "A",
          "model-checks": "M", "reviews": "R", "failures": "F"}
-CAT_RE = re.compile(r'^catalog:\s*["\']?AI ([A-Z])(\d{3,})["\']?\s*$')
+FOLDER_RE = re.compile(r"^AI([A-Z])(\d{4}|XXXX)-([a-z0-9][a-z0-9-]*)$")
+CAT_RE = re.compile(r'^catalog:\s*["\']?AI ([A-Z])(\d{4})["\']?\s*$', re.M)
+DATE_RE = re.compile(r'^date:\s*["\']?(\d{4}-\d{2}-\d{2})', re.M)
+SECTION_FILES = {"index.qmd", "_metadata.yml"}           # the section's own list page and settings
 
 
-def contributions(folder):
-    base = ROOT / folder
-    files = base.glob("*/index.qmd") if folder == "skills" else (p for p in base.glob("*.qmd") if p.name != "index.qmd")
-    return sorted(files)
+def front(text):
+    """The front matter between the first two --- lines, or None."""
+    m = re.match(r"---\n(.*?)\n---\n", text, re.S)
+    return m.group(1) if m else None
 
 
-def front_matter(text):
-    lines = text.split("\n")
-    if not lines or lines[0].strip() != "---":
-        return None, lines
-    for i in range(1, len(lines)):
-        if lines[i].strip() == "---":
-            return (1, i), lines
-    return None, lines
-
-
-def number_on(base, path):
-    """Catalogue number of a file as it is on the branch `base`, or None if new there."""
-    rel = path.relative_to(ROOT).as_posix()
-    r = subprocess.run(["git", "show", f"{base}:{rel}"], cwd=ROOT, capture_output=True, text=True)
-    if r.returncode != 0:
-        return None
-    span, lines = front_matter(r.stdout)
-    for ln in (lines[span[0]:span[1]] if span else []):
-        m = CAT_RE.match(ln)
-        if m:
-            return f"AI {m.group(1)}{int(m.group(2)):03d}"
-    return None
+def run(*cmd):
+    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
 
 
 def main(write, base=None):
-    problems, changes = [], []
-    for folder, code in TYPES.items():
-        items = []
-        for path in contributions(folder):
-            text = path.read_text(encoding="utf-8")
-            span, lines = front_matter(text)
-            if span is None:
-                problems.append(f"{path.relative_to(ROOT)}: no front matter")
+    problems, done, new = [], [], []
+    numbered = {}                                      # (letter, number) -> folder
+    for section, code in TYPES.items():
+        for entry in sorted((ROOT / section).iterdir()):
+            name, rel = entry.name, entry.relative_to(ROOT).as_posix()
+            if name in SECTION_FILES or name.startswith("."):
                 continue
-            head = lines[span[0]:span[1]]
-            num, date = None, "9999-99-99"
-            for ln in head:
-                m = CAT_RE.match(ln)
-                if m:
-                    if m.group(1) != code:
-                        problems.append(f"{path.relative_to(ROOT)}: catalogue letter {m.group(1)} should be {code}")
-                    num = int(m.group(2))
-                d = re.match(r"^date:\s*[\"']?(\d{4}-\d{2}-\d{2})", ln)
-                if d:
-                    date = d.group(1)
-            items.append({"path": path, "num": num, "date": date, "lines": lines, "span": span})
-            if base:
-                old = number_on(base, path)
-                new = f"AI {code}{num:03d}" if num is not None else None
-                if old and old != new:
-                    problems.append(f"{path.relative_to(ROOT)}: catalogue number changed from {old} to {new or 'nothing'}; numbers never change")
-
-        # duplicates: the earliest contribution keeps the number, later ones get a new one
-        seen = {}
-        for it in sorted(items, key=lambda x: (x["date"], str(x["path"]))):
-            if it["num"] is None:
+            m = FOLDER_RE.match(name)
+            page = entry / "index.qmd"
+            if not (entry.is_dir() and m and page.exists()):
+                problems.append(f"{rel}: every contribution must be a folder AI{code}XXXX-<name>/ (lowercase name, "
+                                f"hyphens) with an index.qmd")
                 continue
-            if it["num"] in seen:
-                problems.append(f"AI {code}{it['num']:03d} used twice: {seen[it['num']].relative_to(ROOT)} and {it['path'].relative_to(ROOT)}")
-                it["num"] = None
+            text = page.read_text(encoding="utf-8")
+            head = front(text)
+            if head is None:
+                problems.append(f"{rel}/index.qmd: no front matter")
+                continue
+            letter, num, cat = m.group(1), m.group(2), CAT_RE.search(head)
+            if letter != code:
+                problems.append(f"{rel}: in {section}/ the folder must start with AI{code}, not AI{letter}")
+            elif num == "XXXX":
+                if cat:
+                    problems.append(f"{rel}: a new contribution has no `catalog` field; it is written on publication")
+                elif not re.search(r"^title:", head, re.M):
+                    problems.append(f"{rel}/index.qmd: no title")
+                else:
+                    date = DATE_RE.search(head)
+                    new.append((date.group(1) if date else "9999-99-99", section, entry, text))
             else:
-                seen[it["num"]] = it["path"]
+                if not cat or cat.group(1) != code or cat.group(2) != num:
+                    problems.append(f'{rel}: the folder says AI {code}{num} but the page says '
+                                    f'{"AI " + cat.group(1) + cat.group(2) if cat else "no catalogue number"}')
+                if (code, int(num)) in numbered:
+                    problems.append(f"AI {code}{num} used twice: {numbered[code, int(num)]} and {rel}")
+                numbered[code, int(num)] = rel
 
-        nxt = max(seen, default=0) + 1
-        for it in sorted((i for i in items if i["num"] is None), key=lambda x: (x["date"], str(x["path"]))):
-            label = f"AI {code}{nxt:03d}"
-            changes.append(f"{label}  {it['path'].relative_to(ROOT)}")
-            if write:
-                lines, (a, b) = it["lines"], it["span"]
-                head = [ln for ln in lines[a:b] if not CAT_RE.match(ln)]
-                at = next((k + 1 for k, ln in enumerate(head) if ln.startswith("title:")), 0)
-                head.insert(at, f'catalog: "{label}"')
-                it["path"].write_text("\n".join(lines[:a] + head + lines[b:]), encoding="utf-8")
-            nxt += 1
+    if base:                                            # a number given on main must still be here
+        listing = run("git", "ls-tree", "-d", "--name-only", base, *[f"{s}/" for s in TYPES]).stdout.split()
+        for rel in listing:
+            m = FOLDER_RE.match(rel.split("/")[-1])
+            if m and m.group(2) != "XXXX" and not (ROOT / rel).is_dir():
+                problems.append(f"{rel} is on {base} but not here: catalogue numbers and folders never change")
 
-    for c in changes:
-        print(("assigned " if write else "to assign ") + c)
+    for date, section, entry, text in sorted(new, key=lambda x: (x[0], x[2].name)):
+        code = TYPES[section]
+        num = max([n for (c, n) in numbered if c == code], default=0) + 1
+        numbered[code, num] = section
+        label, slug = f"AI {code}{num:04d}", FOLDER_RE.match(entry.name).group(3)
+        target = entry.parent / f"AI{code}{num:04d}-{slug}"
+        done.append(f"{label}  {entry.relative_to(ROOT)}/  ->  {target.relative_to(ROOT)}/")
+        if write:
+            # the number goes right after the title
+            text = re.sub(r"^(title:.*)$", lambda t: t.group(1) + f'\ncatalog: "{label}"', text, count=1, flags=re.M)
+            (entry / "index.qmd").write_text(text, encoding="utf-8")
+            if run("git", "mv", str(entry), str(target)).returncode:   # untracked: plain rename
+                shutil.move(str(entry), str(target))
+
+    for d in done:
+        print(("assigned " if write else "to assign ") + d)
     for p in problems:
-        print("WARNING " + p, file=sys.stderr)
-    if not changes:
-        print("all contributions have a catalogue number")
-    # in check mode a duplicate is an error, so a pull request cannot introduce one silently
-    return 1 if (problems and not write) else 0
+        print("ERROR " + p, file=sys.stderr)
+    if not done and not problems:
+        print("every contribution has its catalogue number and folder")
+    return 1 if problems else 0
 
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    base = args[args.index("--base") + 1] if "--base" in args else None
-    sys.exit(main("--write" in args, base))
+    sys.exit(main("--write" in args, args[args.index("--base") + 1] if "--base" in args else None))

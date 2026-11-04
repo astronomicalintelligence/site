@@ -11,24 +11,19 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 
 | Folder / file | Content |
 |---|---|
-| `workflows/` | One `.qmd` file per workflow |
-| `prompts/` | One `.qmd` file per prompt |
-| `skills/` | One folder per skill, with its page in `index.qmd` |
-| `agent-configs/` | One `.qmd` file per CLAUDE.md / AGENTS.md template |
-| `model-checks/` | One `.qmd` file per model check |
-| `reviews/` | One `.qmd` file per AI-assisted review of a published paper |
-| `failures/` | One `.qmd` file per documented failure |
+| `workflows/`, `prompts/`, `skills/`, `agent-configs/`, `model-checks/`, `reviews/`, `failures/` | One folder per contribution, named after its catalogue number and a short name (`prompts/AIP0001-pre-submission-review/`), with the page in `index.qmd` and its images and files next to it |
 | `notes/posts/` | Blog posts |
 | `_filters/fits-header.lua` | Builds the FITS-style header from each page's front matter |
 | `_templates/workflows.ejs` | Layout of the lists (workflows, prompts, skills, ...) |
 | `*/_metadata.yml` | Per-section settings: FITS header filter and "How to cite" box |
 | `404.qmd` | Page shown for addresses that do not exist |
 | `tools/make_hero_uv.py` | Draws the home background (`images/hero-uv.jpg`) |
-| `tools/ISSUE_TO_PAGE.md` | How an issue labelled `ready` becomes a page and a pull request (followed daily by a scheduled Claude task) |
+| `tools/ISSUE_TO_PAGE.md` | How an issue labelled `ready` becomes a page and a pull request |
+| `tools/issue_to_page.py` | Does it automatically, run by `.github/workflows/issue-to-page.yml` as soon as a maintainer adds `ready` |
 | `_filters/include-code.lua` | Shows a file (SKILL.md, AGENTS.md) in a page exactly as it is downloaded |
-| `tools/localize_images.py` | Copies images dragged into an issue form into `figures/` next to the page (resized, metadata removed) |
+| `tools/localize_images.py` | Copies images dragged into an issue form into the contribution's folder (resized, metadata removed) |
 | `tools/check_images.py` | Fails the build if a page shows an image from another site |
-| `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W001, AI P001, ...); run by the publish workflow on every push to `main` |
+| `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W0001, AI P0001, ...) and renames its folder from `AIWXXXX-<name>` to `AIW0001-<name>`; run by the publish workflow on every push to `main` |
 | `styles/types.css` | One colour per kind of contribution |
 | `styles/` | Fonts, colours (`light.scss`, `dark.scss`) and layout (`base.scss`) |
 | `.github/workflows/publish.yml` | Builds the site and publishes it to GitHub Pages on every push to `main` |
@@ -46,4 +41,4 @@ To contribute, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Review labels
 
-Only maintainers can set labels. `needs-info`: something is missing, see the comment. `ready`: complete and accepted; once a day it is turned into a page and a pull request (`tools/ISSUE_TO_PAGE.md`), and the label becomes `in-pr`. The contribution is published, with its catalogue number, when the pull request is merged.
+Only maintainers can set labels. `needs-info`: something is missing, see the comment. `ready`: complete and accepted; it is turned at once into a page and a pull request (`tools/issue_to_page.py`), and the label becomes `in-pr`. The contribution is published, with its catalogue number, when the pull request is merged.

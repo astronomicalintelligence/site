@@ -1,6 +1,8 @@
 ---
 title: "AGENTS.md for an astronomy analysis repository"
-catalog: "AI A001"
+catalog: "AI A0001"
+# the address before the move into its own folder keeps working
+aliases: ["../astronomy-analysis-repo.html"]
 description: "A starting point for Python analysis code: units, cosmology, reproducibility and tests that an agent must respect."
 categories: [code, astronomy]
 phase: "Data and code"

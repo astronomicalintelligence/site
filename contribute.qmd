@@ -25,7 +25,7 @@ The forms for workflows, prompts, skills and agent configs also ask how you test
 
 ## Catalogue numbers
 
-When a contribution is published it gets a catalogue number: the letter of its type and a number, for example **AI W003** for a workflow or **AI P002** for a prompt. The number never changes, so you can use it to cite or mention the contribution.
+When a contribution is published it gets a catalogue number: the letter of its type and a number, for example **AI W0003** for a workflow or **AI P0002** for a prompt. The number never changes and is part of the page's address, so you can use it to cite or mention the contribution.
 
 ## Credit and citation
 
@@ -52,4 +52,4 @@ A contribution keeps its catalogue number for life. [Open an Update form](https:
 
 The update goes through the same review, and the page records it in its History. Whoever reproduces a contribution (L2) or rewrites a substantial part of it is added to its authors; smaller changes are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
 
-If the method itself changes, propose a new contribution instead. It gets a new number and says *Supersedes AI W002* at the top, and the old page links to it.
+If the method itself changes, propose a new contribution instead. It gets a new number and says *Supersedes AI W0002* at the top, and the old page links to it.

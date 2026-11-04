@@ -1,6 +1,8 @@
 ---
 title: "Invented citations"
-catalog: "AI F001"
+catalog: "AI F0001"
+# the address before the move into its own folder keeps working
+aliases: ["../invented-citations.html"]
 description: "Plausible references that do not exist, or real papers credited with results they never contain."
 date: 2026-10-31
 author:
@@ -21,7 +23,7 @@ Asked for references, a model can return citations with real-looking authors, jo
 
 ## How to prevent it
 
-Give the model the papers (or their abstracts) and require it to cite only from that set, as in [Literature search with NASA ADS](../workflows/literature-ads.qmd). Then check automatically that every cited identifier is in the set.
+Give the model the papers (or their abstracts) and require it to cite only from that set, as in [Literature search with NASA ADS](../../workflows/AIW0002-literature-ads/index.qmd). Then check automatically that every cited identifier is in the set.
 
 ## Cases
 

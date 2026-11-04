@@ -1,6 +1,8 @@
 ---
 title: "Radio FITS images and flux units"
-catalog: "AI S001"
+catalog: "AI S0001"
+# the address before the move into its own folder keeps working
+aliases: ["../radio-fits-units/index.html"]
 resources: [SKILL.md]
 description: "A skill that makes an agent read radio FITS images safely: degenerate axes, beams, and Jy/beam to Jy conversions with units."
 categories: [code, analysis, astronomy]
