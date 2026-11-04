@@ -490,7 +490,7 @@ def process(issue, open_prs, args, today):
             lines.append(f"- The issue has {len(comments)} comment(s) that the script does not read: "
                          "check them for corrections.")
         if missing:
-            lines += ["", "**MISSING images** (left out of the page, add by hand):", *[f"- {m}" for m in missing]]
+            lines += ["", "**MISSING images** (add by hand where the page says `<!-- MISSING image ... -->`):", *[f"- {m}" for m in missing]]
         if no_alt:
             lines += ["", "**NEEDS ALT TEXT:**", *[f"- `{a}`" for a in no_alt]]
         lines += ["", "Checks: `check_images.py` and `catalog_ids.py --base origin/main` pass"
