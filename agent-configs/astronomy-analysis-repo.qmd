@@ -55,9 +55,9 @@ Copy this into `AGENTS.md` (or `CLAUDE.md`) at the root of your repository and e
 
 Give the agent a task that tempts it to break a rule (for example, a missing beam size) and see whether it stops and asks.
 
-## Where it fails
+## Known failures
 
-To be documented after testing.
+None known yet.
 
 ## History
 

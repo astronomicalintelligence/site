@@ -42,9 +42,9 @@ When an agent writes code that opens a radio image, this skill makes it:
 
 Measure a source whose flux is known (a catalogue value or a point source in a simulated image) and compare.
 
-## Where it fails
+## Known failures
 
-To be documented after testing.
+None known yet.
 
 ## History
 

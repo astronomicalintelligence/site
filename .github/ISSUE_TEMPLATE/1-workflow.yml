@@ -83,11 +83,11 @@ body:
 - type: textarea
   id: fails
   attributes:
-    label: Where it fails
-    description: Cases where it gave wrong results, or limits you know of. Write 'not known yet' if none.
+    label: Known failures
+    description: Cases where it gave wrong results, or limits you know of. Leave empty if you know of none yet.
     placeholder: 'Results that are only in the body of papers are invisible: the model sees abstracts only.'
   validations:
-    required: true
+    required: false
 - type: input
   id: time_saved
   attributes:
