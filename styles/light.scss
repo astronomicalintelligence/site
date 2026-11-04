@@ -22,6 +22,15 @@ $code-block-bg: $ai-panel;
 $callout-color-note: $ai-ink-soft;
 $callout-color-tip: $ai-ink-soft;
 
+// Menus (Library dropdown, sort menu): readable highlight in this theme
+$dropdown-bg: $ai-panel;
+$dropdown-border-color: $ai-rule;
+$dropdown-link-color: $ai-text;
+$dropdown-link-hover-color: $ai-ink;
+$dropdown-link-hover-bg: #DCE4EC;
+$dropdown-link-active-color: $ai-accent;
+$dropdown-link-active-bg: #DCE4EC;
+
 /*-- scss:rules --*/
 :root {
   --ai-bg: #{$ai-bg};

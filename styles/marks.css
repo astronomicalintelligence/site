@@ -60,3 +60,9 @@
 @media (max-width: 375px) {
   .navbar-brand .navbar-title { font-size: .64rem !important; }
 }
+
+/* Search results: the selected result keeps the theme colours (in dark mode it was pale blue) */
+body.quarto-dark .aa-Item[aria-selected="true"],
+body.quarto-dark .aa-Item[aria-selected="true"] div,
+body.quarto-dark .aa-Item[aria-selected="true"] p { background-color: #21364F !important; color: #E3EAF2 !important; }
+body.quarto-dark .aa-Item[aria-selected="true"] mark { background-color: #3B5F8A !important; color: #FFFFFF !important; }
