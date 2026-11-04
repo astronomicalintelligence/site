@@ -14,6 +14,6 @@ listing:
   fields: [catalog, title, description, qflag, author, phase, model, tested, categories]
 ---
 
-Each workflow follows the same structure: goal, what it was tested with, steps with the exact prompts, how to check the result, and where it fails.
+Each workflow follows the same structure: goal, what it was tested with, steps with the exact prompts, how to check the result, and its known failures.
 
 The tag next to each title is the verification level: **L0** draft, **L1** tested by the author, **L2** reproduced by a second researcher, **L3** checked across models or dates.

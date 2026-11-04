@@ -79,10 +79,10 @@ Body: these sections, in this order, as `##` headings, then `## History` with on
 
 | Type | Sections |
 |---|---|
-| Workflow | Goal · What you need · Steps · How to check the result · Where it fails |
-| Prompt | Prompt · Example · How to check the result · Where it fails |
-| Skill | What it does · SKILL.md · How to check the result · Where it fails |
-| Agent config | What it is for · The file to copy · How to check the result · Where it fails |
+| Workflow | Goal · What you need · Steps · How to check the result · Known failures |
+| Prompt | Prompt · Example · How to check the result · Known failures |
+| Skill | What it does · SKILL.md · How to check the result · Known failures |
+| Agent config | What it is for · The file to copy · How to check the result · Known failures |
 | Model check | Task · Prompt · Expected answer and pass rule · Results |
 | Failure | What happens · How to catch it · How to prevent it · Cases |
 For L0, start the body with:
@@ -93,6 +93,8 @@ For L0, start the body with:
 Proposed content, not yet tested.
 :::
 ```
+
+*Known failures* is optional in the forms: if it is empty, write "None known yet." under the heading.
 
 If a test case is given, start *How to check the result* with a paragraph `**Tested on:** <test case>`.
 

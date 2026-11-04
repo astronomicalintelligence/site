@@ -37,9 +37,9 @@ Move a working IDL routine to Python with Astropy and NumPy, keeping the numeric
 
 The test against the IDL reference outputs is the check. A port without it is not finished.
 
-## Where it fails
+## Known failures
 
-To be documented after testing.
+None known yet.
 
 ## History
 

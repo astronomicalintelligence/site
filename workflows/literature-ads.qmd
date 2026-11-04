@@ -100,7 +100,7 @@ If something is not supported by the abstracts, say so instead of guessing.
 3. **Look at the papers that were never cited.** The model often drops papers that do not fit its themes.
 4. **Read the key papers yourself** before relying on any statement in your own writing.
 
-## Where it fails
+## Known failures
 
 - Results that are only in the body of a paper are invisible: the model sees abstracts only.
 - Themes can be too tidy. Real disagreements get smoothed into consensus.
