@@ -15,7 +15,8 @@ rewrites the reference in place:
     python3 tools/localize_images.py workflows/literature-ads.qmd [more pages ...]
 
 It prints one line per image. Images that cannot be downloaded, are not images, or come from other websites are left
-out of the page and listed under MISSING, so the pull request can say what to add by hand. Images without a useful
+out of the page, replaced by a note `<!-- MISSING image ... -->` where they were, and listed under MISSING, so the
+pull request can say what to add by hand and where. Images without a useful
 description are listed under NEEDS ALT TEXT. Exit code 1 if anything is missing.
 
 Needs: pip install pillow requests
@@ -116,8 +117,10 @@ def localize(page):
                     msg = "not an image" if "cannot identify image" in str(e) else str(e)
                     missing.append(f"{url}  ({msg})"); n -= 1; done[url] = None
         rel = done[url]
-        if rel is None:
-            return ""
+        if rel is None:                                   # leave a note (without the link) where the image was
+            what = " ".join(alt.split()).replace("--", "-")
+            what = f" ({what})" if what and what.lower() not in GENERIC_ALT else ""
+            return f"<!-- MISSING image{what}: it could not be copied automatically; add it here by hand. -->"
         if alt.strip().lower() in GENERIC_ALT:
             alt = nearby_text(text, pos)
             if not alt:

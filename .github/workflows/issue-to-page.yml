@@ -1,0 +1,54 @@
+name: Ready issues to pull requests
+
+# Turns contribution issues that a maintainer labelled `ready` into pull requests
+# (tools/issue_to_page.py; the steps are described in tools/ISSUE_TO_PAGE.md).
+on:
+  issues:
+    types: [labeled]
+  schedule:
+    - cron: "17 5 * * *"     # once a day, in case a run was missed
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: "Only this issue number (empty: all ready issues)"
+        required: false
+      dry_run:
+        description: "Dry run: no push, no comments, no labels"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write        # push contrib/issue-N branches
+  issues: write          # comment, change labels
+  pull-requests: write   # open the pull request
+
+concurrency:
+  group: issue-to-page
+  cancel-in-progress: false
+
+jobs:
+  pages:
+    if: github.event_name != 'issues' || github.event.label.name == 'ready'
+    runs-on: ubuntu-latest
+    env:
+      # Pull requests opened with the default GITHUB_TOKEN do not start other workflows, so the
+      # "Build and publish site" check would not run on them. A fine-grained token saved as the
+      # secret CONTRIB_TOKEN (contents, issues, pull requests: read and write) avoids that.
+      GH_TOKEN: ${{ secrets.CONTRIB_TOKEN || github.token }}
+      ISSUE: ${{ inputs.issue || github.event.issue.number }}
+      DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.CONTRIB_TOKEN || github.token }}
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml pillow requests
+      - name: Ready issues to pull requests
+        run: |
+          case "$ISSUE" in ''|*[!0-9]*) ARGS="" ;; *) ARGS="--issue $ISSUE" ;; esac
+          python3 tools/issue_to_page.py $ARGS $DRY_RUN
