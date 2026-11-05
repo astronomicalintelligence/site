@@ -54,3 +54,11 @@ body[class*="type-"] .fits .k:first-child + .v { color: var(--type); }
 
 /* Failures table: catalogue column */
 .quarto-listing-table .listing-catalog { font-family: "IBM Plex Mono", ui-monospace, monospace; color: var(--type); white-space: nowrap; }
+
+/* Contribution pages: the kind of contribution is the first tag under the title (_filters/type-tag.lua),
+   in its colour, followed by a dash */
+[class*="type-"] .quarto-title .quarto-category:first-child {
+  position: relative; border-color: var(--type); color: var(--type); opacity: 1; }
+[class*="type-"] .quarto-title .quarto-category:first-child:not(:last-child) { margin-right: 1.3rem; }
+[class*="type-"] .quarto-title .quarto-category:first-child:not(:last-child)::after {
+  content: "–"; position: absolute; right: -1.05rem; color: var(--ai-muted); }
