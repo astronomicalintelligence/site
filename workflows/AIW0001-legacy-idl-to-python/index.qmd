@@ -1,9 +1,9 @@
 ---
-title: "Porting legacy IDL code to Python"
+title: "Porting legacy code (IDL, Fortran, MATLAB) to Python"
 catalog: "AI W0001"
 # the address before the move into its own folder keeps working
 aliases: ["../legacy-idl-to-python.html"]
-description: "Translate an IDL routine with a coding agent and prove the Python version gives the same numbers."
+description: "Translate a legacy routine with a coding agent and prove the Python version gives the same numbers."
 categories: [code, astronomy]
 phase: "Data and code"
 model: "to be tested"
@@ -26,18 +26,18 @@ Outline only. Steps, prompts and checks will be filled in after testing on a rea
 
 ## Goal
 
-Move a working IDL routine to Python with Astropy and NumPy, keeping the numerical results identical within a stated tolerance.
+Move a working routine written in IDL, Fortran or MATLAB to Python with NumPy (and the libraries of your field), keeping the numerical results identical within a stated tolerance.
 
 ## Outline
 
-1. Run the original IDL code on two or three real inputs and save the outputs as reference files.
+1. Run the original code on two or three real inputs and save the outputs as reference files.
 2. Ask the agent to write the Python version and a test that compares it with the reference outputs.
 3. Iterate until the test passes. Review every place where the agent changed the algorithm.
 4. Check array ordering, indexing from 0 versus 1, and integer division: the classic sources of silent errors.
 
 ## How to check the result
 
-The test against the IDL reference outputs is the check. A port without it is not finished.
+The test against the reference outputs of the original code is the check. A port without it is not finished.
 
 ## Known failures
 

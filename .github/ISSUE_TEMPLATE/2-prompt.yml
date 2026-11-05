@@ -112,7 +112,7 @@ body:
   attributes:
     label: Test case
     description: 'Needed for L1: the real task you ran it on and what came out.'
-    placeholder: 50 refereed abstracts on AGN feedback (2018-2026); all 31 cited bibcodes were in the file.
+    placeholder: 'Our own published paper, given to it as a draft: it raised 3 of the 4 main points of the real referee.'
   validations:
     required: false
 - type: dropdown

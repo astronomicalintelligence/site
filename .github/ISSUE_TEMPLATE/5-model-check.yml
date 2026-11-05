@@ -7,7 +7,7 @@ body:
 - type: markdown
   attributes:
     value: 'Thank you for proposing a model check. Write a short, task-based title after the prefix, for example "[Model check]
-      K-correction in radio luminosities".
+      Uncertainty of a ratio".
 
 
       You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
@@ -20,7 +20,7 @@ body:
   id: description
   attributes:
     label: What it does, in one sentence
-    placeholder: Does the model apply the K-correction when converting a radio flux density to a luminosity?
+    placeholder: Does the model propagate uncertainties correctly when it divides two measured quantities?
   validations:
     required: true
 - type: dropdown
@@ -43,8 +43,8 @@ body:
   attributes:
     label: Task
     description: What is asked, and why it is a good test.
-    placeholder: Convert a 1.4 GHz flux density of 12 mJy to a luminosity at z = 0.05, a step where models often drop the
-      K-correction.
+    placeholder: A car covers 12.0 ± 0.5 km in 3.0 ± 0.2 h. What is its average speed, with uncertainty? Models often add
+      the errors linearly instead of in quadrature.
   validations:
     required: true
 - type: textarea
@@ -60,6 +60,8 @@ body:
   attributes:
     label: Expected answer and pass rule
     description: The correct answer and the rule to mark a reply pass or fail, for example "within 5%, with units".
+    placeholder: '4.0 ± 0.3 km/h (relative errors added in quadrature). Pass: 4.0 km/h and an uncertainty between 0.30 and
+      0.32 km/h, with units.'
   validations:
     required: true
 - type: textarea

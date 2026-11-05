@@ -44,7 +44,7 @@ Get a reliable first map of a topic (main results, open questions, who works on 
 The model should not decide which papers count. Build and refine the search in the ADS interface first, for example:
 
 ```
-abs:"radio halo" year:2018-2026 property:refereed
+abs:"exoplanet atmospheres" year:2018-2026 property:refereed
 ```
 
 Sort the results by citation count, as the export script below does, and check the first results by eye. Adjust the query until most of the top 50 are relevant.
@@ -55,7 +55,7 @@ Sort the results by citation count, as the export script below does, and check t
 import json, os, requests
 
 token = os.environ["ADS_TOKEN"]
-query = 'abs:"radio halo" year:2018-2026 property:refereed'
+query = 'abs:"exoplanet atmospheres" year:2018-2026 property:refereed'
 r = requests.get(
     "https://api.adsabs.harvard.edu/v1/search/query",
     headers={"Authorization": f"Bearer {token}"},

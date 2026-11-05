@@ -6,8 +6,8 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: 'Thank you for proposing a skill. Write a short, task-based title after the prefix, for example "[Skill] Radio
-      FITS images and flux units".
+    value: 'Thank you for proposing a skill. Write a short, task-based title after the prefix, for example "[Skill] Calculations
+      that keep their units".
 
 
       You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
@@ -20,7 +20,7 @@ body:
   id: description
   attributes:
     label: What it does, in one sentence
-    placeholder: 'Makes an agent read radio FITS images safely: degenerate axes, beams, Jy/beam to Jy.'
+    placeholder: Makes an agent carry units through every calculation and stop when one is missing.
   validations:
     required: true
 - type: dropdown
@@ -57,7 +57,7 @@ body:
   id: what
   attributes:
     label: What changes when the agent loads it
-    placeholder: The agent drops degenerate FREQ and STOKES axes, reads the beam from the header and stops if it is missing.
+    placeholder: The agent writes every quantity with its unit, converts explicitly, and asks when a unit is missing.
   validations:
     required: true
 - type: textarea
@@ -81,7 +81,7 @@ body:
   attributes:
     label: How to check the result
     description: 'Concrete: what to compare, recompute or look up. Not ''verify the output''.'
-    placeholder: Measure a source whose flux is known, with and without the skill, and compare.
+    placeholder: Give it ten calculations with known answers and a unit trap (km/s against m/s), with and without the skill.
   validations:
     required: true
 - type: textarea
@@ -119,7 +119,7 @@ body:
   attributes:
     label: Test case
     description: 'Needed for L1: the real task you ran it on and what came out.'
-    placeholder: 50 refereed abstracts on AGN feedback (2018-2026); all 31 cited bibcodes were in the file.
+    placeholder: 'Ten unit conversions with known answers: 10/10 with the skill, 6/10 without.'
   validations:
     required: false
 - type: dropdown
