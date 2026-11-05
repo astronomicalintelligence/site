@@ -65,7 +65,7 @@ function Pandoc(doc)
   local off = (quarto and quarto.project and quarto.project.offset) or "."
   local html = '<div class="fits-wrap"><div class="fits" role="note" aria-label="Test metadata">'
     .. table.concat(lines, "\n") .. '</div>'
-    .. '<a class="fits-help" href="' .. off .. '/start.html#reading-a-workflow">What is this header?</a></div>'
+    .. '<a class="fits-help" href="' .. off .. '/start.html#reading-a-contribution">What is this header?</a></div>'
   table.insert(doc.blocks, 1, pandoc.RawBlock("html", html))
   return doc
 end
