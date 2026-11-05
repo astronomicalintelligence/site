@@ -25,7 +25,7 @@ Prompt proposed, not yet tested. Example input and output will be added after te
 
 ## Prompt
 
-```text
+```markdown
 You are a referee for [journal]. Review the attached manuscript.
 
 Write the report in three parts:
