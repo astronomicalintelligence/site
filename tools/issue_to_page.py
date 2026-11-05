@@ -373,7 +373,7 @@ def build(kind, issue, v, today):
         seen = "Seen with " + model + (f" in {tool}" if tool else "") \
                + (f", {v['When it happened'].strip()}" if v.get("When it happened", "").strip() else "") + "."
         prompt = v.get("Prompt", "")
-        cases = ("Prompt used:\n\n" + fence(prompt, "text")) if prompt.strip() else "To be added: more dated examples."
+        cases = ("Prompt used:\n\n" + fence(prompt, "markdown")) if prompt.strip() else "To be added: more dated examples."
         body = sections([("What happens", v["What happened"].strip() + "\n\n" + seen),
                          ("How to catch it", v["How you caught it"]),
                          ("How to prevent it", v["How to prevent it"]),
@@ -381,7 +381,7 @@ def build(kind, issue, v, today):
         history = f"## History\n\n- {today}: first version, {names}.\n"
     elif kind == "model-check":
         meta = {"title": title, "description": description, "categories": [field] if field else None, "date": today}
-        body = sections([("Task", v["Task"]), ("Prompt", fence(v["Prompt"], "text")),
+        body = sections([("Task", v["Task"]), ("Prompt", fence(v["Prompt"], "markdown")),
                          ("Expected answer and pass rule", v["Expected answer and pass rule"]),
                          ("Results", v.get("Results", "").strip() or "No results yet.")])
         history = f"## History\n\n- {today}: first version, {names}.\n"
@@ -401,7 +401,7 @@ def build(kind, issue, v, today):
             pairs = [("Goal", v["Goal"]), ("What you need", v.get("What you need", "").strip() or "Not specified."),
                      ("Steps", v["Steps"])]
         elif kind == "prompt":
-            pairs = [("Prompt", fence(v["Prompt"], "text")),
+            pairs = [("Prompt", fence(v["Prompt"], "markdown")),
                      ("Example", v.get("Example", "").strip() or "To be added.")]
         elif kind == "skill":
             pairs = [("What it does", v["What changes when the agent loads it"]),

@@ -21,6 +21,8 @@ h2 { font-size: 1.6rem; margin-top: 2.4rem; border-bottom: none !important; padd
 h3 { font-size: 1.25rem; margin-top: 1.8rem; }
 main p, main li { max-width: 72ch; }
 code { font-size: .88em; }
+// code blocks without highlighting (```text, plain ```) get the same panel as highlighted ones
+main pre:not(.sourceCode):not(.fits) { background: var(--ai-panel); border: 1px solid var(--ai-panel); padding: .6rem .7rem; }
 
 .navbar { border-bottom: 1px solid var(--ai-rule); }
 .navbar-title { font-family: $headings-font-family; font-weight: 600; letter-spacing: .005em; font-size: 1.12rem; }

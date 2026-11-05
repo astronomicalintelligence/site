@@ -1,5 +1,6 @@
 filters:
   - ../_filters/fits-header.lua
+  - ../_filters/type-tag.lua
   - ../_filters/include-code.lua
 # Every contributed page shows its authors and a "How to cite" box
 # (Quarto builds the citation from title, author, date and the page URL).
