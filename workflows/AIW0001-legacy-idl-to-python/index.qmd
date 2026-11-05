@@ -12,7 +12,6 @@ tested: "not yet"
 qflag: L0
 time-saved: "to be measured"
 date: 2026-10-31
-date-modified: 2026-11-05
 author:
   - name: "Francesco De Gasperin"
     orcid: 0000-0003-4439-2627
@@ -47,4 +46,3 @@ None known yet.
 ## History
 
 - 2026-10-31: first draft (L0), Francesco De Gasperin.
-- 2026-11-05: examples made more general, Francesco De Gasperin.
