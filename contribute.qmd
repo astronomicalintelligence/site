@@ -8,7 +8,7 @@ Anyone can propose a contribution by filling in a short form on GitHub (a free G
 ## How to propose
 
 1. **Open the form** for your kind of contribution: [workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml), [prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml), [skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml), [agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml), [model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml), [paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml) or [failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml). You can also check [all the forms](https://github.com/astronomicalintelligence/site/issues/new/choose).
-2. **Fill it in.** Required fields are marked. You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use only images you made or may share under CC BY 4.0.
+2. **Fill it in.** Required fields are marked. You can drag and drop images (screenshots, plots) into any text box. Use only images you made or may share under CC BY 4.0.
 3. **Wait for the review.** A maintainer reads every proposed content. If something is missing, the issue gets the label **needs-info** and a comment that says what: please answer in a GitHub comment. When it is complete it is turned into a page.
 
 ## What each form asks for
@@ -29,7 +29,7 @@ When a contribution is published it gets a catalogue number: the letter of its t
 
 ## Credit and citation
 
-Every contributed page shows its authors and ends with a **How to cite** box, with a ready-made reference and BibTeX entry built from the title, the authors, the date and the page address. Each page also keeps a **History** of its versions.
+Every contributed page shows its authors and ends with a **How to cite** box. Each page also keeps a **History** of its versions.
 
 Contributions are published under the site licences: text under CC BY 4.0, code under MIT.
 
@@ -50,6 +50,6 @@ A contribution keeps its catalogue number for life. [Open an Update form](https:
 - you found a new failure;
 - you reproduced it (L1 to L2) or checked it across models (L3).
 
-The update goes through the same review, and the page records it in its History. Whoever reproduces a contribution (L2) or rewrites a substantial part of it is added to its authors; smaller changes are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
+The update goes through the same review, and the page records it in its History. Whoever rewrites a substantial part of a contribution is added to its authors; smaller changes, reproduction (L1->L2) are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
 
 If the method itself changes, propose a new contribution instead. It gets a new number and says *Supersedes AI W0002* at the top, and the old page links to it.
