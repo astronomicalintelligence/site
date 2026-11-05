@@ -5,7 +5,7 @@ description: "A minimal setup for using large language models in research."
 
 ## Three rules
 
-1. **Check every output you use.** Each workflow has a *How to check the result* section. Do not skip it.
+1. **Check every output you use.** Each workflow has a *How to check the result* section.
 2. **Know what you are sharing.** Unpublished data, proposals under review and other people's manuscripts may not be yours to upload. See [Policies](policies.qmd).
 3. **Keep a record.** Save prompts, model names and dates with your analysis, as you would for any instrument setting.
 
