@@ -6,16 +6,16 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: 'Thank you for proposing a prompt. Write a short, task-based title after the prefix, for example "[Prompt] Pre-submission
-      referee report".
+    value: 'Thank you for proposing a prompt. Write a short title after the prefix, for example "[Prompt] Pre-submission referee
+      report". Only the fields marked with a red star are needed.
 
 
-      You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
-      only images you made or may share under CC BY 4.0.
+      You can drag and drop images (screenshots, plots) into any text box. By submitting you agree that the text is published
+      under CC BY 4.0 and any code under MIT. You are credited with the name on your GitHub profile unless you write other
+      authors below.
 
 
-      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
-      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
+      More in [Contribute](https://astronomicalintelligence.org/contribute.html).'
 - type: input
   id: description
   attributes:
@@ -23,6 +23,47 @@ body:
     placeholder: Ask a model to review your draft the way a demanding referee would.
   validations:
     required: true
+- type: textarea
+  id: prompt
+  attributes:
+    label: Prompt
+    description: Exactly as you used it.
+    render: text
+  validations:
+    required: true
+- type: textarea
+  id: check
+  attributes:
+    label: How to check the result
+    description: 'Concrete: what to compare, recompute or look up. Not ''verify the output''.'
+    placeholder: Recompute every number in the report; look up each reference.
+  validations:
+    required: true
+- type: textarea
+  id: example
+  attributes:
+    label: Example
+    description: A real input and the output you got (shorten if long).
+  validations:
+    required: false
+- type: textarea
+  id: test
+  attributes:
+    label: How you tested it
+    description: 'Leave empty if you have not tested it yet: it is published as a draft (L0). Otherwise start with the model
+      and the date, then the real task you ran it on and what came out (L1).'
+    placeholder: 'Claude Opus 5.5 in claude.ai, 2026-11-02: our own published paper, given to it as a draft; it raised 3 of
+      the 4 main points of the real referee.'
+  validations:
+    required: false
+- type: textarea
+  id: fails
+  attributes:
+    label: Known failures
+    description: Cases where it gave wrong results, or limits you know of.
+    placeholder: 'It cannot check numbers it cannot recompute: silence on a result means "not checked".'
+  validations:
+    required: false
 - type: dropdown
   id: phase
   attributes:
@@ -37,106 +78,13 @@ body:
     - General (any phase)
     multiple: false
   validations:
-    required: true
-- type: dropdown
-  id: field
-  attributes:
-    label: Field
-    options:
-    - Astronomy and astrophysics
-    - Physics
-    - Earth and planetary sciences
-    - Chemistry
-    - Biology and medicine
-    - Computer science
-    - Other
-    multiple: false
-  validations:
     required: false
-- type: textarea
-  id: prompt
-  attributes:
-    label: Prompt
-    description: Exactly as you used it.
-    render: text
-  validations:
-    required: true
-- type: textarea
-  id: example
-  attributes:
-    label: Example
-    description: 'Needed for L1: a real input and the output you got (shorten if long).'
-  validations:
-    required: false
-- type: textarea
-  id: check
-  attributes:
-    label: How to check the result
-    description: 'Concrete: what to compare, recompute or look up. Not ''verify the output''.'
-    placeholder: Recompute every number in the report; look up each reference in ADS.
-  validations:
-    required: true
-- type: textarea
-  id: fails
-  attributes:
-    label: Known failures
-    description: Cases where it gave wrong results, or limits you know of. Leave empty if you know of none yet.
-    placeholder: 'It cannot check numbers it cannot recompute: silence on a result means "not checked".'
-  validations:
-    required: false
-- type: input
-  id: model
-  attributes:
-    label: Model and version
-    description: 'Needed for L1: the exact model and version you used.'
-    placeholder: for example Claude Opus 5.5
-  validations:
-    required: false
-- type: input
-  id: tool
-  attributes:
-    label: Tool or interface
-    placeholder: for example claude.ai, Claude Code, Codex, ChatGPT, the API
-  validations:
-    required: false
-- type: input
-  id: tested
-  attributes:
-    label: Date of your test
-    description: Needed for L1.
-    placeholder: YYYY-MM-DD
-  validations:
-    required: false
-- type: textarea
-  id: test_case
-  attributes:
-    label: Test case
-    description: 'Needed for L1: the real task you ran it on and what came out.'
-    placeholder: 'Our own published paper, given to it as a draft: it raised 3 of the 4 main points of the real referee.'
-  validations:
-    required: false
-- type: dropdown
-  id: level
-  attributes:
-    label: Verification level
-    options:
-    - 'L0: a proposal, not tested yet'
-    - 'L1: tested on a real case (fill in model, date and test case)'
-    multiple: false
-  validations:
-    required: true
 - type: textarea
   id: authors
   attributes:
-    label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation.'
-    placeholder: First Last, 0000-0000-0000-0000, Institute
+    label: Authors, if not only you
+    description: 'Leave empty to be credited with the name on your GitHub profile. Otherwise one per line: name, ORCID (optional),
+      affiliation (optional), GitHub @username (optional).'
+    placeholder: First Last, 0000-0000-0000-0000, Institute, @username
   validations:
-    required: true
-- type: checkboxes
-  id: licence
-  attributes:
-    label: Licence
-    options:
-    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
-      required: true
+    required: false

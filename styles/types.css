@@ -62,3 +62,18 @@ body[class*="type-"] .fits .k:first-child + .v { color: var(--type); }
 [class*="type-"] .quarto-title .quarto-category:first-child:not(:last-child) { margin-right: 1.3rem; }
 [class*="type-"] .quarto-title .quarto-category:first-child:not(:last-child)::after {
   content: "–"; position: absolute; right: -1.05rem; color: var(--ai-muted); }
+
+/* "Used it?" links before the History of a contribution (_filters/page-actions.lua) */
+.page-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .7rem; margin: 2.2rem 0 1.4rem;
+  padding: .8rem 1rem; border: 1px solid var(--ai-rule); border-left: 3px solid var(--type, var(--ai-rule)); }
+.page-actions-label { font-weight: 500; margin-right: .2rem; }
+.page-actions .page-action { padding: .25rem .7rem; border: 1px solid var(--type, var(--ai-rule)); border-radius: 3px;
+  color: var(--type, inherit); text-decoration: none; font-size: .88rem; }
+.page-actions .page-action:hover { background: var(--type, var(--ai-rule)); color: var(--bs-body-bg, #fff); }
+
+/* Contribute: one button per form, in the colour of its type */
+.form-buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.2rem 0 1.6rem; }
+.form-buttons p { display: contents; }
+.form-buttons .form-button { padding: .45rem 1rem; border: 1px solid var(--type); border-radius: 3px; color: var(--type);
+  text-decoration: none; font-weight: 500; }
+.form-buttons .form-button:hover { background: var(--type); color: var(--bs-body-bg, #fff); }

@@ -3,25 +3,35 @@ title: "Contribute"
 description: "How to propose a workflow, a prompt, a skill or any other contribution."
 ---
 
-Anyone can propose a contribution by filling in a short form on GitHub (a free GitHub account is needed). Every proposal is reviewed before it is published.
+Anyone can propose a contribution with a short form on GitHub (a free GitHub account is needed). Pick what you want to share:
 
-## How to propose
+::: {.form-buttons}
+[Workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml){.form-button .type-workflows}
+[Prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml){.form-button .type-prompts}
+[Skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml){.form-button .type-skills}
+[Agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml){.form-button .type-agent-configs}
+[Model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml){.form-button .type-model-checks}
+[Paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml){.form-button .type-reviews}
+[Failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml){.form-button .type-failures}
+:::
 
-1. **Open the form** for your kind of contribution: [workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml), [prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml), [skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml), [agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml), [model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml), [paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml) or [failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml). You can also check [all the forms](https://github.com/astronomicalintelligence/site/issues/new/choose).
-2. **Fill it in.** Required fields are marked. You can drag and drop images (screenshots, plots) into any text box. Use only images you made or may share under CC BY 4.0.
-3. **Wait for the review.** A maintainer reads every proposed content. If something is missing, the issue gets the label **needs-info** and a comment that says what: please answer in a GitHub comment. When it is complete it is turned into a page.
+Each form needs three or four answers, which takes a few minutes. You are credited with the name on your GitHub profile unless you list other authors. You can drag and drop images (screenshots, plots) into any text box. Use only images you made or may share under CC BY 4.0.
+
+A maintainer reads every proposal. If something is missing, the issue gets the label **needs-info** and a comment that says what: edit the issue to add it. When it is complete it becomes a page.
 
 ## What each form asks for
 
-- **Workflow:** goal, what you need, the steps with the prompts exactly as used, how to check the result, known failures (optional).
-- **Prompt:** the prompt exactly as used, a real example of input and output, how to check the result, known failures (optional).
-- **Skill:** what it does, the whole `SKILL.md` and any other files of the skill, how to check the result, known failures (optional).
-- **Agent config:** what kind of project it is for, the whole `AGENTS.md` or `CLAUDE.md`, how to check the result, known failures (optional).
-- **Model check:** the task, the prompt, the expected answer with the rule to mark a reply pass or fail, and the results for each model you tried.
-- **Paper to review:** the published paper, whether it is open access, why it is worth a second review, and whether you could check the model's points. Reviews follow the [ground rules](reviews/index.qmd#ground-rules).
-- **Failure:** the kind of error, what happened, the model that made it, how you caught it and the check that would have prevented it.
+The fields in **bold** are required.
 
-The forms for workflows, prompts, skills and agent configs also ask how you tested it: model, tool, date and the real case you ran it on (needed for L1).
+- Workflow: **what it does**, **the steps** with the prompts exactly as used, **how to check the result**.
+- Prompt: **what it does**, **the prompt** exactly as used, **how to check the result**, a real example.
+- Skill: **what it does**, `SKILL.md` (pasted, or a .zip of the skill folder), **how to check the result**.
+- Agent config: **what it does and for which projects**, **the whole `AGENTS.md` or `CLAUDE.md`**, **how to check the result**.
+- Model check: **what it checks**, **the prompt**, **the expected answer with the rule to mark a reply pass or fail**, the results for each model you tried.
+- Paper to review: **the published paper**, **whether it is open access**, **why it is worth a second review**, **whether you could check the model's points**. Reviews follow the [ground rules](reviews/index.qmd#ground-rules).
+- Failure: **what happened** (model, date, what it answered and what was right), **how to catch or avoid it**.
+
+Workflows, prompts, skills and agent configs can also say **how you tested it**: the model, the date and the real case you ran it on. A tested contribution is published as **L1**; an untested one as an **L0** draft. All of them can list **known failures** and a research phase.
 
 ## Catalogue numbers
 
@@ -43,13 +53,13 @@ A contribution enters at **L1** when the author has tested it on a real case. It
 
 ## Updating a contribution
 
-A contribution keeps its catalogue number for life. [Open an Update form](https://github.com/astronomicalintelligence/site/issues/new?template=8-update.yml) with its catalogue number when:
+A contribution keeps its catalogue number for life. Use **Suggest an update**, at the bottom of its page, when:
 
 - you tested it again, with another model or on another date;
 - you fixed or clarified a step, or improved a prompt;
 - you found a new failure;
 - you reproduced it (L1 to L2) or checked it across models (L3).
 
-The update goes through the same review, and the page records it in its History. Whoever rewrites a substantial part of a contribution is added to its authors; smaller changes, reproduction (L1->L2) are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
+If you used it and it went wrong, use **It failed for me** on the same page. The update goes through the same review, and the page records it in its History. Whoever rewrites a substantial part of a contribution is added to its authors; smaller changes, reproduction (L1->L2) are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
 
 If the method itself changes, propose a new contribution instead. It gets a new number and says *Supersedes AI W0002* at the top, and the old page links to it.

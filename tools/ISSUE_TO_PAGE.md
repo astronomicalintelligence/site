@@ -53,16 +53,16 @@ Front matter of a new page (leave out what the issue does not give; never write 
 ---
 title: "Title from the issue, without the [Type] prefix"
 description: "The one-sentence description"
-categories: [<phase category>, <field in lowercase>]
+categories: [<phase category>]
 phase: "<phase as in the issue>"
-model: "<model and version, or 'to be tested'>"
-tool: "<tool, if given>"
-tested: <YYYY-MM-DD, or "not yet">
-qflag: <L0 or L1, from the verification level; L1 only if model, date and test case are given>
-time-saved: "<workflows only, if given>"
+model: "<from How you tested it, or 'to be tested'>"
+tool: "<from How you tested it, if given>"
+tested: <date from How you tested it, YYYY-MM-DD, or "not yet">
+qflag: <L1 if How you tested it is filled in, otherwise L0>
 date: <today, YYYY-MM-DD>
 author:
   - name: "First Last"
+    url: https://github.com/<username>   # the GitHub profile, if known
     orcid: 0000-0000-0000-0000      # only if given
     affiliations:
       - name: "Institute"           # only if given
@@ -73,24 +73,31 @@ Phase categories: Literature → `literature`, Proposals → `proposals`, Data a
 Writing → `writing`, Pre-submission review → `review` (with `phase: "Pre-submission review"`). For *General (any phase)*
 write `phase: "General"` and no phase category. Model checks have no phase.
 
-Field categories: Astronomy and astrophysics → `astronomy`, Physics → `physics`, Earth and planetary sciences →
-`earth-sciences`, Chemistry → `chemistry`, Biology and medicine → `biology`, Computer science → `computer-science`,
-Other or empty → none.
+An empty research phase counts as *General*.
+
+Authors: if *Authors, if not only you* is empty, the author is the person who opened the issue, with the name on their
+GitHub profile (or their username) and `url:` their profile. An `@username` on an author line becomes that author's
+`url:`; the line whose name matches the opener's profile name gets the opener's profile.
 
 Failures have only `title`, `description`, `date`, `author` and `categories: [<kind of error, lowercase, hyphenated>]`
-(for example `invented-reference`); the model, tool and date go in the text of *What happens*.
+(for example `invented-reference`; none if the kind is empty); the model and date are in the text of *What happens*.
 
 Body: these sections, in this order, as `##` headings, then `## History` with one line:
 `- YYYY-MM-DD: first version (L0 or L1), First Last.`
 
 | Type | Sections |
 |---|---|
-| Workflow | Goal · What you need · Steps · How to check the result · Known failures |
+| Workflow | Goal (the one-sentence description) · Steps · How to check the result · Known failures |
 | Prompt | Prompt · Example · How to check the result · Known failures |
-| Skill | What it does · SKILL.md · How to check the result · Known failures |
-| Agent config | What it is for · The file to copy · How to check the result · Known failures |
-| Model check | Task · Prompt · Expected answer and pass rule · Results |
-| Failure | What happens · How to catch it · How to prevent it · Cases |
+| Skill | What it does (the description) · SKILL.md · How to check the result · Known failures |
+| Agent config | What it is for (the description) · The file to copy · How to check the result · Known failures |
+| Model check | Task (the description) · Prompt · Expected answer and pass rule · Results |
+| Failure | What happens · How to catch or avoid it · Cases |
+
+A skill arrives either with SKILL.md pasted and its other files pasted one per code block, or as a .zip of the skill
+folder in *Skill folder as a .zip, or other files*: unpack it into the folder (only text files; no hidden files,
+`_` files, `.qmd`, `.lua`, `.yml`, `.html` or `.js`).
+
 For L0, start the body with:
 
 ```markdown
@@ -102,7 +109,7 @@ Proposed content, not yet tested.
 
 *Known failures* is optional in the forms: if it is empty, write "None known yet." under the heading.
 
-If a test case is given, start *How to check the result* with a paragraph `**Tested on:** <test case>`.
+If *How you tested it* is filled in, start *How to check the result* with a paragraph `**Tested on:** <that text>`.
 
 Copy prompts, SKILL.md, AGENTS.md and code **exactly** as given. Everything else may be lightly edited for clarity
 (typos, plain English, short sentences) without changing its meaning.

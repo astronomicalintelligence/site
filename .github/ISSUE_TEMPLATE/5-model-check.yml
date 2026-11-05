@@ -6,45 +6,21 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: 'Thank you for proposing a model check. Write a short, task-based title after the prefix, for example "[Model check]
-      Uncertainty of a ratio".
+    value: 'Thank you for proposing a model check. Write a short title after the prefix, for example "[Model check] Uncertainty
+      of a ratio". Only the fields marked with a red star are needed.
 
 
-      You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
-      only images you made or may share under CC BY 4.0.
+      You can drag and drop images (screenshots, plots) into any text box. By submitting you agree that the text is published
+      under CC BY 4.0 and any code under MIT. You are credited with the name on your GitHub profile unless you write other
+      authors below.
 
 
-      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
-      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
+      More in [Contribute](https://astronomicalintelligence.org/contribute.html).'
 - type: input
   id: description
   attributes:
-    label: What it does, in one sentence
+    label: What it checks, in one sentence
     placeholder: Does the model propagate uncertainties correctly when it divides two measured quantities?
-  validations:
-    required: true
-- type: dropdown
-  id: field
-  attributes:
-    label: Field
-    options:
-    - Astronomy and astrophysics
-    - Physics
-    - Earth and planetary sciences
-    - Chemistry
-    - Biology and medicine
-    - Computer science
-    - Other
-    multiple: false
-  validations:
-    required: false
-- type: textarea
-  id: task
-  attributes:
-    label: Task
-    description: What is asked, and why it is a good test.
-    placeholder: A car covers 12.0 ± 0.5 km in 3.0 ± 0.2 h. What is its average speed, with uncertainty? Models often add
-      the errors linearly instead of in quadrature.
   validations:
     required: true
 - type: textarea
@@ -59,9 +35,9 @@ body:
   id: expected
   attributes:
     label: Expected answer and pass rule
-    description: The correct answer and the rule to mark a reply pass or fail, for example "within 5%, with units".
+    description: The correct answer and the rule to mark a reply pass or fail.
     placeholder: '4.0 ± 0.3 km/h (relative errors added in quadrature). Pass: 4.0 km/h and an uncertainty between 0.30 and
-      0.32 km/h, with units.'
+      0.32 km/h, with units. Models often add the errors linearly (0.43).'
   validations:
     required: true
 - type: textarea
@@ -74,15 +50,9 @@ body:
 - type: textarea
   id: authors
   attributes:
-    label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation.'
-    placeholder: First Last, 0000-0000-0000-0000, Institute
+    label: Authors, if not only you
+    description: 'Leave empty to be credited with the name on your GitHub profile. Otherwise one per line: name, ORCID (optional),
+      affiliation (optional), GitHub @username (optional).'
+    placeholder: First Last, 0000-0000-0000-0000, Institute, @username
   validations:
-    required: true
-- type: checkboxes
-  id: licence
-  attributes:
-    label: Licence
-    options:
-    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
-      required: true
+    required: false
