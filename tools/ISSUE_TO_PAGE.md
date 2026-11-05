@@ -76,8 +76,7 @@ write `phase: "General"` and no phase category. Model checks have no phase.
 An empty research phase counts as *General*.
 
 Authors: one line per author, "name, affiliation, ORCID, @username" (only the name is needed). An `@username`
-becomes that author's `url:` (their GitHub profile); an author whose name matches the GitHub profile name of the
-person who opened the issue gets that profile.
+becomes that author's `url:` (their GitHub profile); authors without one get no link.
 
 Failures have only `title`, `description`, `date`, `author` and `categories: [<kind of error, lowercase, hyphenated>]`
 (for example `invented-reference`; none if the kind is empty); the model and date are in the text of *What happens*.

@@ -11,8 +11,7 @@ For every open issue labelled `ready` (oldest first) it:
    that every required field is filled. If not, it comments with what is missing and swaps `ready` for `needs-info`.
    The verification level follows "How you tested it": empty is L0 (draft), filled is L1, with the model, tool and
    date read from its first words ("Claude Opus 5.5 in claude.ai, 2026-11-03: ..."). Each author line is "name,
-   affiliation, ORCID, @username" (only the name is needed); @username, or a name equal to the GitHub profile name of
-   the person who opened the issue, links the author to that GitHub profile;
+   affiliation, ORCID, @username" (only the name is needed); an @username links the author to that GitHub profile;
 3. writes the page (and SKILL.md and the other files of a skill, pasted or from a .zip of the folder) in a new folder `<type>/AI<letter>XXXX-<name>/` on the
    branch `contrib/issue-N`, copying the text as written; XXXX becomes the catalogue number when the pull request is
    merged (tools/catalog_ids.py). Text that Quarto would run or treat as page settings (```{python} blocks,
@@ -218,23 +217,6 @@ def parse_authors(text):
     return authors
 
 
-def credit(issue, text):
-    """Authors from the form: (authors, problems). An author without @username but with the same name as the GitHub
-    profile of the person who opened the issue gets the link to that profile."""
-    authors = parse_authors(text)
-    problems = []
-    user = issue.get("user") or {}
-    login = user.get("login")
-    if not authors or not login or user.get("type") == "Bot" or all(a["url"] for a in authors):
-        return authors, problems
-    real = " ".join(((gh("GET", f"/users/{login}", ok404=True) or {}).get("name") or "").split())
-    url = f"https://github.com/{login}"
-    for a in authors:
-        if not a["url"] and real and " ".join(a["name"].split()).casefold() == real.casefold():
-            a["url"] = url
-    return authors, problems
-
-
 def test_info(text, issue, today):
     """(model, tool, date, problem) read from the first words of 'How you tested it'."""
     text = " ".join(text.split())
@@ -394,10 +376,9 @@ def build(kind, issue, v, today):
     for f in TEMPLATES[kind]:
         if f["required"] and not v.get(f["label"], "").strip():
             missing.append(f"**{f['label']}**")
-    authors, problems = credit(issue, v.get(AUTHORS, ""))
+    authors = parse_authors(v.get(AUTHORS, ""))       # only an @username links an author to a GitHub profile
     if v.get(AUTHORS, "").strip() and not authors:
-        problems.append(f"**{AUTHORS}** as one line per author: name, affiliation, ORCID, @username")
-    missing += problems
+        missing.append(f"**{AUTHORS}** as one line per author: name, affiliation, ORCID, @username")
 
     description = " ".join(v.get("What it does, in one sentence", v.get("What it does, and for which projects",
                             v.get("What it checks, in one sentence", v.get("What went wrong, in one sentence", "")))).split())
