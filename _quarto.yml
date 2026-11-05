@@ -9,7 +9,7 @@ project:
 
 website:
   title: "Astronomical Intelligence"
-  description: "Tested, dated workflows for doing science with language models."
+  description: "Tested workflows, prompts and skills for doing science with large language models."
   site-url: https://astronomicalintelligence.org
   repo-url: https://github.com/astronomicalintelligence/site
   repo-actions: [issue]
