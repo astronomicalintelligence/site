@@ -62,7 +62,7 @@ This is a place to share what works: workflows, skills, prompts and agent config
 
 <ul class="phases">
 <li><a href="workflows/index.html#category=literature">Literature</a><span>Search, read and synthesise papers with ADS, arXiv or PubMed</span></li>
-<li><a href="workflows/index.html#category=proposals">Proposals</a><span>Telescope time, beamtime and grant proposals, within the rules</span></li>
+<li><a href="workflows/index.html#category=proposals">Proposals</a><span>Telescope time, beamtime and grant proposals</span></li>
 <li><a href="workflows/index.html#category=code">Data and code</a><span>Pipelines, legacy code, data formats and plots</span></li>
 <li><a href="workflows/index.html#category=analysis">Analysis</a><span>Statistics, model fitting, units and derivations</span></li>
 <li><a href="workflows/index.html#category=writing">Writing</a><span>Drafts, figures and language review</span></li>

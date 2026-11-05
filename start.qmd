@@ -1,6 +1,6 @@
 ---
 title: "Start here"
-description: "Three rules and a minimal setup for using language models in research."
+description: "A minimal setup for using large language models in research."
 ---
 
 ## Three rules
@@ -11,13 +11,14 @@ description: "Three rules and a minimal setup for using language models in resea
 
 ## Minimal setup
 
-- **A frontier chat model** for reading, writing and reasoning tasks.
+- **A frontier chat model** for reading, writing and reasoning tasks. Free models are not up to the task, at least in 2026.
 - **A coding agent** for anything that touches code or data: it runs and tests what it writes.
 - **Your usual tools**: ADS, arXiv or PubMed, Python and the libraries of your field. The workflows plug models into these rather than replacing them.
 
-## Reading a workflow
+## Reading a contribution
 
-Every workflow starts with a header. The line that matters most is `QFLAG`:
+Workflows, prompts, skills and agent configs start with a header. The line that matters most is `QFLAG`, the
+verification level, also shown as L0, L1, ... in every list:
 
 | Level | Meaning |
 |---|---|
