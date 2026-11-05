@@ -10,8 +10,9 @@ For every open issue labelled `ready` (oldest first) it:
 2. reads the form answers (the `### <field label>` sections, using the labels in .github/ISSUE_TEMPLATE/) and checks
    that every required field is filled. If not, it comments with what is missing and swaps `ready` for `needs-info`.
    The verification level follows "How you tested it": empty is L0 (draft), filled is L1, with the model, tool and
-   date read from its first words ("Claude Opus 5.5 in claude.ai, 2026-11-03: ..."). The authors are the person who
-   opened the issue, with the name and link of their GitHub profile, unless the form lists others;
+   date read from its first words ("Claude Opus 5.5 in claude.ai, 2026-11-03: ..."). Each author line is "name,
+   affiliation, ORCID, @username" (only the name is needed); @username, or a name equal to the GitHub profile name of
+   the person who opened the issue, links the author to that GitHub profile;
 3. writes the page (and SKILL.md and the other files of a skill, pasted or from a .zip of the folder) in a new folder `<type>/AI<letter>XXXX-<name>/` on the
    branch `contrib/issue-N`, copying the text as written; XXXX becomes the catalogue number when the pull request is
    merged (tools/catalog_ids.py). Text that Quarto would run or treat as page settings (```{python} blocks,
@@ -72,7 +73,7 @@ FIELDS = {"Astronomy and astrophysics": "astronomy", "Physics": "physics",
           "Biology and medicine": "biology", "Computer science": "computer-science"}
 ORCID = re.compile(r"\b(\d{4}-\d{4}-\d{4}-\d{3}[\dX])\b")
 HANDLE = re.compile(r"(?:^|[\s,(])@([A-Za-z0-9](?:[A-Za-z0-9-]{0,38}))\b")
-AUTHORS = "Authors, if not only you"
+AUTHORS = "Authors"
 TESTED = "How you tested it"
 FILES = "Skill folder as a .zip, or other files"
 ZIP_URL = re.compile(r"https://github\.com/user-attachments/files/\d+/[^\s)\]\"'>]+\.zip")
@@ -218,26 +219,20 @@ def parse_authors(text):
 
 
 def credit(issue, text):
-    """Authors from the form, or the person who opened the issue. Returns (authors, note for the pull request).
-
-    The person who opened the issue gets the link to their GitHub profile: as the only author when the field is
-    empty, or on the line whose name matches the name on their profile."""
+    """Authors from the form: (authors, problems). An author without @username but with the same name as the GitHub
+    profile of the person who opened the issue gets the link to that profile."""
+    authors = parse_authors(text)
+    problems = []
     user = issue.get("user") or {}
     login = user.get("login")
-    profile = (gh("GET", f"/users/{login}", ok404=True) or {}) if login and user.get("type") != "Bot" else {}
-    real = " ".join((profile.get("name") or "").split())
-    url = f"https://github.com/{login}" if login else None
-    authors = parse_authors(text)
-    if not authors:
-        if not login or user.get("type") == "Bot":
-            return [], None
-        return ([{"name": real or login, "orcid": None, "affiliation": None, "url": url}],
-                f"Credited to @{login}, the person who opened the issue, as \"{real or login}\" (their GitHub "
-                "profile" + ("" if real else " has no name, so the username is used") + ").")
+    if not authors or not login or user.get("type") == "Bot" or all(a["url"] for a in authors):
+        return authors, problems
+    real = " ".join(((gh("GET", f"/users/{login}", ok404=True) or {}).get("name") or "").split())
+    url = f"https://github.com/{login}"
     for a in authors:
         if not a["url"] and real and " ".join(a["name"].split()).casefold() == real.casefold():
             a["url"] = url
-    return authors, None
+    return authors, problems
 
 
 def test_info(text, issue, today):
@@ -399,11 +394,10 @@ def build(kind, issue, v, today):
     for f in TEMPLATES[kind]:
         if f["required"] and not v.get(f["label"], "").strip():
             missing.append(f"**{f['label']}**")
-    authors, note = credit(issue, v.get(AUTHORS, ""))
-    if not authors:
-        missing.append(f"**{AUTHORS}**: the issue was not opened from a personal GitHub account")
-    if note:
-        notes.append(note)
+    authors, problems = credit(issue, v.get(AUTHORS, ""))
+    if v.get(AUTHORS, "").strip() and not authors:
+        problems.append(f"**{AUTHORS}** as one line per author: name, affiliation, ORCID, @username")
+    missing += problems
 
     description = " ".join(v.get("What it does, in one sentence", v.get("What it does, and for which projects",
                             v.get("What it checks, in one sentence", v.get("What went wrong, in one sentence", "")))).split())

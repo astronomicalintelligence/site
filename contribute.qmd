@@ -15,7 +15,7 @@ Anyone can propose a contribution with a short form on GitHub (a free GitHub acc
 [Failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml){.form-button .type-failures}
 :::
 
-Each form needs three or four answers, which takes a few minutes. You are credited with the name on your GitHub profile unless you list other authors. You can drag and drop images (screenshots, plots) into any text box. Use only images you made or may share under CC BY 4.0.
+Each form needs about four answers, the authors included, which takes a few minutes. List the authors one per line as *name, affiliation, ORCID, @GitHub username*: only the name is needed, and the username links the name to the GitHub profile. You can drag and drop images (screenshots, plots) into any text box. Use only images you made or may share under CC BY 4.0.
 
 A maintainer reads every proposal. If something is missing, the issue gets the label **needs-info** and a comment that says what: edit the issue to add it. When it is complete it becomes a page.
 

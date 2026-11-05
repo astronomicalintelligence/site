@@ -11,8 +11,7 @@ body:
 
 
       You can drag and drop images (screenshots, plots) into any text box. By submitting you agree that the text is published
-      under CC BY 4.0 and any code under MIT. You are credited with the name on your GitHub profile unless you write other
-      authors below.
+      under CC BY 4.0 and any code under MIT.
 
 
       More in [Contribute](https://astronomicalintelligence.org/contribute.html).'
@@ -82,9 +81,9 @@ body:
 - type: textarea
   id: authors
   attributes:
-    label: Authors, if not only you
-    description: 'Leave empty to be credited with the name on your GitHub profile. Otherwise one per line: name, ORCID (optional),
-      affiliation (optional), GitHub @username (optional).'
-    placeholder: First Last, 0000-0000-0000-0000, Institute, @username
+    label: Authors
+    description: 'One per line, as they should appear in the citation: name, then affiliation, ORCID and GitHub @username
+      if you want them (only the name is needed).'
+    placeholder: First Last, Institute, 0000-0000-0000-0000, @username
   validations:
-    required: false
+    required: true
