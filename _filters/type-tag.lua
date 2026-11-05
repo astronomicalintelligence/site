@@ -14,5 +14,18 @@ function Meta(m)
     for _, c in ipairs(m.categories) do cats:insert(c) end
   end
   m.categories = cats
+  -- Quarto turns every tag into a link to a list filtered by that tag; "Prompt" is not a real tag, so its
+  -- link goes to the whole list of its section (../ from <type>/<folder>/) instead of an empty one
+  quarto.doc.include_text("after-body", [[
+<script>
+(function () {
+  function fix() {
+    var a = document.querySelector("header.quarto-title-block .quarto-category:first-child a");
+    if (a) a.setAttribute("href", "../index.html");
+  }
+  document.addEventListener("DOMContentLoaded", function () { setTimeout(fix, 0); });
+  window.addEventListener("load", fix);
+})();
+</script>]])
   return m
 end
