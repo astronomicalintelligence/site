@@ -10,8 +10,7 @@ body:
       Title of the paper".
 
 
-      A maintainer checks every proposal; when it is marked **ready** it is turned into a page and a pull request, and it
-      gets its catalogue number when it is published. The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
+      The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
 - type: input
   id: paper
   attributes:
