@@ -25,7 +25,7 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 | `tools/check_images.py` | Fails the build if a page shows an image from another site |
 | `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W0001, AI P0001, ...) and renames its folder from `AIWXXXX-<name>` to `AIW0001-<name>`; run by the publish workflow on every push to `main` |
 | `tools/retired.txt` | Numbers of contributions removed from the site, never given again. To remove one, delete its folder and add a line here |
-| `styles/types.css` | One colour per kind of contribution |
+| `styles/*.scss` | Theme and site styles (`types.scss`: one colour per kind of contribution). They are compiled into the theme, whose file name changes with every edit, so browsers never show an old version |
 | `styles/` | Fonts, colours (`light.scss`, `dark.scss`) and layout (`base.scss`) |
 | `.github/workflows/publish.yml` | Builds the site and publishes it to GitHub Pages on every push to `main` |
 

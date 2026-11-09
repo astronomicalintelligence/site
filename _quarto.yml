@@ -6,6 +6,9 @@ project:
     - "**/*.qmd"
   resources:
     - fonts/
+    # used by the theme (styles/*.scss), which Quarto does not scan for files to copy
+    - images/star.svg
+    - images/hero-uv.jpg
 
 website:
   title: "Astronomical Intelligence"
@@ -62,13 +65,13 @@ website:
 format:
   html:
     theme:
-      light: [cosmo, styles/base.scss, styles/light.scss]
-      dark: [cosmo, styles/base.scss, styles/dark.scss]
+      light: [cosmo, styles/base.scss, styles/light.scss, styles/hero.scss, styles/marks.scss, styles/types.scss]
+      dark: [cosmo, styles/base.scss, styles/dark.scss, styles/hero.scss, styles/marks.scss, styles/types.scss]
     respect-user-color-scheme: true
     canonical-url: true   # tells search engines the main address of each page
     toc: true
     toc-title: "On this page"
-    css: [styles/fonts.css, styles/hero.css, styles/marks.css, styles/types.css]
+    css: [styles/fonts.css]
     code-copy: true
     code-overflow: wrap
     smooth-scroll: false
