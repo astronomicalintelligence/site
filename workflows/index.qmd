@@ -2,6 +2,8 @@
 title: "Workflows"
 description: "Step-by-step procedures for research tasks, each tested on a real case."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 citation: false
 comments: false
 listing:

@@ -2,6 +2,8 @@
 title: "Model checks"
 description: "Small, repeatable tests of language models on real scientific tasks, with dated results."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 citation: false
 comments: false
 listing:

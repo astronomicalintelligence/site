@@ -2,6 +2,8 @@
 title: "Agent configs"
 description: "CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 citation: false
 comments: false
 listing:

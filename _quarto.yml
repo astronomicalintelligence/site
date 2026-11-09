@@ -22,6 +22,7 @@ website:
     type: overlay
   navbar:
     logo: images/logo.svg
+    logo-alt: "Astronomical Intelligence, home page"
     title: "Astronomical Intelligence"
     left:
       - text: Start here
@@ -64,6 +65,7 @@ format:
       light: [cosmo, styles/base.scss, styles/light.scss]
       dark: [cosmo, styles/base.scss, styles/dark.scss]
     respect-user-color-scheme: true
+    canonical-url: true   # tells search engines the main address of each page
     toc: true
     toc-title: "On this page"
     css: [styles/fonts.css, styles/hero.css, styles/marks.css, styles/types.css]

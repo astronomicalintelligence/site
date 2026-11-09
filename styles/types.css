@@ -51,6 +51,8 @@ body.quarto-dark {
 body[class*="type-"] #title-block-header { border-bottom: 3px solid var(--type); padding-bottom: .9rem; margin-bottom: 1.4rem; }
 body[class*="type-"] .fits { border-left-color: var(--type); }
 body[class*="type-"] .fits .k:first-child + .v { color: var(--type); }
+/* light theme: the catalogue number on the grey header panel needs a slightly darker shade to stay readable */
+body.quarto-light[class*="type-"] .fits .k:first-child + .v { color: color-mix(in srgb, var(--type) 82%, black); }
 
 /* Failures table: catalogue column */
 .quarto-listing-table .listing-catalog { font-family: "IBM Plex Mono", ui-monospace, monospace; color: var(--type); white-space: nowrap; }

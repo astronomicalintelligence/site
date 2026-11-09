@@ -2,6 +2,8 @@
 title: "Prompts"
 description: "Prompts that worked on real research tasks, with the model, the date and the known limits."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 citation: false
 comments: false
 listing:

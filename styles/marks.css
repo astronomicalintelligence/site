@@ -66,3 +66,19 @@ body.quarto-dark .aa-Item[aria-selected="true"],
 body.quarto-dark .aa-Item[aria-selected="true"] div,
 body.quarto-dark .aa-Item[aria-selected="true"] p { background-color: #21364F !important; color: #E3EAF2 !important; }
 body.quarto-dark .aa-Item[aria-selected="true"] mark { background-color: #3B5F8A !important; color: #FFFFFF !important; }
+
+/* tags under titles and in the Notes list: enough contrast on both backgrounds (Quarto dims them) */
+div.quarto-post .listing-categories .listing-category,
+.quarto-title .quarto-categories .quarto-category { color: var(--ai-muted); opacity: 1; }
+
+/* menu items on one line at laptop widths (between the phone menu and wide screens) */
+.navbar-nav .nav-link { white-space: nowrap; }
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navbar-nav .nav-link { padding-left: .45rem; padding-right: .45rem; }
+  .navbar-brand .navbar-title { font-size: .92rem; overflow: visible; }
+}
+/* narrow laptops: the logo stands for the name (its alt text says it), with the BETA badge */
+@media (min-width: 992px) and (max-width: 1129.98px) {
+  .navbar-brand .navbar-title { font-size: 0; }
+  .navbar-brand .navbar-title::after { font-size: 9.5px; margin-left: 0; }
+}

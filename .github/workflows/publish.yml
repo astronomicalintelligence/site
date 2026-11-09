@@ -11,9 +11,11 @@ permissions:
   pages: write
   id-token: write
 
+# Publications of main run one after the other and are never cancelled by a pull request;
+# a new push to the same pull request cancels its previous check.
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: ${{ github.event_name == 'pull_request' && format('check-{0}', github.ref) || 'pages' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -21,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.11.9    # pinned: a new Quarto release can change the site; update deliberately
       # Pull requests: only check (fails if two contributions share a number
       # or a number already given on main was changed).
       # Main: give the next free number to every new contribution and rename its
