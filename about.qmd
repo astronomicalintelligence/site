@@ -1,5 +1,6 @@
 ---
 title: "About"
+description: "What Astronomical Intelligence is, its licences, and what data the site collects."
 ---
 
 Astronomical Intelligence is an open collection of tested workflows, prompts, skills and agent configurations for doing research with language models, started by astronomers and open to every field.

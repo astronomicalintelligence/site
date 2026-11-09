@@ -1,7 +1,9 @@
 ---
-pagetitle: "Astronomical Intelligence: the first open collection of tested workflows, prompts and skills for science"
+pagetitle: "Tested LLM workflows, prompts and skills for science"
 description: "The first open collection of tested workflows, prompts and skills for doing science with large language models."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 page-layout: full
 title-block-style: none
 listing:

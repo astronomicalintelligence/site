@@ -2,6 +2,8 @@
 title: "Notes"
 description: "Case studies, model comparisons on research tasks, and critical reading of the news."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 citation: false
 listing:
   contents: "posts/*.qmd"

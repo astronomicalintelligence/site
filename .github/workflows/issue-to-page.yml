@@ -44,6 +44,8 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.CONTRIB_TOKEN || github.token }}
       - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.11.9    # pinned: a new Quarto release can change the site; update deliberately
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"

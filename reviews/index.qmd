@@ -2,6 +2,8 @@
 title: "Reviews"
 description: "A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 citation: false
 comments: false
 listing:

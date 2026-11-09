@@ -2,17 +2,15 @@
 title: "Failures"
 description: "Errors made by language models on research tasks, with how they were caught and how to prevent them."
 toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
 citation: false
 comments: false
 listing:
   contents: "*/index.qmd"
-  type: table
+  template: ../_templates/workflows.ejs
   sort: "date desc"
   fields: [catalog, title, description, author, date]
-  field-display-names:
-    catalog: "No."
-    title: "Failure"
-    description: "What happened"
 ---
 
 A model that is right 95% of the time is dangerous in research precisely because the other 5% looks the same. Each entry describes a real error, how it was caught and the check that would have prevented it.
