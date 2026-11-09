@@ -1,3 +1,5 @@
+/*-- scss:rules --*/
+// Site rules, compiled into the theme so that every change gets a new file name (no stale browser cache)
 /* The red star from the logo, used as list bullet.
    Drawn as a mask so it takes the theme accent (light and dark). */
 #quarto-document-content ul:not([class]) { list-style: none; padding-left: 1.5rem; }
@@ -6,8 +8,8 @@
 .phases a::before {
   content: "";
   background-color: var(--ai-accent);
-  -webkit-mask: url("../images/star.svg") center / contain no-repeat;
-          mask: url("../images/star.svg") center / contain no-repeat;
+  -webkit-mask: url("/images/star.svg") center / contain no-repeat;
+          mask: url("/images/star.svg") center / contain no-repeat;
 }
 #quarto-document-content ul:not([class]) > li::before {
   position: absolute; left: -1.3rem; top: .4em; width: .8em; height: .8em;

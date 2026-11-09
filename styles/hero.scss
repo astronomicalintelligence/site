@@ -1,3 +1,5 @@
+/*-- scss:rules --*/
+// Site rules, compiled into the theme so that every change gets a new file name (no stale browser cache)
 /* Home hero background: the uv-coverage of the Dutch LOFAR stations (tools/make_hero_uv.py),
    fading into night blue behind the spectrum. */
 .hero {
@@ -8,7 +10,7 @@
       rgba(15, 27, 43, 0.88) 60%,
       #0F1B2B 72%,
       #13233A 100%),
-    url("../images/hero-uv.jpg");
+    url("/images/hero-uv.jpg");
   background-size: cover, cover;
   background-position: center top, right top;
   background-repeat: no-repeat;
