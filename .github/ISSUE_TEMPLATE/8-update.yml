@@ -6,15 +6,15 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: 'Thank you for proposing an update. Write a short, task-based title after the prefix, for example "[Update] AI
-      W0002 tested with a new model".
+    value: 'Thank you for proposing an update. Write a short title after the prefix, for example "[Update] AI W0002 tested
+      with a new model". Only the fields marked with a red star are needed.
 
 
-      You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
-      only images you made or may share under CC BY 4.0.
+      You can drag and drop images (screenshots, plots) into any text box. By submitting you agree that the text is published
+      under CC BY 4.0 and any code under MIT.
 
 
-      The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
+      More in [Contribute](https://astronomicalintelligence.org/contribute.html).'
 - type: input
   id: catalog
   attributes:
@@ -34,33 +34,16 @@ body:
   id: test
   attributes:
     label: New test
-    description: Model and version, tool, date, result.
+    description: Model and version, date, what you ran it on and what came out. Say if you reproduced it from scratch (L2)
+      or checked it across models or dates (L3).
   validations:
     required: false
-- type: dropdown
-  id: level
-  attributes:
-    label: Does this change the verification level?
-    options:
-    - 'No'
-    - 'L1: I tested a draft on a real case'
-    - 'L2: I reproduced it from scratch'
-    - 'L3: I checked it across models or dates'
-    multiple: false
-  validations:
-    required: true
 - type: textarea
   id: authors
   attributes:
-    label: Who to credit for this update
-    description: Your name, ORCID (optional) and affiliation. The existing authors stay.
-    placeholder: First Last, 0000-0000-0000-0000, Institute
+    label: Authors
+    description: 'One per line, as they should appear in the citation: name, then affiliation, ORCID and GitHub @username
+      if you want them (only the name is needed).'
+    placeholder: First Last, Institute, 0000-0000-0000-0000, @username
   validations:
     required: true
-- type: checkboxes
-  id: licence
-  attributes:
-    label: Licence
-    options:
-    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
-      required: true

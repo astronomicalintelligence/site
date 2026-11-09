@@ -6,57 +6,20 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: 'Thank you for proposing an agent config. Write a short, task-based title after the prefix, for example "[Agent
-      config] AGENTS.md for a Python data-analysis repository".
+    value: 'Thank you for proposing an agent config. Write a short title after the prefix, for example "[Agent config] AGENTS.md
+      for a Python data-analysis repository". Only the fields marked with a red star are needed.
 
 
-      You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
-      only images you made or may share under CC BY 4.0.
+      You can drag and drop images (screenshots, plots) into any text box. By submitting you agree that the text is published
+      under CC BY 4.0 and any code under MIT.
 
 
-      The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
+      More in [Contribute](https://astronomicalintelligence.org/contribute.html).'
 - type: input
   id: description
   attributes:
-    label: What it does, in one sentence
-    placeholder: 'Conventions for a Python analysis repository: units, random seeds, reproducibility and tests.'
-  validations:
-    required: true
-- type: dropdown
-  id: phase
-  attributes:
-    label: Research phase
-    options:
-    - Literature
-    - Proposals
-    - Data and code
-    - Analysis
-    - Writing
-    - Pre-submission review
-    - General (any phase)
-    multiple: false
-  validations:
-    required: true
-- type: dropdown
-  id: field
-  attributes:
-    label: Field
-    options:
-    - Astronomy and astrophysics
-    - Physics
-    - Earth and planetary sciences
-    - Chemistry
-    - Biology and medicine
-    - Computer science
-    - Other
-    multiple: false
-  validations:
-    required: false
-- type: textarea
-  id: project
-  attributes:
-    label: What kind of project it is for
-    placeholder: A Python analysis repository with NumPy and pandas, data in data/ and tests in tests/.
+    label: What it does, and for which projects
+    placeholder: 'Conventions for a Python data-analysis repository with NumPy and pandas: units, random seeds and tests.'
   validations:
     required: true
 - type: textarea
@@ -77,65 +40,43 @@ body:
   validations:
     required: true
 - type: textarea
+  id: test
+  attributes:
+    label: How you tested it
+    description: 'Leave empty if you have not tested it yet: it is published as a draft (L0). Otherwise start with the model
+      and the date, then the real task you ran it on and what came out (L1).'
+    placeholder: 'Claude Opus 5.5 in Claude Code, 2026-11-04: asked to add a plot from a column without units, the agent stopped
+      and asked.'
+  validations:
+    required: false
+- type: textarea
   id: fails
   attributes:
     label: Known failures
-    description: Cases where it gave wrong results, or limits you know of. Leave empty if you know of none yet.
-  validations:
-    required: false
-- type: input
-  id: model
-  attributes:
-    label: Model and version
-    description: 'Needed for L1: the exact model and version you used.'
-    placeholder: for example Claude Opus 5.5
-  validations:
-    required: false
-- type: input
-  id: tool
-  attributes:
-    label: Tool or interface
-    placeholder: for example claude.ai, Claude Code, Codex, ChatGPT, the API
-  validations:
-    required: false
-- type: input
-  id: tested
-  attributes:
-    label: Date of your test
-    description: Needed for L1.
-    placeholder: YYYY-MM-DD
-  validations:
-    required: false
-- type: textarea
-  id: test_case
-  attributes:
-    label: Test case
-    description: 'Needed for L1: the real task you ran it on and what came out.'
-    placeholder: 'Asked to add a plot from a column without units: the agent stopped and asked.'
+    description: Cases where it gave wrong results, or limits you know of.
   validations:
     required: false
 - type: dropdown
-  id: level
+  id: phase
   attributes:
-    label: Verification level
+    label: Research phase
     options:
-    - 'L0: a proposal, not tested yet'
-    - 'L1: tested on a real case (fill in model, date and test case)'
+    - Literature
+    - Proposals
+    - Data and code
+    - Analysis
+    - Writing
+    - Pre-submission review
+    - General (any phase)
     multiple: false
   validations:
-    required: true
+    required: false
 - type: textarea
   id: authors
   attributes:
-    label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation.'
-    placeholder: First Last, 0000-0000-0000-0000, Institute
+    label: Authors
+    description: 'One per line, as they should appear in the citation: name, then affiliation, ORCID and GitHub @username
+      if you want them (only the name is needed).'
+    placeholder: First Last, Institute, 0000-0000-0000-0000, @username
   validations:
     required: true
-- type: checkboxes
-  id: licence
-  attributes:
-    label: Licence
-    options:
-    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
-      required: true

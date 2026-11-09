@@ -8,9 +8,11 @@ For every open issue labelled `ready` (oldest first) it:
 1. skips the issue if it has `in-pr`, if an open pull request says `Closes #N`, or if the branch `contrib/issue-N`
    exists; leaves `review` and `update` issues alone (updates need a person: see below);
 2. reads the form answers (the `### <field label>` sections, using the labels in .github/ISSUE_TEMPLATE/) and checks
-   that every required field is filled, that the licence box is ticked and that L1 comes with model, date and
-   test case. If not, it comments with what is missing and swaps `ready` for `needs-info`;
-3. writes the page (and SKILL.md and other files of a skill) in a new folder `<type>/AI<letter>XXXX-<name>/` on the
+   that every required field is filled. If not, it comments with what is missing and swaps `ready` for `needs-info`.
+   The verification level follows "How you tested it": empty is L0 (draft), filled is L1, with the model, tool and
+   date read from its first words ("Claude Opus 5.5 in claude.ai, 2026-11-03: ..."). Each author line is "name,
+   affiliation, ORCID, @username" (only the name is needed); an @username links the author to that GitHub profile;
+3. writes the page (and SKILL.md and the other files of a skill, pasted or from a .zip of the folder) in a new folder `<type>/AI<letter>XXXX-<name>/` on the
    branch `contrib/issue-N`, copying the text as written; XXXX becomes the catalogue number when the pull request is
    merged (tools/catalog_ids.py). Text that Quarto would run or treat as page settings (```{python} blocks,
    shortcodes, `---` lines, <script>) sends the issue to needs-info;
@@ -34,6 +36,8 @@ Needs: pip install pyyaml pillow requests, and GH_TOKEN (or GITHUB_TOKEN) with c
 write access.
 """
 import argparse
+import io
+import zipfile
 import datetime as dt
 import json
 import os
@@ -67,6 +71,17 @@ FIELDS = {"Astronomy and astrophysics": "astronomy", "Physics": "physics",
           "Earth and planetary sciences": "earth-sciences", "Chemistry": "chemistry",
           "Biology and medicine": "biology", "Computer science": "computer-science"}
 ORCID = re.compile(r"\b(\d{4}-\d{4}-\d{4}-\d{3}[\dX])\b")
+HANDLE = re.compile(r"(?:^|[\s,(])@([A-Za-z0-9](?:[A-Za-z0-9-]{0,38}))\b")
+AUTHORS = "Authors"
+TESTED = "How you tested it"
+FILES = "Skill folder as a .zip, or other files"
+ZIP_URL = re.compile(r"https://github\.com/user-attachments/files/\d+/[^\s)\]\"'>]+\.zip")
+for _extra in filter(None, os.environ.get("ZIP_TEST_PREFIXES", "").split(",")):     # for tests only
+    ZIP_URL = re.compile(ZIP_URL.pattern + "|" + re.escape(_extra) + r"[^\s)\]\"'>]+\.zip")
+ZIP_MAX_FILES, ZIP_MAX_BYTES = 50, 5 * 1024 * 1024
+# what the first words of "How you tested it" must look like to be taken as the model
+MODEL_NAME = re.compile(r"(?i)\b(?:claude|opus|sonnet|haiku|fable|mythos|gpt|chatgpt|o\d|gemini|gemma|llama|mistral|"
+                        r"mixtral|deepseek|qwen|grok|copilot|phi|command|kimi|glm)\b")
 # file names of a skill's other files: no hidden or _quarto/_metadata files, nothing Quarto would render or run
 SAFE_PATH = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]*(/[A-Za-z0-9][A-Za-z0-9_.-]*)*$")
 UNSAFE_EXT = {".qmd", ".ipynb", ".rmd", ".lua", ".yml", ".yaml", ".html", ".htm", ".js", ".css", ".scss"}
@@ -165,10 +180,6 @@ def parse_form(body, fields):
     return values
 
 
-def ticked(v):
-    return bool(re.search(r"^- \[[xX]\]", v, re.M))
-
-
 def parse_date(s):
     s = s.strip()
     for fmt in ("%Y-%m-%d", "%Y/%m/%d", "%d %B %Y", "%d %b %Y", "%B %d, %Y", "%b %d, %Y", "%B %d %Y"):
@@ -180,13 +191,18 @@ def parse_date(s):
 
 
 def parse_authors(text):
-    """'First Last, 0000-0000-0000-0000, Institute' per line (ORCID and institute optional)."""
+    """'First Last, 0000-0000-0000-0000, Institute, @username' per line (all but the name optional)."""
     authors = []
     for line in text.splitlines():
         for entry in line.split(";"):
             entry = re.sub(r"^\s*(?:[-*+]|\d+[.)])\s+", "", entry).strip()
             if not entry:
                 continue
+            login = None
+            h = HANDLE.search(entry)
+            if h:
+                login = h.group(1)
+                entry = entry[:h.start()] + entry[h.end():]
             orcid = None
             m = ORCID.search(entry)
             if m:
@@ -196,8 +212,77 @@ def parse_authors(text):
             parts = [p for p in parts if p and p.lower() not in {"orcid", "orcid:"}]
             if not parts:
                 continue
-            authors.append({"name": parts[0], "orcid": orcid, "affiliation": ", ".join(parts[1:]) or None})
+            authors.append({"name": parts[0], "orcid": orcid, "affiliation": ", ".join(parts[1:]) or None,
+                            "url": f"https://github.com/{login}" if login else None})
     return authors
+
+
+def test_info(text, issue, today):
+    """(model, tool, date, problem) read from the first words of 'How you tested it'."""
+    text = " ".join(text.split())
+    date, problem = None, None
+    m = re.search(r"\b(\d{4}-\d{2}-\d{2}|\d{4}/\d{2}/\d{2})\b", text) or \
+        re.search(r"\b(\d{1,2} [A-Z][a-z]{2,8} \d{4}|[A-Z][a-z]{2,8} \d{1,2},? \d{4})\b", text)
+    if m:
+        date = parse_date(m.group(1).replace(",", ""))
+    if date is None:
+        date = dt.date.fromisoformat(issue["created_at"][:10])
+        problem = f"The test has no readable date, so the date of the issue ({date}) is used."
+    elif date > today:
+        raise NeedsInfo([f"a date in **{TESTED}** that is not in the future (it says {m.group(1)})"])
+    head = re.split(r"[,;:(]|\s(?:on|with|using)\s|\s\d{4}[-/]|\s\d{1,2} [A-Z][a-z]+ \d{4}", text, maxsplit=1)[0].strip()
+    model, tool = head, None
+    if " in " in head:
+        model, tool = (x.strip() for x in head.split(" in ", 1))
+    if not (2 <= len(model) <= 60 and MODEL_NAME.search(model)):
+        model = "see How to check the result"
+        problem = ((problem + " ") if problem else "") + "The model could not be read from the first words of the test."
+    if tool is not None and not (1 <= len(tool) <= 40):
+        tool = None
+    return model, tool, date, problem
+
+
+def skill_zip(text):
+    """Files of a skill from a .zip attachment: ({path: text}, [problems]), or (None, []) if there is no .zip."""
+    m = ZIP_URL.search(text)
+    if not m:
+        return None, []
+    import requests                                  # only needed for skills sent as a .zip
+    headers = {"User-Agent": "astronomicalintelligence-issue-to-page"}
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token and m.group(0).startswith("https://github.com/"):
+        headers["Authorization"] = f"token {token}"
+    try:
+        r = requests.get(m.group(0), headers=headers, timeout=60)
+        r.raise_for_status()
+        zf = zipfile.ZipFile(io.BytesIO(r.content))
+    except Exception as e:                            # network, not a zip ...
+        return {}, [f"the .zip could not be opened ({e})"]
+    infos = [i for i in zf.infolist() if not i.is_dir()
+             and not any(part.startswith((".", "__MACOSX")) for part in i.filename.split("/"))]
+    names = [i.filename for i in infos]
+    # a single top folder (my-skill/SKILL.md) is the skill folder itself
+    tops = {n.split("/")[0] for n in names}
+    strip = len(tops) == 1 and all("/" in n for n in names)
+    files, problems, total = {}, [], 0
+    if len(infos) > ZIP_MAX_FILES:
+        return {}, [f"the .zip has {len(infos)} files; at most {ZIP_MAX_FILES} are accepted"]
+    for i in infos:
+        name = i.filename.split("/", 1)[1] if strip else i.filename
+        total += i.file_size
+        is_link = (i.external_attr >> 16) & 0o170000 == 0o120000
+        if is_link or not SAFE_PATH.match(name) or ".." in name.split("/") or Path(name).suffix.lower() in UNSAFE_EXT \
+                or re.match(r"figure-\d+\.", name):
+            problems.append(f"`{name}` is not accepted (links, hidden files, .qmd, .lua, .yml, .html, .js and names "
+                            "starting with _ are not)")
+            continue
+        if total > ZIP_MAX_BYTES:
+            return {}, ["the files in the .zip are larger than 5 MB in total"]
+        try:
+            files[name] = zf.read(i).decode("utf-8")
+        except UnicodeDecodeError:
+            problems.append(f"`{name}` is not a text file")
+    return files, problems
 
 
 def slugify(s, maxlen=50):
@@ -268,6 +353,8 @@ def front_matter(meta, authors):
     out.append("author:")
     for a in authors:
         out.append(f"  - name: {q(a['name'])}")
+        if a.get("url"):
+            out.append(f"    url: {a['url']}")
         if a["orcid"]:
             out.append(f"    orcid: {a['orcid']}")
         if a["affiliation"]:
@@ -281,49 +368,56 @@ def sections(pairs):
 
 
 def build(kind, issue, v, today):
-    """Returns (files {relative path: text}, page path, title, notes for the pull request). Raises NeedsInfo."""
+    """Returns (files {relative path: text}, page path, title, notes for the pull request, authors). Raises NeedsInfo."""
     missing, notes = [], []
     title = re.sub(r"^\s*\[[^\]]*\]\s*", "", issue["title"]).strip()
     if not title:
         missing.append("a title (after the `[Type]` prefix)")
-    authors = parse_authors(v.get("Authors to credit", ""))
-    if not authors:
-        missing.append("**Authors to credit**")
-    for label, val in v.items():
-        f = next(f for f in TEMPLATES[kind] if f["label"] == label)
-        if f["type"] == "checkboxes":
-            if f["required"] and not ticked(val):
-                missing.append(f"the **{label}** box ticked")
-        elif f["required"] and not val.strip() and label != "Authors to credit":
-            missing.append(f"**{label}**")
+    for f in TEMPLATES[kind]:
+        if f["required"] and not v.get(f["label"], "").strip():
+            missing.append(f"**{f['label']}**")
+    authors = parse_authors(v.get(AUTHORS, ""))       # only an @username links an author to a GitHub profile
+    if v.get(AUTHORS, "").strip() and not authors:
+        missing.append(f"**{AUTHORS}** as one line per author: name, affiliation, ORCID, @username")
 
-    description = " ".join(v.get("What it does, in one sentence", v.get("What went wrong, in one sentence", "")).split())
-    field = FIELDS.get(v.get("Field", ""))
-    model, tool = v.get("Model and version", "").strip(), v.get("Tool or interface", "").strip()
-    test_case = v.get("Test case", "").strip()
+    description = " ".join(v.get("What it does, in one sentence", v.get("What it does, and for which projects",
+                            v.get("What it checks, in one sentence", v.get("What went wrong, in one sentence", "")))).split())
+    test = v.get(TESTED, "").strip()
     known = v.get("Known failures", "").strip() or "None known yet."
     names = ", ".join(a["name"] for a in authors)
 
-    qflag, tested = "L0", None
-    if kind not in {"model-check", "failure"}:
-        if v.get("Verification level", "").startswith("L1"):
-            qflag = "L1"
-            need = [lab for lab, val in (("Model and version", model), ("Date of your test", v.get("Date of your test", "")),
-                                         ("Test case", test_case)) if not val.strip()]
-            if need:
-                missing.append("for L1, also " + ", ".join(f"**{n}**" for n in need)
-                               + " (or choose L0 if it has not been tested yet)")
-        raw_date = v.get("Date of your test", "").strip()
-        if raw_date:
-            tested = parse_date(raw_date)
-            if tested is None:
-                missing.append(f"**Date of your test** as YYYY-MM-DD (it says {raw_date!r})")
-            elif tested > today:
-                missing.append(f"a **Date of your test** that is not in the future (it says {raw_date})")
+    qflag, model, tool, tested = "L0", None, None, None
+    if kind not in {"model-check", "failure"} and test:
+        qflag = "L1"
+        try:
+            model, tool, tested, problem = test_info(test, issue, today)
+            if problem:
+                notes.append(problem + " Please check the page header.")
+        except NeedsInfo as e:
+            missing += e.args[0]
 
-    files, page = {}, None
+    files, page, extra = {}, None, {}
     if kind == "skill":
-        skill = v.get("SKILL.md", "")
+        skill = v.get("SKILL.md", "").strip()
+        zipped, zproblems = skill_zip(v.get(FILES, ""))
+        if zproblems:
+            notes += [f"Not copied from the .zip: {x}" for x in zproblems if "not accepted" in x or "not a text" in x]
+            fatal = [x for x in zproblems if not ("not accepted" in x or "not a text" in x)]
+            if fatal:
+                missing.append(f"**{FILES}**: " + "; ".join(fatal))
+        if zipped is not None:
+            zskill = zipped.pop("SKILL.md", None)
+            if skill and zskill and zskill.strip() != skill:
+                notes.append("SKILL.md was both pasted and in the .zip, and they differ: the pasted one is used.")
+            skill = skill or (zskill or "").strip()
+            extra = zipped
+        else:
+            extra, problems = other_files(v.get(FILES, ""))
+            if problems:
+                missing.append(f"**{FILES}**: a .zip, or one code block per file, each preceded by a line with its "
+                               "file name (" + "; ".join(problems) + ")")
+        if not skill:
+            missing.append("**SKILL.md**: paste it, or drop a .zip of the skill folder")
         name = None
         m = re.match(r"^---\n(.*?)\n---", skill, re.S)
         try:
@@ -333,16 +427,12 @@ def build(kind, issue, v, today):
         if skill and not (isinstance(name, str) and re.fullmatch(r"[a-z0-9][a-z0-9-]*", name)):
             missing.append("a `name` in the front matter of **SKILL.md** (lowercase letters, digits and hyphens), "
                            "between `---` lines at the top")
-        extra, problems = other_files(v.get("Other files", ""))
-        if problems:
-            missing.append("**Other files** as one code block per file, each preceded by a line with its file name ("
-                           + "; ".join(problems) + ")")
         slug = name or slugify(title)
     else:
         slug = slugify(title) or f"issue-{issue['number']}"
 
     for f in TEMPLATES[kind]:                         # prompts and files are shown as code; the rest is page text
-        if f["type"] == "textarea" and not f.get("render") and f["label"] not in {"Other files"}:
+        if f["type"] in {"textarea", "input"} and not f.get("render") and f["label"] != FILES:
             for pat, what in UNSAFE_TEXT:
                 if pat.search(v.get(f["label"], "")):
                     missing.append(f"**{f['label']}** without {what}")
@@ -360,56 +450,49 @@ def build(kind, issue, v, today):
     if kind == "skill":
         files[f"{folder}/SKILL.md"] = skill + "\n"
         for p, c in extra.items():
-            files[f"{folder}/{p}"] = c
+            files[f"{folder}/{p}"] = c if c.endswith("\n") else c + "\n"
 
     check = v.get("How to check the result", "").strip()
-    if test_case:
-        check = f"**Tested on:** {test_case}\n\n{check}"
+    if test:
+        check = f"**Tested on:** {test}\n\n{check}"
     history = f"## History\n\n- {today}: first version ({qflag}), {names}.\n"
 
     if kind == "failure":
+        kind_cat = slugify(v.get("Kind of error", ""))
         meta = {"title": title, "description": description, "date": today,
-                "categories": [slugify(v.get("Kind of error", "")) or "other"]}
-        seen = "Seen with " + model + (f" in {tool}" if tool else "") \
-               + (f", {v['When it happened'].strip()}" if v.get("When it happened", "").strip() else "") + "."
-        prompt = v.get("Prompt", "")
-        cases = ("Prompt used:\n\n" + fence(prompt, "markdown")) if prompt.strip() else "To be added: more dated examples."
-        body = sections([("What happens", v["What happened"].strip() + "\n\n" + seen),
-                         ("How to catch it", v["How you caught it"]),
-                         ("How to prevent it", v["How to prevent it"]),
-                         ("Cases", cases)])
+                "categories": [kind_cat] if kind_cat else None}
+        body = sections([("What happens", v["What happened"]),
+                         ("How to catch or avoid it", v["How to catch or avoid it"]),
+                         ("Cases", "To be added: more dated examples.")])
         history = f"## History\n\n- {today}: first version, {names}.\n"
     elif kind == "model-check":
-        meta = {"title": title, "description": description, "categories": [field] if field else None, "date": today}
-        body = sections([("Task", v["Task"]), ("Prompt", fence(v["Prompt"], "markdown")),
+        meta = {"title": title, "description": description, "date": today}
+        body = sections([("Task", description), ("Prompt", fence(v["Prompt"], "markdown")),
                          ("Expected answer and pass rule", v["Expected answer and pass rule"]),
                          ("Results", v.get("Results", "").strip() or "No results yet.")])
         history = f"## History\n\n- {today}: first version, {names}.\n"
     else:
-        phase, phase_cat = PHASES.get(v["Research phase"], (v["Research phase"], None))
+        phase, phase_cat = PHASES.get(v.get("Research phase", ""), ("General", None))
         meta = {"title": title}
         if kind == "skill":
             meta["resources"] = ["SKILL.md"] + sorted(p.split(f"{folder}/", 1)[1] for p in files
                                                        if not p.endswith("/SKILL.md"))
-        meta.update({"description": description, "categories": [c for c in (phase_cat, field) if c] or None,
-                     "phase": phase, "model": model or "to be tested", "tool": tool or None,
-                     "tested": tested if tested else "not yet", "qflag": qflag})
+        meta.update({"description": description, "categories": [phase_cat] if phase_cat else None,
+                     "phase": phase, "model": model or "to be tested", "tool": tool,
+                     "tested": tested if tested else "not yet", "qflag": qflag, "date": today})
         if kind == "workflow":
-            meta["time-saved"] = v.get("Time saved (measured)", "").strip() or None
-        meta["date"] = today
-        if kind == "workflow":
-            pairs = [("Goal", v["Goal"]), ("What you need", v.get("What you need", "").strip() or "Not specified."),
-                     ("Steps", v["Steps"])]
+            pairs = [("Goal", description), ("Steps", v["Steps"])]
         elif kind == "prompt":
             pairs = [("Prompt", fence(v["Prompt"], "markdown")),
                      ("Example", v.get("Example", "").strip() or "To be added.")]
         elif kind == "skill":
-            pairs = [("What it does", v["What changes when the agent loads it"]),
+            pairs = [("What it does", description),
                      ("SKILL.md", f'[Download SKILL.md](SKILL.md){{download="SKILL.md"}} and put it in a folder '
-                                  f'`{slug}` in your agent\'s skills directory.\n\n'
-                                  '```{.markdown include="SKILL.md"}\n```')]
+                                  f'`{slug}` in your agent\'s skills directory'
+                                  + (", with the other files listed in this page's folder." if extra else ".")
+                                  + '\n\n```{.markdown include="SKILL.md"}\n```')]
         else:  # agent-config
-            pairs = [("What it is for", v["What kind of project it is for"]),
+            pairs = [("What it is for", description),
                      ("The file to copy", fence(v["The file to copy"], "markdown"))]
         pairs += [("How to check the result", check), ("Known failures", known)]
         body = (DRAFT if qflag == "L0" else "") + sections(pairs)
@@ -506,7 +589,8 @@ def process(issue, open_prs, args, today):
                  "Files:", *[f"- `{p}`" for p in files], "",
                  "Authors as read from the form (please check): "
                  + "; ".join(a["name"] + (f" ({a['orcid']})" if a["orcid"] else "")
-                             + (f", {a['affiliation']}" if a["affiliation"] else "") for a in authors), "",
+                             + (f", {a['affiliation']}" if a["affiliation"] else "")
+                             + (f", {a['url']}" if a.get("url") else "") for a in authors), "",
                  "The text is copied as the contributor wrote it, without editing for clarity."]
         lines += [f"- {x}" for x in notes]
         if comments:

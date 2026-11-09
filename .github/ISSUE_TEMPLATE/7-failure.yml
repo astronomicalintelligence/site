@@ -6,20 +6,37 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: 'Thank you for proposing a failure. Write a short, task-based title after the prefix, for example "[Failure] Invented
-      citations".
+    value: 'Thank you for proposing a failure. Write a short title after the prefix, for example "[Failure] Invented citations".
+      Only the fields marked with a red star are needed.
 
 
-      You can drag and drop images (screenshots, plots) into any text box: they are copied into the site with the page. Use
-      only images you made or may share under CC BY 4.0.
+      You can drag and drop images (screenshots, plots) into any text box. By submitting you agree that the text is published
+      under CC BY 4.0 and any code under MIT.
 
 
-      The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
+      More in [Contribute](https://astronomicalintelligence.org/contribute.html).'
 - type: input
   id: description
   attributes:
     label: What went wrong, in one sentence
     placeholder: The model cited a paper that does not exist.
+  validations:
+    required: true
+- type: textarea
+  id: what
+  attributes:
+    label: What happened
+    description: The model and version, the date, the task or prompt, what it answered and what the right answer was.
+    placeholder: Claude Opus 5.5 in claude.ai, 2026-10-20. Asked for the reference of a measured value, it gave a paper with
+      a plausible title and a DOI that does not exist.
+  validations:
+    required: true
+- type: textarea
+  id: catch
+  attributes:
+    label: How to catch or avoid it
+    description: The check that caught it, or would have.
+    placeholder: Look up every DOI; ADS had no paper with that title.
   validations:
     required: true
 - type: dropdown
@@ -35,69 +52,13 @@ body:
     - Other
     multiple: false
   validations:
-    required: true
-- type: textarea
-  id: what
-  attributes:
-    label: What happened
-    description: The task, what the model answered and what the right answer was.
-  validations:
-    required: true
-- type: textarea
-  id: prompt
-  attributes:
-    label: Prompt
-    description: Exactly as used, if you can share it.
-    render: text
-  validations:
-    required: false
-- type: textarea
-  id: caught
-  attributes:
-    label: How you caught it
-    placeholder: The DOI did not resolve and ADS had no paper with that title.
-  validations:
-    required: true
-- type: textarea
-  id: prevent
-  attributes:
-    label: How to prevent it
-    description: The check that would have caught it.
-  validations:
-    required: true
-- type: input
-  id: model
-  attributes:
-    label: Model and version
-    description: The model that made the error.
-    placeholder: for example Claude Opus 5.5
-  validations:
-    required: true
-- type: input
-  id: tool
-  attributes:
-    label: Tool or interface
-    placeholder: for example claude.ai, Claude Code, Codex, ChatGPT, the API
-  validations:
-    required: false
-- type: input
-  id: tested
-  attributes:
-    label: When it happened
-    placeholder: YYYY-MM-DD
-  validations:
     required: false
 - type: textarea
   id: authors
   attributes:
-    label: Authors to credit
-    description: 'One per line: name, ORCID (optional), affiliation, as they should appear in the citation. Or write ''anonymous''.'
+    label: Authors
+    description: 'One per line, as they should appear in the citation: name, then affiliation, ORCID and GitHub @username
+      if you want them (only the name is needed).'
+    placeholder: First Last, Institute, 0000-0000-0000-0000, @username
   validations:
     required: true
-- type: checkboxes
-  id: licence
-  attributes:
-    label: Licence
-    options:
-    - label: I agree that the text is published under CC BY 4.0 and any code under MIT.
-      required: true

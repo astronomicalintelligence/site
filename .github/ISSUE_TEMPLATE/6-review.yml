@@ -6,11 +6,11 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: 'Thank you for proposing a paper for review. Write a short, task-based title after the prefix, for example "[Review]
-      Title of the paper".
+    value: 'Thank you for proposing a paper for review. Write a short title after the prefix, for example "[Review] Title
+      of the paper".
 
 
-      The guide is in [Contribute](https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd).'
+      More in [Contribute](https://astronomicalintelligence.org/contribute.html).'
 - type: input
   id: paper
   attributes:
@@ -30,21 +30,6 @@ body:
     multiple: false
   validations:
     required: true
-- type: dropdown
-  id: field
-  attributes:
-    label: Field
-    options:
-    - Astronomy and astrophysics
-    - Physics
-    - Earth and planetary sciences
-    - Chemistry
-    - Biology and medicine
-    - Computer science
-    - Other
-    multiple: false
-  validations:
-    required: false
 - type: textarea
   id: why
   attributes:
@@ -72,10 +57,3 @@ body:
     multiple: false
   validations:
     required: true
-- type: input
-  id: name
-  attributes:
-    label: Your name
-    description: Optional, to credit the suggestion.
-  validations:
-    required: false
