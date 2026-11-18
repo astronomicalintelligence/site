@@ -1,5 +1,6 @@
 ---
 title: "astronomical paper writing"
+catalog: "AI S0003"
 resources: [SKILL.md, aa/aa.bst, aa/aa.cls, aa/aa_example.tex, aa/cuted.sty, aa/lineno.sty, aa/linenoaa.sty, aa/marginnote.sty, check_aa.py]
 description: "A skill to help LLM writing in a paper format, following standard astronomical practices and A&A formatting"
 categories: [writing]
