@@ -1,0 +1,45 @@
+---
+title: "astronomical paper writing"
+resources: [SKILL.md, aa/aa.bst, aa/aa.cls, aa/aa_example.tex, aa/cuted.sty, aa/lineno.sty, aa/linenoaa.sty, aa/marginnote.sty, check_aa.py]
+description: "A skill to help LLM writing in a paper format, following standard astronomical practices and A&A formatting"
+categories: [writing]
+phase: "Writing"
+model: "to be tested"
+tested: "not yet"
+qflag: L0
+date: 2026-11-18
+author:
+  - name: "Francesco De Gasperin"
+    url: https://github.com/revoltek
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF IRA"
+---
+
+::: {.callout-note}
+## Draft
+Proposed content, not yet tested.
+:::
+
+## What it does
+
+A skill to help LLM writing in a paper format, following standard astronomical practices and A&A formatting
+
+## SKILL.md
+
+[Download SKILL.md](SKILL.md){download="SKILL.md"} and put it in a folder `astro-paper-writing` in your agent's skills directory, with the other files listed in this page's folder.
+
+```{.markdown include="SKILL.md"}
+```
+
+## How to check the result
+
+Activate the skill and transform a report in a paper.
+
+## Known failures
+
+None known yet.
+
+## History
+
+- 2026-11-18: first version (L0), Francesco De Gasperin.
