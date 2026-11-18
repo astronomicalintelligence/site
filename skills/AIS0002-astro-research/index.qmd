@@ -23,7 +23,9 @@ The agent is much more careful in dealing with astronomical data, answers are mo
 
 ## SKILL.md
 
-[Download SKILL.md](SKILL.md){download="SKILL.md"} and put it in a folder `astro-research` in your agent's skills directory.
+[Download the skill](astro-research.zip){.download-button download="astro-research.zip"} and unzip it in your agent's skills directory. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.
+
+SKILL.md:
 
 ```{.markdown include="SKILL.md"}
 ```

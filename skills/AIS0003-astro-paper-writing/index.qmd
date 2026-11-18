@@ -28,7 +28,9 @@ A skill to help LLM writing in a paper format, following standard astronomical p
 
 ## SKILL.md
 
-[Download SKILL.md](SKILL.md){download="SKILL.md"} and put it in a folder `astro-paper-writing` in your agent's skills directory, with the other files listed in this page's folder.
+[Download the skill](astro-paper-writing.zip){.download-button download="astro-paper-writing.zip"} and unzip it in your agent's skills directory. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.
+
+SKILL.md:
 
 ```{.markdown include="SKILL.md"}
 ```

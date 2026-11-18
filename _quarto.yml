@@ -4,8 +4,11 @@ project:
   # Only .qmd files are pages; .md files (README, CONTRIBUTING, SKILL.md, ...) are not
   render:
     - "**/*.qmd"
+  # each skill as a .zip ready to unpack into an agent's skills directory (not committed)
+  pre-render: tools/zip_skills.py
   resources:
     - fonts/
+    - "skills/*/*.zip"
     # used by the theme (styles/*.scss), which Quarto does not scan for files to copy
     - images/star.svg
     - images/hero-uv.jpg
