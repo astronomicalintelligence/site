@@ -488,10 +488,8 @@ def build(kind, issue, v, today):
         elif kind == "skill":
             pairs = [("What it does", description),
                      ("SKILL.md", f'[Download the skill]({slug}.zip){{.download-button download="{slug}.zip"}} and '
-                                  f'unzip it in your agent\'s skills directory: it creates the folder `{slug}` with '
-                                  + ("`SKILL.md` and " + ", ".join(f"`{p}`" for p in sorted(extra)) if extra else "`SKILL.md`")
-                                  + '. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone. '
-                                  '(The .zip is made by tools/zip_skills.py when the site is built.)'
+                                  'unzip it in your agent\'s skills directory. '
+                                  'Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.'   # the .zip: tools/zip_skills.py
                                   '\n\nSKILL.md:\n\n```{.markdown include="SKILL.md"}\n```')]
         else:  # agent-config
             pairs = [("What it is for", description),

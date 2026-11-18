@@ -28,7 +28,7 @@ A skill to help LLM writing in a paper format, following standard astronomical p
 
 ## SKILL.md
 
-[Download the skill](astro-paper-writing.zip){.download-button download="astro-paper-writing.zip"} and unzip it in your agent's skills directory: it creates the folder `astro-paper-writing` with `SKILL.md`, the linter `check_aa.py` and the A&A LaTeX files in `aa/`. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.
+[Download the skill](astro-paper-writing.zip){.download-button download="astro-paper-writing.zip"} and unzip it in your agent's skills directory. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.
 
 SKILL.md:
 

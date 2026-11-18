@@ -116,7 +116,7 @@ Copy prompts, SKILL.md, AGENTS.md and code **exactly** as given. Everything else
 A skill page shows its file with:
 
 ````markdown
-[Download the skill](<name>.zip){.download-button download="<name>.zip"} and unzip it in your agent's skills directory: it creates the folder `<name>` with `SKILL.md` and <the other files>. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.
+[Download the skill](<name>.zip){.download-button download="<name>.zip"} and unzip it in your agent's skills directory. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.
 
 SKILL.md:
 
