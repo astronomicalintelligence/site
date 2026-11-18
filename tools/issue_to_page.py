@@ -487,10 +487,12 @@ def build(kind, issue, v, today):
                      ("Example", v.get("Example", "").strip() or "To be added.")]
         elif kind == "skill":
             pairs = [("What it does", description),
-                     ("SKILL.md", f'[Download SKILL.md](SKILL.md){{download="SKILL.md"}} and put it in a folder '
-                                  f'`{slug}` in your agent\'s skills directory'
-                                  + (", with the other files listed in this page's folder." if extra else ".")
-                                  + '\n\n```{.markdown include="SKILL.md"}\n```')]
+                     ("SKILL.md", f'[Download the skill]({slug}.zip){{.download-button download="{slug}.zip"}} and '
+                                  f'unzip it in your agent\'s skills directory: it creates the folder `{slug}` with '
+                                  + ("`SKILL.md` and " + ", ".join(f"`{p}`" for p in sorted(extra)) if extra else "`SKILL.md`")
+                                  + '. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone. '
+                                  '(The .zip is made by tools/zip_skills.py when the site is built.)'
+                                  '\n\nSKILL.md:\n\n```{.markdown include="SKILL.md"}\n```')]
         else:  # agent-config
             pairs = [("What it is for", description),
                      ("The file to copy", fence(v["The file to copy"], "markdown"))]

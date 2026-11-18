@@ -6,3 +6,5 @@
 **/*.quarto_ipynb
 __pycache__/
 *.pyc
+# skill archives, made at every render by tools/zip_skills.py
+skills/*/*.zip

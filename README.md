@@ -22,6 +22,7 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 | `tools/issue_to_page.py` | Does it automatically, run by `.github/workflows/issue-to-page.yml` as soon as a maintainer adds `ready` |
 | `_filters/include-code.lua` | Shows a file (SKILL.md, AGENTS.md) in a page exactly as it is downloaded |
 | `tools/localize_images.py` | Copies images dragged into an issue form into the contribution's folder (resized, metadata removed) |
+| `tools/zip_skills.py` | Packages each skill as `<name>.zip` before every render (`pre-render`); the archives are not committed |
 | `tools/check_images.py` | Fails the build if a page shows an image from another site |
 | `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W0001, AI P0001, ...) and renames its folder from `AIWXXXX-<name>` to `AIW0001-<name>`; run by the publish workflow on every push to `main` |
 | `tools/retired.txt` | Numbers of contributions removed from the site, never given again. To remove one, delete its folder and add a line here |

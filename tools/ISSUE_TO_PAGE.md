@@ -116,13 +116,16 @@ Copy prompts, SKILL.md, AGENTS.md and code **exactly** as given. Everything else
 A skill page shows its file with:
 
 ````markdown
-[Download SKILL.md](SKILL.md){download="SKILL.md"} and put it in a folder `<name>` in your agent's skills directory.
+[Download the skill](<name>.zip){.download-button download="<name>.zip"} and unzip it in your agent's skills directory: it creates the folder `<name>` with `SKILL.md` and <the other files>. Or [download SKILL.md](SKILL.md){download="SKILL.md"} alone.
+
+SKILL.md:
 
 ```{.markdown include="SKILL.md"}
 ```
 ````
 
-and lists it in the front matter: `resources: [SKILL.md]`.
+and lists it in the front matter: `resources: [SKILL.md]`. The `<name>.zip` is not committed: `tools/zip_skills.py`
+makes it before every render.
 
 An update keeps `catalog` and `date`, updates `model`, `tool`, `tested` and `qflag` as given, adds
 `date-modified: <today>`, adds a History line, and adds the contributor to `author` if they reproduced it (L2) or
