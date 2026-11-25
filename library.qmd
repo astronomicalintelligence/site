@@ -1,0 +1,35 @@
+---
+title: "Library"
+description: "Workflows, prompts, skills and agent configs for research with large language models, each tested on a real case."
+toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
+listing:
+  id: library
+  contents:
+    - "workflows/*/index.qmd"
+    - "prompts/*/index.qmd"
+    - "skills/*/index.qmd"
+    - "agent-configs/*/index.qmd"
+  template: _templates/library.ejs
+  sort: ["date desc", "catalog desc"]
+  fields: [catalog, title, description, qflag, author, phase, model, tested, date]
+---
+
+Ready-to-use material for research with language models: **workflows** (step-by-step procedures), **prompts**, **skills** that an AI agent loads when a task needs them, and **agent configs** (CLAUDE.md and AGENTS.md templates). Each one was tested on a real case; drafts not yet tested are hidden unless you ask for them.
+
+::: {#library}
+:::
+
+## Reading a contribution {#reading-a-contribution}
+
+Every contribution starts with a header. The line that matters most is `QFLAG`, the verification level, also shown as L0, L1, ... in the list:
+
+| Level | Meaning |
+|---|---|
+| L0 | Draft, not yet tested |
+| L1 | Tested by the author on a real case |
+| L2 | Reproduced by a second researcher |
+| L3 | Checked across models or dates |
+
+Models change every few months: the model and the date of the test tell you how much a result still applies.

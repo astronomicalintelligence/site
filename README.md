@@ -11,8 +11,7 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 
 | Folder / file | Content |
 |---|---|
-| `workflows/`, `prompts/`, `skills/`, `agent-configs/`, `model-checks/`, `reviews/`, `failures/` | One folder per contribution, named after its catalogue number and a short name (`prompts/AIP0001-pre-submission-review/`), with the page in `index.qmd` and its images and files next to it |
-| `notes/posts/` | Blog posts |
+| `workflows/`, `prompts/`, `skills/`, `agent-configs/` (shown together in `library.qmd`), `guides/` | One folder per contribution, named after its catalogue number and a short name (`prompts/AIP0001-pre-submission-review/`), with the page in `index.qmd` and its images and files next to it |
 | `_filters/fits-header.lua` | Builds the FITS-style header from each page's front matter |
 | `_templates/workflows.ejs` | Layout of the lists (workflows, prompts, skills, ...) |
 | `*/_metadata.yml` | Per-section settings: FITS header filter and "How to cite" box |

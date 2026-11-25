@@ -1,0 +1,5 @@
+```{=html}
+<ul class="guide-cards list">
+<% for (const item of items) { %><li class="type-guides" <%= metadataAttrs(item) %>><a class="guide-card" href="<%- item.path %>"><span class="guide-cat listing-catalog"><%= item.catalog || "new" %></span><span class="guide-title listing-title"><%= item.title %></span><% if (item.description) { %><span class="guide-desc listing-description"><%= item.description %></span><% } %></a></li>
+<% } %><% if (items.length === 0) { %><li hidden aria-hidden="true"><span class="listing-catalog"></span><span class="listing-title"></span></li><% } %></ul>
+```

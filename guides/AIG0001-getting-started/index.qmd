@@ -1,0 +1,28 @@
+---
+title: "Getting started"
+catalog: "AI G0001"
+description: "A minimal setup and three rules for using large language models in research."
+date: 2026-11-25
+last-checked: 2026-11-25
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
+---
+
+## Three rules
+
+1. **Check every output you use.** Numbers, code and references produced by a model can be wrong while looking right.
+2. **Know what you are sharing.** Unpublished data, proposals under review and other people's manuscripts may not be yours to upload.
+3. **Keep a record.** Save prompts, model names and dates with your analysis, as you would for any instrument setting.
+
+## Minimal setup
+
+- **A frontier chat model** for reading, writing and reasoning tasks. Free models are not up to the task, at least in 2026.
+- **A coding agent** for anything that touches code or data: it runs and tests what it writes.
+- **Your usual tools**: ADS, arXiv or PubMed, Python and the libraries of your field. The material in the [Library](../../library.qmd) plugs models into these rather than replacing them.
+
+## History
+
+- 2026-11-25: first version, Francesco De Gasperin.

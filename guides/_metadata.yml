@@ -7,7 +7,7 @@ filters:
 citation:
   type: webpage
   container-title: "Astronomical Intelligence"
-body-classes: type-model-checks
+body-classes: type-guides
 # Comments: one GitHub Discussion per contribution (giscus), category "Comments"
 comments:
   giscus:

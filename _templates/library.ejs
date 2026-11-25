@@ -1,0 +1,74 @@
+```{=html}
+<%
+const TYPES = ["workflows", "prompts", "skills", "agent-configs"];
+const NAMES = {"workflows": "Workflows", "prompts": "Prompts", "skills": "Skills", "agent-configs": "Agent configs"};
+const ONE = {"workflows": "Workflow", "prompts": "Prompt", "skills": "Skill", "agent-configs": "Agent config"};
+const typeOf = item => TYPES.find(t => item.path.includes(t + "/")) || "workflows";
+const PHASE_ORDER = ["Literature", "Proposals", "Data and code", "Analysis", "Writing", "Pre-submission review", "General"];
+const phases = PHASE_ORDER.filter(p => items.some(i => i.phase === p));
+const drafts = items.filter(i => i.qflag === "L0").length;
+%>
+<div class="lib-filters" role="group" aria-label="Filter the library">
+  <div class="lib-types" role="group" aria-label="Kind">
+    <button type="button" class="lib-type active" data-type="" aria-pressed="true">All</button>
+    <% for (const t of TYPES) { %><button type="button" class="lib-type type-<%= t %>" data-type="<%= t %>" aria-pressed="false"><%= NAMES[t] %></button><% } %>
+  </div>
+  <div class="lib-more">
+    <label>Research phase
+      <select class="lib-phase">
+        <option value="">Any</option>
+        <% for (const p of phases) { %><option value="<%= p %>"><%= p %></option><% } %>
+      </select>
+    </label>
+    <label class="lib-drafts"><input type="checkbox" class="lib-show-drafts"> Show drafts (L0)<% if (drafts) { %> <span class="lib-count">(<%= drafts %>)</span><% } %></label>
+  </div>
+</div>
+<p class="lib-empty" hidden>Nothing here yet with these filters. <a href="contribute.html">Share something that works</a>, or tick <em>Show drafts</em>.</p>
+<ul class="wf-list list lib-list">
+<% for (const item of items) { const ty = typeOf(item); %><li class="type-<%= ty %>" data-type="<%= ty %>" data-phase="<%= item.phase || "" %>" data-level="<%= item.qflag || "" %>" <%= metadataAttrs(item) %>><span class="wf-cat"><span class="listing-catalog"><%= item.catalog || "new" %></span><span class="wf-type"><%= ONE[ty] %></span></span><a class="wf-title listing-title" href="<%- item.path %>"><%= item.title %></a><% if (item.description) { %><p class="wf-desc listing-description"><%= item.description %></p><% } %><div class="wf-meta"><% if (item.qflag) { %><span class="qflag qflag-<%= item.qflag %> listing-qflag" title="Verification level"><%= item.qflag %></span><% } %><% if (item.author) { %><span class="wf-author">by <span class="listing-author"><%= Array.isArray(item.author) ? item.author.join(", ") : item.author %></span></span><% } %><% if (item.phase) { %><span class="listing-phase"><%= item.phase %></span><% } %><% if (item.model) { %><span>model: <span class="listing-model"><%= item.model %></span></span><% } %><% if (item.tested) { %><span>tested: <span class="listing-tested"><%= item.tested %></span></span><% } %></div></li>
+<% } %><% if (items.length === 0) { %><li hidden aria-hidden="true"><span class="listing-catalog"></span><span class="listing-title"></span></li><% } %></ul>
+<script>
+(function () {
+  // Kind, research phase and drafts; the kind can come from the address (library.html#type=skills)
+  var root = document.currentScript.parentElement;
+  var typeButtons = root.querySelectorAll(".lib-type");
+  var phase = root.querySelector(".lib-phase");
+  var showDrafts = root.querySelector(".lib-show-drafts");
+  var empty = root.querySelector(".lib-empty");
+  var items = root.querySelectorAll(".lib-list > li[data-type]");
+  var state = { type: "" };
+  function apply() {
+    var shown = 0;
+    items.forEach(function (li) {
+      var ok = (!state.type || li.dataset.type === state.type)
+        && (!phase.value || li.dataset.phase === phase.value)
+        && (showDrafts.checked || li.dataset.level !== "L0");
+      li.hidden = !ok;
+      if (ok) shown++;
+    });
+    empty.hidden = shown > 0;
+    typeButtons.forEach(function (b) {
+      var on = b.dataset.type === state.type;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  function fromHash() {
+    var m = location.hash.match(/type=([a-z-]+)/);
+    state.type = m ? m[1] : "";
+    apply();
+  }
+  typeButtons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      state.type = b.dataset.type;
+      history.replaceState(null, "", state.type ? "#type=" + state.type : location.pathname);
+      apply();
+    });
+  });
+  phase.addEventListener("change", apply);
+  showDrafts.addEventListener("change", apply);
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+})();
+</script>
+```
