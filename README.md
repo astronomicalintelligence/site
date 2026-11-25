@@ -1,6 +1,6 @@
 # Astronomical Intelligence
 
-Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): tested, dated workflows for doing research with language models.
+Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): tested workflows, prompts and skills, and short guides, for doing research with language models.
 
 ## Run locally
 
@@ -13,18 +13,18 @@ Source of [astronomicalintelligence.org](https://astronomicalintelligence.org): 
 |---|---|
 | `workflows/`, `prompts/`, `skills/`, `agent-configs/` (shown together in `library.qmd`), `guides/` | One folder per contribution, named after its catalogue number and a short name (`prompts/AIP0001-pre-submission-review/`), with the page in `index.qmd` and its images and files next to it |
 | `_filters/fits-header.lua` | Builds the FITS-style header from each page's front matter |
-| `_templates/workflows.ejs` | Layout of the lists (workflows, prompts, skills, ...) |
+| `_templates/library.ejs`, `workflows.ejs`, `guide-cards.ejs` | Layout of the Library (with its filters), of the home's latest additions and of the guide cards |
 | `*/_metadata.yml` | Per-section settings: FITS header filter and "How to cite" box |
 | `404.qmd` | Page shown for addresses that do not exist |
 | `tools/make_hero_uv.py` | Draws the home background (`images/hero-uv.jpg`) |
+| `.github/ISSUE_TEMPLATE/` | The two forms: *Share something that works* (`1-share.yml`) and *Update* (`2-update.yml`) |
 | `tools/ISSUE_TO_PAGE.md` | How an issue labelled `ready` becomes a page and a pull request |
-| `tools/issue_to_page.py` | Does it automatically, run by `.github/workflows/issue-to-page.yml` as soon as a maintainer adds `ready` |
+| `tools/issue_to_page.py` | Does it automatically, building the page from the form's Type, run by `.github/workflows/issue-to-page.yml` as soon as a maintainer adds `ready` |
 | `_filters/include-code.lua` | Shows a file (SKILL.md, AGENTS.md) in a page exactly as it is downloaded |
 | `tools/localize_images.py` | Copies images dragged into an issue form into the contribution's folder (resized, metadata removed) |
 | `tools/zip_skills.py` | Packages each skill as `<name>.zip` before every render (`pre-render`); the archives are not committed |
 | `tools/check_images.py` | Fails the build if a page shows an image from another site |
 | `tools/catalog_ids.py` | Gives each new contribution its catalogue number (AI W0001, AI P0001, ...) and renames its folder from `AIWXXXX-<name>` to `AIW0001-<name>`; run by the publish workflow on every push to `main` |
-| `tools/retired.txt` | Numbers of contributions removed from the site, never given again. To remove one, delete its folder and add a line here |
 | `styles/*.scss` | Theme and site styles (`types.scss`: one colour per kind of contribution). They are compiled into the theme, whose file name changes with every edit, so browsers never show an old version |
 | `styles/` | Fonts, colours (`light.scss`, `dark.scss`) and layout (`base.scss`) |
 | `.github/workflows/publish.yml` | Builds the site and publishes it to GitHub Pages on every push to `main` |

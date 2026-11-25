@@ -76,12 +76,11 @@ body.quarto-light[class*="type-"] .fits .k:first-child + .v { color: color-mix(i
   color: var(--type, inherit); text-decoration: none; font-size: .88rem; }
 .page-actions .page-action:hover { background: var(--type, var(--ai-rule)); color: var(--bs-body-bg, #fff); }
 
-/* Contribute: one button per form, in the colour of its type */
-.form-buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.2rem 0 1.6rem; }
-.form-buttons p { display: contents; }
-.form-buttons .form-button { padding: .45rem 1rem; border: 1px solid var(--type); border-radius: 3px; color: var(--type);
-  text-decoration: none; font-weight: 500; }
-.form-buttons .form-button:hover { background: var(--type); color: var(--bs-body-bg, #fff); }
+/* Contribute: the one form */
+.share-buttons { margin: 1.2rem 0 1.8rem; }
+.share-buttons a.share-button { display: inline-block; padding: .55rem 1.2rem; border-radius: 3px;
+  background: var(--t-workflows); color: var(--bs-body-bg, #fff); text-decoration: none; font-weight: 600; }
+.share-buttons a.share-button:hover, .share-buttons a.share-button:focus-visible { filter: brightness(1.1); }
 
 /* Skills: "Download the skill" (.zip made by tools/zip_skills.py) */
 a.download-button { display: inline-block; padding: .35rem .9rem; border: 1px solid var(--type); border-radius: 3px;

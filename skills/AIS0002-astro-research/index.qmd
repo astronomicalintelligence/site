@@ -19,7 +19,7 @@ author:
 
 ## What it does
 
-The agent is much more careful in dealing with astronomical data, answers are more precise and often with citations.
+This is a general skill to run whenever you start an astrophysical discussion with an LLM, helps tuning the model to be honest and precise. It is small enough to contribute a negligible amount of tokens.
 
 ## SKILL.md
 
@@ -30,20 +30,11 @@ SKILL.md:
 ```{.markdown include="SKILL.md"}
 ```
 
-## How to check the result
+## How it was tested
 
-**Tested on:** Ask for a definition, for instance "spectral index" and check if references are generated.
+Claude Opus 5.5 in Claude Code, 2026-11-01. The prompt `definition of spectral index`, with and without the skill. With the skill loaded the agent was more careful with astronomical data: the answer gave three references and explained how to estimate the uncertainty of the quantity. Without the skill, neither was there.
 
-A test with the active skill on the prompt
-`definition of spectral index`
-produced 3 references and explained how to evaluate the error of such quantity. These information was missing in the call without the skill.
-
-Definition when the skill is loaded:
-![Definition when the skill is loaded:](figure-1.png)
-
-## Known failures
-
-None known yet.
+![The answer with the skill loaded.](figure-1.png)
 
 ## History
 

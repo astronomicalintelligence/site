@@ -10,7 +10,6 @@ model: "to be tested"
 tool: "Any chat model + ADS API"
 tested: "not yet"
 qflag: L0
-time-saved: "to be measured"
 date: 2026-10-31
 author:
   - name: "Francesco De Gasperin"
@@ -21,23 +20,16 @@ author:
 
 ::: {.callout-note}
 ## Draft
-This page shows the structure of a workflow. The steps are a proposal and have not yet been tested and timed. Once tested, the header above will record the model, the date and the verification level.
+Proposed content, not yet tested.
 :::
 
-## Goal
+## What it does
 
-Get a reliable first map of a topic (main results, open questions, who works on what) from a set of papers you chose, without the model inventing references.
-
-**Use it when** you are entering a new subfield or writing the introduction of a paper or proposal.
-**Don't use it** as a substitute for reading the key papers, or when the relevant results are only in the body of papers rather than in abstracts.
-
-## What you need
-
-- A free NASA ADS account and an [API token](https://ui.adsabs.harvard.edu/user/settings/token)
-- Python with `requests`
-- A chat model that accepts file uploads or long input
+Build the query yourself, export abstracts from ADS, and let the model map the field with every claim tied to a bibcode you can check.
 
 ## Steps
+
+You need a free NASA ADS account with an [API token](https://ui.adsabs.harvard.edu/user/settings/token), Python with `requests`, and a chat model that accepts file uploads.
 
 ### Write the query yourself
 
@@ -85,7 +77,7 @@ file. Do not use outside knowledge and do not add references.
 If something is not supported by the abstracts, say so instead of guessing.
 ```
 
-## How to check the result
+### Check the answer
 
 1. **Every bibcode exists in your file.** Run this on the model's answer saved as `answer.md`:
 
@@ -107,11 +99,6 @@ If something is not supported by the abstracts, say so instead of guessing.
 - Results that are only in the body of a paper are invisible: the model sees abstracts only.
 - Themes can be too tidy. Real disagreements get smoothed into consensus.
 - The query decides everything. A narrow query gives a confident but partial map.
-
-## Variations
-
-- Ask for a table instead of prose: theme, key result, bibcodes, open question.
-- Repeat the same prompt with a second model and compare the themes.
 
 ## History
 

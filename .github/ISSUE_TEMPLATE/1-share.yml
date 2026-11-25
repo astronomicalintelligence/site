@@ -1,0 +1,76 @@
+# The one form for new contributions. tools/issue_to_page.py reads the answers by their labels and builds the page
+# from "Type" and "Paste it here or drop files", so keep labels and options in step with it.
+name: Share something that works
+description: A workflow, a prompt, a skill, an agent config or a guide for research with language models
+labels:
+- contribution
+body:
+- type: markdown
+  attributes:
+    value: >-
+      Thank you for sharing! Write a short title above, then fill in the fields with a red star. You can drag and drop
+      files and images into the text boxes. By submitting you agree that the text is published under CC BY 4.0 and any
+      code under MIT. More in [Contribute](https://astronomicalintelligence.org/contribute.html).
+- type: dropdown
+  id: type
+  attributes:
+    label: Type
+    options:
+    - Workflow
+    - Prompt
+    - Skill
+    - Agent config
+    - Guide
+  validations:
+    required: true
+- type: input
+  id: description
+  attributes:
+    label: What it does, in one sentence
+    placeholder: Ask a model to review your draft the way a demanding referee would.
+  validations:
+    required: true
+- type: textarea
+  id: content
+  attributes:
+    label: Paste it here or drop files
+    description: >-
+      Workflow: the steps, with the prompts exactly as you used them. Prompt: the prompt. Skill: SKILL.md, or drop a
+      .zip of the skill folder. Agent config: the whole AGENTS.md or CLAUDE.md. Guide: the text, in Markdown.
+  validations:
+    required: true
+- type: textarea
+  id: authors
+  attributes:
+    label: Authors
+    description: >-
+      One per line, as they should appear in the citation: name, then affiliation, ORCID and GitHub @username if you
+      want them (only the name is needed).
+    placeholder: First Last, Institute, 0000-0000-0000-0000, @username
+  validations:
+    required: true
+- type: textarea
+  id: test
+  attributes:
+    label: How you tested it
+    description: >-
+      Not needed for guides. Start with the model and the date, then what you ran it on and what came out. If you leave
+      it empty, it is published as an untested draft (L0).
+    placeholder: "Claude Opus 5.5 in claude.ai, 2026-11-03: 50 abstracts on exoplanet atmospheres; all 31 cited bibcodes were real."
+- type: textarea
+  id: fails
+  attributes:
+    label: Known failures
+    description: Cases where it gave wrong results, or limits you know of.
+- type: dropdown
+  id: phase
+  attributes:
+    label: Research phase
+    options:
+    - Literature
+    - Proposals
+    - Data and code
+    - Analysis
+    - Writing
+    - Pre-submission review
+    - General (any phase)

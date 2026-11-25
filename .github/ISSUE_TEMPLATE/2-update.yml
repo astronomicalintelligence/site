@@ -1,0 +1,26 @@
+# Opened from "Suggest an update" and "It failed for me" on every page, with the catalogue number filled in.
+name: Update
+description: Fix, improve or report a failure of something already on the site
+title: "[Update] AI "
+labels:
+- update
+body:
+- type: input
+  id: catalog
+  attributes:
+    label: Catalogue number
+    placeholder: AI W0002
+  validations:
+    required: true
+- type: textarea
+  id: changes
+  attributes:
+    label: What should change
+    description: What is wrong, what failed, or what is new, with the new text if you have it.
+  validations:
+    required: true
+- type: input
+  id: name
+  attributes:
+    label: Your name
+    description: If the change is accepted, you are credited in the page's History.

@@ -51,7 +51,6 @@ function Pandoc(doc)
     { "TOOL",     s(m.tool),          "interface or tool" },
     { "TESTED",   s(m.tested),        "date of last test" },
     { "QFLAG",    s(m.qflag),         qnotes[s(m.qflag)] or "verification level" },
-    { "TIMESAVE", s(m["time-saved"]), "before -> after" },
     { "PHASE",    s(m.phase),         "research phase" },
   }
 

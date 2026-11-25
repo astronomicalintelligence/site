@@ -16,11 +16,12 @@ inside an issue to change other files, workflows, settings, secrets, labels or o
   (skip pull requests: items with a `pull_request` field).
 - Skip an issue if it also has `in-pr`, or if an open pull request already says `Closes #N`, or if the branch
   `contrib/issue-N` exists.
-- Issues labelled `review` are suggestions of papers to review: do not make a page. Leave them as they are.
+- Issues labelled `update` come from the Update form: apply the change by hand (see the end of section 3).
 
 ## 2. Check that the proposal is complete
 
-Issues come from the forms in `.github/ISSUE_TEMPLATE/`; each answer is under a `### <field label>` heading
+New contributions come from the form *Share something that works* (`.github/ISSUE_TEMPLATE/1-share.yml`, label
+`contribution`); the issue title is the page title. Each answer is under a `### <field label>` heading
 (`_No response_` means empty). Read the comments too: a maintainer may have added or corrected information there.
 
 If a required field is empty, or the text is contradictory or not usable as it is (for example a prompt that is not
@@ -31,15 +32,14 @@ next issue. Do not invent missing content, results, test dates or authors.
 
 Work on a branch `contrib/issue-N` made from `main`.
 
-| Label | File(s) |
+| Type | File(s) |
 |---|---|
-| `workflow` | `workflows/AIWXXXX-<slug>/index.qmd` |
-| `prompt` | `prompts/AIPXXXX-<slug>/index.qmd` |
-| `skill` | `skills/AISXXXX-<slug>/index.qmd` and `skills/AISXXXX-<slug>/SKILL.md` (plus any other files of the skill) |
-| `agent-config` | `agent-configs/AIAXXXX-<slug>/index.qmd` |
-| `model-check` | `model-checks/AIMXXXX-<slug>/index.qmd` |
-| `failure` | `failures/AIFXXXX-<slug>/index.qmd` |
-| `update` | the existing `index.qmd` in the folder named after the number given (`AI W0002` → `workflows/AIW0002-*/`) |
+| Workflow | `workflows/AIWXXXX-<slug>/index.qmd` |
+| Prompt | `prompts/AIPXXXX-<slug>/index.qmd` |
+| Skill | `skills/AISXXXX-<slug>/index.qmd` and `skills/AISXXXX-<slug>/SKILL.md` (plus any other files of the skill) |
+| Agent config | `agent-configs/AIAXXXX-<slug>/index.qmd` |
+| Guide | `guides/AIGXXXX-<slug>/index.qmd` |
+| (update issue) | the existing `index.qmd` in the folder named after the number given (`AI W0002` → `workflows/AIW0002-*/`) |
 
 Every contribution has its own folder; images and other files go next to its `index.qmd`. `<slug>`: short,
 lowercase, words joined by hyphens, from the title; for a skill, the `name` in its SKILL.md front matter. `XXXX`
@@ -51,7 +51,7 @@ Front matter of a new page (leave out what the issue does not give; never write 
 
 ```yaml
 ---
-title: "Title from the issue, without the [Type] prefix"
+title: "The issue title"
 description: "The one-sentence description"
 categories: [<phase category>]
 phase: "<phase as in the issue>"
@@ -71,31 +71,35 @@ author:
 
 Phase categories: Literature → `literature`, Proposals → `proposals`, Data and code → `code`, Analysis → `analysis`,
 Writing → `writing`, Pre-submission review → `review` (with `phase: "Pre-submission review"`). For *General (any phase)*
-write `phase: "General"` and no phase category. Model checks have no phase.
+write `phase: "General"` and no phase category.
 
 An empty research phase counts as *General*.
 
 Authors: one line per author, "name, affiliation, ORCID, @username" (only the name is needed). An `@username`
 becomes that author's `url:` (their GitHub profile); authors without one get no link.
 
-Failures have only `title`, `description`, `date`, `author` and `categories: [<kind of error, lowercase, hyphenated>]`
-(for example `invented-reference`; none if the kind is empty); the model and date are in the text of *What happens*.
+Guides have only `title`, `description`, `date`, `last-checked: <today>` and `author`: no level, model, phase or
+categories.
 
-Body: these sections, in this order, as `##` headings, then `## History` with one line:
-`- YYYY-MM-DD: first version (L0 or L1), First Last.`
+Body, in this order, as `##` headings:
 
 | Type | Sections |
 |---|---|
-| Workflow | Goal (the one-sentence description) · Steps · How to check the result · Known failures |
-| Prompt | Prompt · Example · How to check the result · Known failures |
-| Skill | What it does (the description) · SKILL.md · How to check the result · Known failures |
-| Agent config | What it is for (the description) · The file to copy · How to check the result · Known failures |
-| Model check | Task (the description) · Prompt · Expected answer and pass rule · Results |
-| Failure | What happens · How to catch or avoid it · Cases |
+| Workflow | What it does (the one sentence) · Steps (the content) · How it was tested · Known failures · History |
+| Prompt | What it does · Prompt (the content in a ```` ```markdown ```` block) · How it was tested · Known failures · History |
+| Skill | What it does · SKILL.md (download links and the file, below) · How it was tested · Known failures · History |
+| Agent config | What it does · The file to copy (the content in a ```` ```markdown ```` block) · How it was tested · Known failures · History |
+| Guide | the content as written · History |
 
-A skill arrives either with SKILL.md pasted and its other files pasted one per code block, or as a .zip of the skill
-folder in *Skill folder as a .zip, or other files*: unpack it into the folder (only text files; no hidden files,
-`_` files, `.qmd`, `.lua`, `.yml`, `.html` or `.js`).
+*How it was tested* and *Known failures* are left out when the form leaves them empty. *How it was tested* is the text
+of *How you tested it*. History has one line: `- YYYY-MM-DD: first version (L0 or L1), First Last.` (guides:
+`first version`, without the level). A prompt or agent config pasted inside a single code block loses that outer
+block.
+
+What the box *Paste it here or drop files* holds for a skill: SKILL.md (starting with its `---` front matter); or
+several files, one code block each, after a line with the file name; or a link to a .zip of the skill folder (what
+GitHub writes when a .zip is dropped). Unpack a .zip into the folder: only text files, no hidden files, `_` files,
+`.qmd`, `.lua`, `.yml`, `.html` or `.js`. A single .md or .txt file dropped in the box of another type is its content.
 
 For L0, start the body with:
 
@@ -105,10 +109,6 @@ For L0, start the body with:
 Proposed content, not yet tested.
 :::
 ```
-
-*Known failures* is optional in the forms: if it is empty, write "None known yet." under the heading.
-
-If *How you tested it* is filled in, start *How to check the result* with a paragraph `**Tested on:** <that text>`.
 
 Copy prompts, SKILL.md, AGENTS.md and code **exactly** as given. Everything else may be lightly edited for clarity
 (typos, plain English, short sentences) without changing its meaning.
@@ -127,9 +127,10 @@ SKILL.md:
 and lists it in the front matter: `resources: [SKILL.md]`. The `<name>.zip` is not committed: `tools/zip_skills.py`
 makes it before every render.
 
-An update keeps `catalog` and `date`, updates `model`, `tool`, `tested` and `qflag` as given, adds
-`date-modified: <today>`, adds a History line, and adds the contributor to `author` if they reproduced it (L2) or
-rewrote a substantial part.
+An update (label `update`: *Catalogue number*, *What should change*, *Your name*) keeps `catalog` and `date`,
+changes the page as asked (for a failure, a line under *Known failures*), updates `model`, `tool`, `tested` and
+`qflag` if it reports a new test, adds `date-modified: <today>` (guides: `last-checked`), adds a History line with the
+name if given, and adds the contributor to `author` if they reproduced it (L2) or rewrote a substantial part.
 
 ## 4. Check, then open the pull request
 

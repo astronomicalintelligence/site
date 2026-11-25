@@ -1,6 +1,7 @@
 -- Adds, before the History of every published contribution page, links that open a GitHub issue form with the
--- contribution already filled in: "Suggest an update" (form 8) and, except on guides, "It failed for me" (form 7).
--- GitHub fills a form field from the URL parameter named after the field's id (catalog, what) and the title.
+-- contribution already filled in: "Suggest an update" and, except on guides, "It failed for me". Both open the update
+-- form (2-update.yml); GitHub fills a form field from the URL parameter named after the field's id (catalog, changes)
+-- and the title.
 local NEW_ISSUE = "https://github.com/astronomicalintelligence/site/issues/new"
 
 local function enc(s)
@@ -20,14 +21,16 @@ function Pandoc(doc)
   local cat = pandoc.utils.stringify(doc.meta.catalog)
   local title = doc.meta.title and pandoc.utils.stringify(doc.meta.title) or ""
 
+  local function update(changes)
+    return url({ { "template", "2-update.yml" }, { "title", "[Update] " .. cat .. " " .. title },
+                 { "catalog", cat }, { "changes", changes } })
+  end
   local links = {
-    string.format('<a class="page-action" href="%s">Suggest an update</a>',
-      url({ { "template", "8-update.yml" }, { "title", "[Update] " .. cat .. " " }, { "catalog", cat } })),
+    string.format('<a class="page-action" href="%s">Suggest an update</a>', update("")),
   }
-  if kind ~= "failures" and kind ~= "guides" then
+  if kind ~= "guides" then
     table.insert(links, string.format('<a class="page-action" href="%s">It failed for me</a>',
-      url({ { "template", "7-failure.yml" }, { "title", "[Failure] " },
-            { "what", "While using " .. cat .. " (" .. title .. "): " } })))
+      update("It failed for me.\n\nModel and date: \nWhat I asked: \nWhat went wrong: ")))
   end
   local label = kind == "guides" and "Something to fix or add?" or "Used it?"
   local box = pandoc.RawBlock("html", '<div class="page-actions"><span class="page-actions-label">' .. label .. '</span>'

@@ -45,12 +45,13 @@ function Pandoc(doc)
   -- at the end of the SKILL.md section: before the next level-2 heading after it
   local in_section = false
   for i, b in ipairs(doc.blocks) do
-    if b.t == "Header" and b.level == 2 then
+    local actions = b.t == "RawBlock" and b.text:match('class="page%-actions"')   -- the "Used it?" box
+    if (b.t == "Header" and b.level == 2) or actions then
       if in_section then
         for k = #blocks, 1, -1 do doc.blocks:insert(i, blocks[k]) end
         return doc
       end
-      in_section = pandoc.utils.stringify(b) == "SKILL.md"
+      in_section = b.t == "Header" and pandoc.utils.stringify(b) == "SKILL.md"
     end
   end
   return nil
