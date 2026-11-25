@@ -1,0 +1,70 @@
+---
+title: "AI rules of journals and observatories"
+catalog: "AI G0005"
+description: "What A&A, MNRAS, the AAS journals, ESO, ALMA and JWST allow when you use language models for papers, proposals and reviews."
+date: 2026-11-25
+last-checked: 2026-11-25
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
+---
+
+Rules on language models change often. This page summarises them as they were on the date above; follow the links for the current text, which is what counts.
+
+## What they all say
+
+- **You are responsible** for everything in your paper or proposal, whoever or whatever wrote it.
+- **A model is not an author**, and cannot be listed as one.
+- **Check every reference.** The AAS journals and JWST name invented references explicitly as a breach.
+- **Do not upload what you are reviewing.** Manuscripts and proposals sent to you for review are confidential. Every journal and observatory below that has a rule for reviewers forbids putting them into a language model, or allows only tools that do not keep the data.
+
+## At a glance
+
+| | Your paper or proposal | Disclosure | When you review |
+|---|---|---|---|
+| A&A | Allowed | Not for language, code and search; any other use at submission | Not covered by the statement |
+| MNRAS | Allowed | Always: acknowledgements and a citation of the software | No manuscript content into AI tools |
+| AAS journals | Allowed, supervised | Always: at submission, tool and purpose | Only tools that do not train on uploads; declare use |
+| ESO | Allowed | No specific rule; PI responsible | No AI processing of proposals without ESO's consent |
+| ALMA | Allowed | No specific rule; cite original sources | No proposal content into AI tools; grammar of your review only |
+| JWST | Allowed | Always: describe and cite; otherwise disqualification | No proposal content into AI tools |
+
+## Journals
+
+**Astronomy & Astrophysics** ([statement of 18 June 2026](https://www.aanda.org/for-authors/author-information/a-a-statement-on-the-use-of-ai)). Using AI to improve the language, to write code or to search for information needs no disclosure, provided it is done under human oversight. Any other use must be declared at submission, with the tool and its role. AI cannot be an author or be cited as a source. The statement does not cover referees; treat manuscripts as confidential.
+
+**Monthly Notices of the RAS** ([RAS Editorial Code of Practice, January 2026](https://www.ras.ac.uk/sites/default/files/2026-01/RAS%20Editorial%20Code%20of%20Practice%20January%202026.pdf)). Any use of AI tools to prepare a manuscript must be declared in the acknowledgements, with a citation to the software in the reference list (B18). Reviewers must not share the manuscript, its content or their review with any AI tool, and must not use AI in place of their own judgement (C4, C7); the same applies to editors (A5, A6).
+
+**AAS journals: ApJ, ApJL, ApJS, AJ, PSJ** ([author guidelines](https://journals.aas.org/author-llm-guidelines) and [referee guidelines](https://journals.aas.org/referee-llm-guidelines), September 2026). The most detailed rules:
+
+- every use is declared at submission, naming the tool and what it was used for;
+- language editing, translation and turning your own outline into text are allowed if you check the result; text you have not read is not;
+- references suggested by a model must be checked one by one; fabricated references can lead to retraction;
+- illustrations are allowed; plots of your data only if checked against the data, with the tool (and if possible the prompt) in the caption; never plots of data supplied by the model;
+- referees may use only tools that do not train on what is uploaded, may use them to improve the language of the report or to review the code of a submission, must read the whole paper themselves, and must declare the use and label suggestions written by a model.
+
+## Observatories
+
+**ESO** ([Call for Proposals](https://eso.org/sci/observing/phase1/proposals.html), section 1). AI services may help prepare a proposal; the PI remains responsible for its content and must reference the text according to normal scientific standards. Reviewers sign a confidentiality agreement that forbids processing or interpreting proposals with automated tools, AI included, without ESO's written consent ([The Messenger 194, 2025](https://www.eso.org/sci/publications/messenger/archive/no.194-mar25/messenger-no194-39-40.pdf)).
+
+**ALMA** ([Users' Policies, Cycle 13](https://almascience.eso.org/documents-and-tools/cycle13/alma-user-policies), Appendix C; [guidelines for reviewers](https://almascience.eso.org/proposing/alma-proposal-review/guidelines-for-reviewers)). Generative AI may assist proposal preparation; investigators are responsible for its accuracy and originality and must cite the original sources. Reviewers and mentors must not enter any part of a proposal into an AI tool, nor use one to assess or rank proposals; they may use it only to correct the grammar of their own reviews. With distributed peer review most PIs are also reviewers: breaking these rules may disqualify your own proposal.
+
+**JWST** ([Cycle 6 key policies](https://jwst-docs.stsci.edu/jwst-opportunities-and-policies/jwst-call-for-proposals-for-cycle-6/jwst-key-policies); [peer review guide](https://jwst-docs.stsci.edu/jwst-opportunities-and-policies/jwst-peer-review-information/jwst-peer-review-guide)). Generative AI is not prohibited, but any material derived from it must be described and cited, and failure to disclose leads to disqualification. Hallucinated references are not acceptable. STScI also reminds proposers that text given to these tools may become public. Reviewers must not upload proposals or review material to them.
+
+## A disclosure that works everywhere
+
+When in doubt, disclose. One sentence in the acknowledgements, or wherever the journal asks, is enough:
+
+> We used Claude Opus 5.5 (Anthropic) to improve the language of Sections 1 and 5 and to write the plotting scripts. The authors checked all text and code and take full responsibility for them.
+
+Name the model and version, say what it was used for, and for MNRAS add the software to the reference list.
+
+## Rules not listed here
+
+Your institution, your funder and your collaboration may have their own rules, often stricter about which data may be uploaded. A rule that has changed, or one that is missing? Use *Suggest an update* below.
+
+## History
+
+- 2026-11-25: first version, Francesco De Gasperin.
