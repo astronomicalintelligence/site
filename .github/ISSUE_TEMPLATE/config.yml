@@ -1,5 +1,5 @@
 blank_issues_enabled: true
 contact_links:
   - name: How to contribute
-    url: https://github.com/astronomicalintelligence/site/blob/main/contribute.qmd
-    about: The page template and the review criteria.
+    url: https://astronomicalintelligence.org/contribute.html
+    about: What to share, and how a proposal becomes a page.

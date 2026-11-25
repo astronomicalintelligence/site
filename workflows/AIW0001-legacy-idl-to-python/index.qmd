@@ -10,7 +10,6 @@ model: "to be tested"
 tool: "Coding agent (e.g. Claude Code, Codex)"
 tested: "not yet"
 qflag: L0
-time-saved: "to be measured"
 date: 2026-10-31
 author:
   - name: "Francesco De Gasperin"
@@ -21,27 +20,21 @@ author:
 
 ::: {.callout-note}
 ## Draft
-Outline only. Steps, prompts and checks will be filled in after testing on a real routine.
+Proposed content, not yet tested.
 :::
 
-## Goal
+## What it does
 
-Move a working routine written in IDL, Fortran or MATLAB to Python with NumPy (and the libraries of your field), keeping the numerical results identical within a stated tolerance.
+Translate a legacy routine with a coding agent and prove the Python version gives the same numbers.
 
-## Outline
+## Steps
 
 1. Run the original code on two or three real inputs and save the outputs as reference files.
-2. Ask the agent to write the Python version and a test that compares it with the reference outputs.
+2. Ask the agent to write the Python version and a test that compares it with the reference outputs, within a tolerance you state.
 3. Iterate until the test passes. Review every place where the agent changed the algorithm.
 4. Check array ordering, indexing from 0 versus 1, and integer division: the classic sources of silent errors.
 
-## How to check the result
-
-The test against the reference outputs of the original code is the check. A port without it is not finished.
-
-## Known failures
-
-None known yet.
+The test against the reference outputs is what makes the port trustworthy: a port without it is not finished.
 
 ## History
 

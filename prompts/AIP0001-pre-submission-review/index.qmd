@@ -20,8 +20,12 @@ author:
 
 ::: {.callout-note}
 ## Draft
-Prompt proposed, not yet tested. Example input and output will be added after testing.
+Proposed content, not yet tested.
 :::
+
+## What it does
+
+Ask a model to review your draft the way a demanding referee would, before a real one does.
 
 ## Prompt
 
@@ -37,14 +41,6 @@ Write the report in three parts:
 Be specific and do not praise. If you are unsure whether something is an
 error, say so and explain what would settle it.
 ```
-
-## Example
-
-To be added: a short excerpt of a real draft and the report obtained.
-
-## How to check the result
-
-Recompute every number the report questions, and look up each reference it mentions in ADS before acting on it.
 
 ## Known failures
 

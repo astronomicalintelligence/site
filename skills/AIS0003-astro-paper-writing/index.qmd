@@ -35,14 +35,6 @@ SKILL.md:
 ```{.markdown include="SKILL.md"}
 ```
 
-## How to check the result
-
-Activate the skill and transform a report in a paper.
-
-## Known failures
-
-None known yet.
-
 ## History
 
 - 2026-11-18: first version (L0), Francesco De Gasperin.

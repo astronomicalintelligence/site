@@ -1,8 +1,9 @@
 # Contributing
 
-Contributions to the site (workflows, prompts, skills, agent configs, model checks,
-papers to review, failures, and updates to any of them) are proposed **only through
-the issue forms**: <https://github.com/astronomicalintelligence/site/issues/new/choose>.
+Contributions to the site (workflows, prompts, skills, agent configs and guides) are
+proposed **only through the issue form** *Share something that works*:
+<https://github.com/astronomicalintelligence/site/issues/new?template=1-share.yml>.
+Updates go through the *Update* form, opened by the buttons at the bottom of every page.
 
 A maintainer reviews each proposal and labels it `needs-info` or `ready`. Ready
 proposals are turned into pages and pull requests by the maintainers' daily job

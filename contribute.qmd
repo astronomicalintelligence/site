@@ -1,59 +1,49 @@
 ---
 title: "Contribute"
-description: "How to propose a workflow, a prompt, a skill or any other contribution."
+description: "How to share a workflow, a prompt, a skill, an agent config or a guide, and how to suggest an update."
 ---
 
-Anyone can propose a contribution with a short form on GitHub (a free GitHub account is needed). Pick what you want to share:
+Anyone can share something with one short form on GitHub (a free GitHub account is needed). It takes a few minutes.
 
-::: {.form-buttons}
-[Workflow](https://github.com/astronomicalintelligence/site/issues/new?template=1-workflow.yml){.form-button .type-workflows}
-[Prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml){.form-button .type-prompts}
-[Skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml){.form-button .type-skills}
-[Agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml){.form-button .type-agent-configs}
+::: {.share-buttons}
+[Share something that works](https://github.com/astronomicalintelligence/site/issues/new?template=1-share.yml){.share-button}
 :::
 
-Each form needs about four answers, the authors included, which takes a few minutes. List the authors one per line as *name, affiliation, ORCID, @GitHub username*: only the name is needed, and the username links the name to the GitHub profile. You can drag and drop images (screenshots, plots) into any text box. Use only images you made or may share under CC BY 4.0.
+## What the form asks
 
-A maintainer reads every proposal. If something is missing, the issue gets the label **needs-info** and a comment that says what: edit the issue to add it. When it is complete it becomes a page.
+- **A title**, at the top of the form.
+- **Type**: a *workflow* (steps to follow), a *prompt*, a *skill* (a folder with a `SKILL.md` that an AI agent loads when a task needs it), an *agent config* (an `AGENTS.md` or `CLAUDE.md`) or a *guide*.
+- **What it does**, in one sentence.
+- **The content**: paste it, or drag and drop the files into the box. A skill can be dropped as a .zip of its folder. Images (screenshots, plots) can be dropped anywhere; use only images you made or may share under CC BY 4.0.
+- **Authors**, one per line, as they should appear in the citation: *name, affiliation, ORCID, @GitHub username*. Only the name is needed.
 
-## What each form asks for
+Optional:
 
-The fields in **bold** are required.
+- **How you tested it**: the model and the date, then what you ran it on and what came out. A tested contribution is published as **L1**; an untested one as an **L0** draft, which the [Library](library.qmd) hides unless you ask for drafts.
+- **Known failures**: cases where it went wrong, or limits you know of.
+- **Research phase**, to help people find it.
 
-- Workflow: **what it does**, **the steps** with the prompts exactly as used, **how to check the result**.
-- Prompt: **what it does**, **the prompt** exactly as used, **how to check the result**, a real example.
-- Skill: **what it does**, `SKILL.md` (pasted, or a .zip of the skill folder), **how to check the result**.
-- Agent config: **what it does and for which projects**, **the whole `AGENTS.md` or `CLAUDE.md`**, **how to check the result**.
+The page is built from your answers, as you wrote them. A maintainer reads every proposal first: if something is missing, the issue gets the label **needs-info** and a comment that says what; edit the issue to add it.
 
-Workflows, prompts, skills and agent configs can also say **how you tested it**: the model, the date and the real case you ran it on. A tested contribution is published as **L1**; an untested one as an **L0** draft. All of them can list **known failures** and a research phase.
+## Guides
 
-## Catalogue numbers
-
-When a contribution is published it gets a catalogue number: the letter of its type and a number, for example **AI W0003** for a workflow or **AI P0002** for a prompt. The number never changes and is part of the page's address, so you can use it to cite or mention the contribution.
+Guides are short texts on a topic, for example how to check what a model gives you, or what journals allow. Anyone can propose one with the same form (Type: *Guide*). The editors publish it if it is useful and correct, and may ask for changes first. Guides have no L level: they show the date they were last checked.
 
 ## Credit and citation
 
-Every contributed page shows its authors and ends with a **How to cite** box. Each page also keeps a **History** of its versions.
+When a contribution is published it gets a catalogue number: the letter of its type and four digits, for example **AI W0003** for a workflow or **AI G0002** for a guide. The number never changes and is part of the page's address.
 
-Contributions are published under the site licences: text under CC BY 4.0, code under MIT.
+Every page shows its authors and ends with a **How to cite** box, and keeps a **History** of its versions. Text is published under CC BY 4.0, code under MIT.
 
-## Review criteria
+## Updates
 
-- A colleague in the same field can follow the contribution and reuse it.
-- Prompts are given exactly as used.
-- Nothing confidential or under embargo is included.
+At the bottom of every page there are two buttons:
 
-A contribution enters at **L1** when the author has tested it on a real case. It moves to **L2** when someone else reproduces it. Untested contributions are welcome too: they are published as **L0** drafts.
+- **Suggest an update**: you tested it again, with another model or on another date; you fixed a step or improved a prompt; you reproduced it.
+- **It failed for me**: you used it and it went wrong.
 
-## Updating a contribution
+Both open a short form with the catalogue number filled in: write what should change, and your name if you want to be credited. The change is recorded in the page's History. Whoever rewrites a substantial part is added to the authors. When you cite a page that has been updated, give the date of the version you used.
 
-A contribution keeps its catalogue number for life. Use **Suggest an update**, at the bottom of its page, when:
+The levels: **L0** draft, not yet tested; **L1** tested by the author on a real case; **L2** reproduced by a second researcher; **L3** checked across models or dates.
 
-- you tested it again, with another model or on another date;
-- you fixed or clarified a step, or improved a prompt;
-- you found a new failure;
-- you reproduced it (L1 to L2) or checked it across models (L3).
-
-If you used it and it went wrong, use **It failed for me** on the same page. The update goes through the same review, and the page records it in its History. Whoever rewrites a substantial part of a contribution is added to its authors; smaller changes, reproduction (L1->L2) are credited in the History. When you cite a contribution that has been updated, give the date of the version you used: the catalogue number and the address stay the same.
-
-If the method itself changes, propose a new contribution instead. It gets a new number and says *Supersedes AI W0002* at the top, and the old page links to it.
+For anything else, such as a question or a discussion, use the comments at the bottom of each page.
