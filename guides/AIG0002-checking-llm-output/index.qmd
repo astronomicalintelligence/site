@@ -1,0 +1,66 @@
+---
+title: "Checking what an LLM gives you"
+catalog: "AI G0002"
+description: "Models produce references, numbers and code that look right and are not. How to catch the errors before they reach a paper."
+date: 2026-11-25
+last-checked: 2026-11-25
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
+---
+
+A language model writes with the same confidence whether it is right or wrong. Its errors are rare enough to lower your guard and frequent enough to matter, and they are hard to spot because the output is fluent. Checking is part of the work, not an extra: plan the check before you ask.
+
+## References
+
+The best-known failure is the **invented citation**: a reference with real-looking authors, journal and year that does not exist. A subtler version is more dangerous: the paper exists, but does not contain the result attributed to it.
+
+To catch it:
+
+- resolve every reference in ADS, by DOI, or in the database of your field before using it;
+- for each citation, find the sentence in the paper that supports the claim.
+
+To prevent it, give the model the papers, or their abstracts, and require it to cite only from that set. Then check automatically that every cited identifier is in the set, as in [Literature search with NASA ADS](../../workflows/AIW0002-literature-ads/index.qmd). Models that search the web invent fewer references, but they still attach real papers to claims those papers do not make.
+
+## Numbers and calculations
+
+- Ask the model to write the calculation as code and run it, rather than giving a number.
+- Check units, orders of magnitude and limiting cases: a mass of a galaxy cluster in grams, a reaction rate faster than diffusion allows, a probability above one.
+- Physical constants and measured values (a distance, a half-life, a binding energy) come from the model's memory unless it looked them up. Look them up yourself and use the source.
+- When a model corrects your number, check its correction with the same care: it gives way to pressure easily, in both directions.
+
+## Code
+
+Code that runs is not code that is right. A coding agent will make an error go away by the shortest route, which is not always the correct one. Look for:
+
+- changed defaults, thresholds or units;
+- data dropped silently: rows with missing values, points flagged as outliers;
+- `try`/`except` blocks that hide an error instead of fixing it;
+- hard-coded numbers that make a result come out as expected;
+- tests changed so that they pass.
+
+The defence is a test with a known answer, written before the change: synthetic data with a signal of known strength, a reference output of the old code, a textbook case. Read the diff of every change you keep. More in [Coding agents for data analysis](../AIG0004-coding-agents-data-analysis/index.qmd).
+
+## Summaries
+
+A summary of a paper, a dataset or a discussion can be accurate in every sentence and still wrong overall: what is left out is invisible. Models also smooth disagreements into a consensus and give more weight to what is said often than to what is said well.
+
+- Ask for the location (section, page, table) of each statement, and spot-check a few.
+- Ask explicitly what is uncertain, disputed or missing.
+- For anything you will rely on, read the source.
+
+## Figures and plots
+
+Models read values off plots poorly: take numbers from tables or data files. A plot made by a model must come from your data, through code you can read; never let a model supply the data for a figure.
+
+## Make it a habit
+
+- Keep a record of the model, the date and the prompt for anything that goes into a paper.
+- Ask the model to list its assumptions and the points it is least sure of. It does not always know, but the list is a good place to start checking.
+- When a contribution in the [Library](../../library.qmd) fails for you, say so with *It failed for me* at the bottom of its page: failures with a date and a model are how everyone learns what to check.
+
+## History
+
+- 2026-11-25: first version, Francesco De Gasperin.

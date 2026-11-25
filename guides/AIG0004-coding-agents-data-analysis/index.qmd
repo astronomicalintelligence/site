@@ -1,0 +1,65 @@
+---
+title: "Coding agents for data analysis"
+catalog: "AI G0004"
+description: "How to let an agent write and run code on your data without losing control of the analysis."
+date: 2026-11-25
+last-checked: 2026-11-25
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
+---
+
+## What a coding agent is
+
+A coding agent (Claude Code, Codex, Gemini CLI, Cursor and others) works in a folder on your computer or on a server. It reads your files, writes code, runs it, looks at the result and tries again. That makes it far more useful than a chat for analysis, because it checks its own work. It also means it can change or delete files, and that it will make an error disappear by the shortest route, which is not always the right one.
+
+## Set up the project first
+
+- **Version control.** Put the code under git and commit before every session. Every change the agent makes is then a diff you can read and undo.
+- **A configuration file.** `AGENTS.md` or `CLAUDE.md` at the root of the project tells the agent your conventions: units, coordinate systems, random seeds, which folders are read-only. Start from [AI A0001](../../agent-configs/AIA0001-astronomy-analysis-repo/index.qmd).
+- **Raw data read-only.** Keep the original data in a folder the agent must never modify, and write results somewhere else.
+- **A fixed environment.** A conda or virtual environment with pinned versions, so that a result does not change because a library did.
+
+## Give tasks of the right size
+
+One well-defined step at a time: "read these 200 spectra, fit a Gaussian to the line at 656 nm, write a table of centre, width and flux with uncertainties" rather than "analyse the spectra". Say what goes in, what comes out, and how you will check it. For anything larger, ask for a plan first and correct it before any code is written.
+
+## Tests are the contract
+
+Before a change, have a test that pins the expected result:
+
+- **synthetic data** with a known answer: inject a signal of known strength and position, and check that the code recovers it within the errors;
+- **reference outputs** of the old code, when porting or refactoring (see [AI W0001](../../workflows/AIW0001-legacy-idl-to-python/index.qmd));
+- **simple cases** with an analytic solution.
+
+Ask the agent to write the test first, read it, and only then ask for the change. A test written after the code tends to test what the code does, not what it should do.
+
+## Review what it did
+
+Read the diff of every change you keep, and ask the agent to explain any line you do not understand. The usual problems:
+
+- thresholds, defaults or units changed without being asked;
+- data dropped silently: missing values, outliers, failed fits;
+- errors hidden by `try`/`except` instead of fixed;
+- numbers hard-coded to make a result come out as expected;
+- tests edited so that they pass.
+
+A result that suddenly looks better deserves the most suspicion.
+
+## Permissions and data
+
+- Run the agent inside the project folder, not in your home directory.
+- Do not give it passwords or tokens it does not need; approve by hand any command that deletes files, writes outside the project, or connects to other machines.
+- With a cloud model, the content of the files the agent reads is sent to the provider. Check that you may send it: proprietary or embargoed data, personal data and data under a collaboration's rules may not leave your institution.
+
+## Keep it reproducible
+
+- Every number in a paper comes from a script in the repository, not from the chat.
+- Write the model and the date in the commit message or in a log, as you would an instrument setting.
+- Keep the code; the conversation can go.
+
+## History
+
+- 2026-11-25: first version, Francesco De Gasperin.

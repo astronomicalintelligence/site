@@ -23,6 +23,37 @@ author:
 - **A coding agent** for anything that touches code or data: it runs and tests what it writes.
 - **Your usual tools**: ADS, arXiv or PubMed, Python and the libraries of your field. The material in the [Library](../../library.qmd) plugs models into these rather than replacing them.
 
+## What models are good at, and what not
+
+Good at, with checking:
+
+- explaining a method or a paper from outside your field, at the level you ask for;
+- turning your notes or outline into clear text, and shortening text that is too long;
+- writing, translating and testing code, from a one-off plot to a refactor of an old pipeline;
+- reading a set of papers you give them and comparing what they say;
+- acting as a demanding first reader of a draft or a proposal.
+
+Not good at, or not without help:
+
+- being the source of facts, measured values or references: they produce plausible ones from memory;
+- anything published after their training, unless they can search;
+- arithmetic done "in their head": ask them to write and run code instead;
+- judging what matters most in a field: they repeat what is written most often.
+
+## Chat, agent or API
+
+A **chat** interface (in the browser or an app) is enough for reading and writing. A **coding agent** works in a folder on your computer or on a server: it reads files, runs commands and checks its own results, which makes it the right tool for code and data, and also the one that needs most care ([Coding agents for data analysis](../AIG0004-coding-agents-data-analysis/index.qmd)). The **API** is for running the same task many times from a script, for example classifying a thousand abstracts.
+
+Ask your institution whether it has an agreement with a provider. Institutional accounts usually exclude your data from training and are the safe choice for unpublished material.
+
+## Where to go next
+
+- [Checking what an LLM gives you](../AIG0002-checking-llm-output/index.qmd): how to catch the errors.
+- [Literature search and reading with LLMs](../AIG0003-literature-search-reading/index.qmd).
+- [Coding agents for data analysis](../AIG0004-coding-agents-data-analysis/index.qmd).
+- [AI rules of journals and observatories](../AIG0005-journal-observatory-rules/index.qmd): what you must disclose, and what you must not upload.
+- The [Library](../../library.qmd): workflows, prompts and skills tested by other researchers.
+
 ## History
 
 - 2026-11-25: first version, Francesco De Gasperin.

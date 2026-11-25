@@ -1,0 +1,60 @@
+---
+title: "Literature search and reading with LLMs"
+catalog: "AI G0003"
+description: "What language models can and cannot do with the literature: finding papers, reading them and mapping a field."
+date: 2026-11-25
+last-checked: 2026-11-25
+author:
+  - name: "Francesco De Gasperin"
+    orcid: 0000-0003-4439-2627
+    affiliations:
+      - name: "INAF"
+---
+
+## What works and what does not
+
+Language models are good readers and poor librarians. They help to:
+
+- turn a vague question into search terms, synonyms and the names a subfield uses;
+- explain a paper from outside your field, or the background it assumes;
+- answer specific questions about a paper you give them;
+- compare methods, samples and results across a set of papers you chose;
+- draft a map of a topic from abstracts, with every claim tied to a paper.
+
+They are not reliable as:
+
+- the source of references: from memory they produce plausible ones, some invented ([Checking what an LLM gives you](../AIG0002-checking-llm-output/index.qmd));
+- a guide to recent work, unless they search: their knowledge stops at their training date;
+- judges of importance: they favour what is cited and repeated most;
+- readers of figures: values read off plots are often wrong.
+
+## Searching
+
+Do the search in the databases: ADS, arXiv, INSPIRE, PubMed, Google Scholar or those of your field. They tell you what exists; a model tells you what is likely to exist. Use the model before the search, to build the query, and after it, to read.
+
+Models that search the web, and the "deep research" modes that run many searches and write a report, find recent work well. They mix refereed papers with preprints, press releases and blogs, and still attach real papers to claims those papers do not make. Treat their report as a reading list to check, not as a review.
+
+## Reading a paper
+
+Upload the PDF rather than pasting a title: the model then answers from the text, not from memory.
+
+- Ask specific questions: "Which sample is used for the main result, and what cuts are applied?" is better than "Summarise this paper".
+- Ask where each answer comes from (section, equation, table) and look at a few.
+- For a derivation, ask the model to redo it step by step with the paper's notation, and check the step you doubt.
+- For numbers in figures, go to the tables or the data, not to the model's reading of the plot.
+
+## Mapping a field
+
+Choose the papers yourself, give the model their abstracts, and ask for themes, open questions and disagreements, with every statement citing the papers it comes from. Then check that every cited paper is in your set, and look at the papers it never cited: they are often the ones that do not fit its story. The full procedure, with code, is the workflow [Literature search with NASA ADS](../../workflows/AIW0002-literature-ads/index.qmd).
+
+## Writing about the literature
+
+A model can turn your notes into the text of an introduction. Do not let it add references: insert them yourself, from papers you have read. Check also that sentences are not close paraphrases of abstracts, which is plagiarism whoever wrote them.
+
+## What not to upload
+
+Papers you are refereeing, proposals you are reviewing and colleagues' drafts are confidential. Journals and observatories forbid uploading them, or restrict it to tools that do not keep the data: see [AI rules of journals and observatories](../AIG0005-journal-observatory-rules/index.qmd).
+
+## History
+
+- 2026-11-25: first version, Francesco De Gasperin.
