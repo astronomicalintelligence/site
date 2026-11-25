@@ -1,0 +1,18 @@
+---
+title: "Guides"
+description: "Short guides to using large language models in research, written and checked by scientists."
+toc: false
+# list pages have no formulas: do not load MathJax from a CDN
+html-math-method: plain
+citation: false
+comments: false
+listing:
+  contents: "*/index.qmd"
+  template: ../_templates/workflows.ejs
+  sort: ["catalog asc"]
+  fields: [catalog, title, description, author, date]
+---
+
+Short guides to using language models in research: where to start, how to check what a model gives you, and the rules of journals and observatories. Each guide has authors, a catalogue number to cite it, and the date it was last checked.
+
+Have an idea for a guide, or a guide you wrote? [Propose it](../contribute.qmd).

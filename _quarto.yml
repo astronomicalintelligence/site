@@ -31,29 +31,15 @@ website:
     logo-alt: "Astronomical Intelligence, home page"
     title: "Astronomical Intelligence"
     left:
-      - text: Start here
-        href: start.qmd
       - text: Library
-        menu:
-          - text: Workflows
-            href: workflows/index.qmd
-          - text: Prompts
-            href: prompts/index.qmd
-          - text: Skills
-            href: skills/index.qmd
-          - text: Agent configs
-            href: agent-configs/index.qmd
-      - text: Model checks
-        href: model-checks/index.qmd
-      - text: Reviews
-        href: reviews/index.qmd
-      - text: Failures
-        href: failures/index.qmd
-      - text: Notes
-        href: notes/index.qmd
+        href: library.qmd
+      - text: Guides
+        href: guides/index.qmd
     right:
       - text: Contribute
         href: contribute.qmd
+      - text: About
+        href: about.qmd
       - icon: github
         href: https://github.com/astronomicalintelligence/site
         aria-label: GitHub repository
@@ -62,8 +48,6 @@ website:
     right:
       - text: About
         href: about.qmd
-      - text: Policies
-        href: policies.qmd
 
 format:
   html:

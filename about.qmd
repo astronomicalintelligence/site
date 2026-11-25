@@ -7,6 +7,12 @@ Astronomical Intelligence is an open collection of tested workflows, prompts, sk
 
 The site is independent of any AI company.
 
+## Why this site
+
+There is no shortage of opinions on how language models will change research, and some of them come from people worth reading. What is hard to find is the practical layer underneath: the exact procedure someone followed, with which model, on what date, how they checked the result, and where it went wrong.
+
+This site collects that layer, starting from astronomy and open to every field. Each contribution is dated and carries a verification level, because a procedure that worked with one model in spring may fail with another in autumn. Contributions are welcome: see [how to contribute](contribute.qmd).
+
 Text is released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) and code under the [MIT licence](https://opensource.org/license/mit).
 
 ## Privacy

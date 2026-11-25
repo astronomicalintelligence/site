@@ -2,15 +2,15 @@
 // Site rules, compiled into the theme so that every change gets a new file name (no stale browser cache)
 /* One colour per kind of contribution, named after a spectral line:
    workflows H-alpha, prompts Na D, skills [O III], agent configs H-beta,
-   model checks H-gamma, reviews [O II], failures (an absorption band) in slate.
+   guides H-gamma (shared with model checks, not on the site for now), reviews [O II], failures in slate.
    Every light-theme colour has at least 4.5:1 contrast on the page background. */
 :root {
   --t-workflows: #C8323C; --t-prompts: #A35F00; --t-skills: #1A7A4E; --t-agent-configs: #0B6E8C;
-  --t-model-checks: #3653C9; --t-reviews: #7338B8; --t-failures: #4A6382;
+  --t-model-checks: #3653C9; --t-reviews: #7338B8; --t-failures: #4A6382; --t-guides: #3653C9;
 }
 body.quarto-dark {
   --t-workflows: #FF7A6E; --t-prompts: #F2B44A; --t-skills: #5ED29A; --t-agent-configs: #5CC8E6;
-  --t-model-checks: #8EA6FF; --t-reviews: #B48CF0; --t-failures: #8EA8C6;
+  --t-model-checks: #8EA6FF; --t-reviews: #B48CF0; --t-failures: #8EA8C6; --t-guides: #8EA6FF;
 }
 .type-workflows { --type: var(--t-workflows); }
 .type-prompts { --type: var(--t-prompts); }
@@ -19,6 +19,7 @@ body.quarto-dark {
 .type-model-checks { --type: var(--t-model-checks); }
 .type-reviews { --type: var(--t-reviews); }
 .type-failures { --type: var(--t-failures); }
+.type-guides { --type: var(--t-guides); }
 
 /* Home: the seven kinds, each under a rule in its colour */
 .kinds { border-top: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 1.8rem; }
@@ -86,3 +87,34 @@ body.quarto-light[class*="type-"] .fits .k:first-child + .v { color: color-mix(i
 a.download-button { display: inline-block; padding: .35rem .9rem; border: 1px solid var(--type); border-radius: 3px;
   background: var(--type); color: var(--bs-body-bg, #fff); text-decoration: none; font-weight: 500; }
 a.download-button:hover { filter: brightness(1.1); color: var(--bs-body-bg, #fff); }
+
+/* Library: filters by kind (buttons in the colour of each kind), research phase and drafts */
+.lib-filters { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem 1.5rem;
+  margin: 1.4rem 0 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--ai-rule); }
+.lib-types { display: flex; flex-wrap: wrap; gap: .45rem; }
+.lib-type { padding: .3rem .85rem; border: 1px solid var(--type, var(--ai-muted)); border-radius: 3px; background: transparent;
+  color: var(--type, var(--ai-text)); font: inherit; font-size: .92rem; font-weight: 500; cursor: pointer; }
+.lib-type:hover { background: color-mix(in srgb, var(--type, var(--ai-muted)) 12%, transparent); }
+.lib-type.active { background: var(--type, var(--ai-text)); color: var(--bs-body-bg, #fff); }
+.lib-more { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.2rem; font-size: .92rem; color: var(--ai-text-soft); }
+.lib-more select { margin-left: .4rem; padding: .2rem .4rem; border: 1px solid var(--ai-rule); border-radius: 3px;
+  background: var(--bs-body-bg); color: var(--ai-text); font: inherit; }
+.lib-drafts { cursor: pointer; }
+.lib-drafts input { margin-right: .3rem; accent-color: var(--ai-accent); }
+.lib-count { color: var(--ai-muted); }
+.lib-empty { margin: 1.5rem 0; color: var(--ai-text-soft); }
+
+/* Home: guides as cards, in the guides colour */
+.guide-cards { list-style: none; padding: 0; margin: 1rem 0 2.5rem; display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+.guide-cards li::before { content: none !important; }
+.guide-card { display: flex; flex-direction: column; gap: .35rem; height: 100%; padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--ai-rule); border-top: 3px solid var(--type); text-decoration: none; color: var(--ai-text); }
+.guide-card:hover { border-color: var(--type); }
+.guide-cat { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .8rem; color: var(--type); }
+.guide-title { font-weight: 600; font-size: 1.08rem; }
+.guide-desc { font-size: .92rem; color: var(--ai-text-soft); }
+.home-more { margin: .6rem 0 2.6rem; }
+.home-more a, .home-share a { font-weight: 500; }
+.home-share { margin: 1rem 0 3rem; padding: 1.1rem 1.3rem; border: 1px solid var(--ai-rule); border-left: 3px solid var(--ai-accent); }
+.home-share p { margin: 0; }

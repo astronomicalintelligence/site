@@ -1,26 +1,31 @@
 ---
 pagetitle: "Tested LLM workflows, prompts and skills for science"
-description: "The first open collection of tested workflows, prompts and skills for doing science with large language models."
+description: "Tested workflows, prompts and skills, and short guides, for doing research with large language models."
 toc: false
 # list pages have no formulas: do not load MathJax from a CDN
 html-math-method: plain
 page-layout: full
 title-block-style: none
 listing:
-  id: latest
-  # newest contributions of every kind
-  contents:
-    - "workflows/*/index.qmd"
-    - "prompts/*/index.qmd"
-    - "skills/*/index.qmd"
-    - "agent-configs/*/index.qmd"
-    - "model-checks/*/index.qmd"
-    - "reviews/*/index.qmd"
-    - "failures/*/index.qmd"
-  template: _templates/workflows.ejs
-  sort: ["date desc", "catalog desc"]
-  max-items: 6
-  fields: [catalog, title, description, qflag, author, phase, model, tested, date]
+  - id: latest
+    # the newest tested material and guides (drafts L0 are in the Library, behind "Show drafts")
+    contents:
+      - "workflows/*/index.qmd"
+      - "prompts/*/index.qmd"
+      - "skills/*/index.qmd"
+      - "agent-configs/*/index.qmd"
+      - "guides/*/index.qmd"
+    exclude:
+      qflag: "L0"
+    template: _templates/workflows.ejs
+    sort: ["date desc", "catalog desc"]
+    max-items: 6
+    fields: [catalog, title, description, qflag, author, phase, model, tested, date]
+  - id: guides
+    contents: "guides/*/index.qmd"
+    template: _templates/guide-cards.ejs
+    sort: ["catalog asc"]
+    fields: [catalog, title, description]
 ---
 
 ::: {.column-screen}
@@ -28,8 +33,8 @@ listing:
 <section class="hero">
 <div class="hero-inner">
 <p class="hero-title" role="heading" aria-level="1">Science with large language models.</p>
-<p class="hero-sub">The first open collection of tested workflows, prompts and skills for science.</p>
-<p class="hero-actions"><a class="btn-hero solid" href="#whats-here">Explore the library</a> <a class="btn-hero" href="contribute.html">Contribute</a></p>
+<p class="hero-sub">Tested workflows, prompts and skills, and short guides, for using language models in research.</p>
+<p class="hero-actions"><a class="btn-hero solid" href="library.html">Browse the library</a> <a class="btn-hero" href="guides/AIG0001-getting-started/">Getting started</a></p>
 </div>
 ```
 {{< include _includes/hero-spectrum.html >}}
@@ -42,38 +47,23 @@ listing:
 ::: {.column-page .home-body}
 
 ::: {.home-intro}
-Large language models are changing the way research is done, and fast. Knowing how to use them well is now part of a researcher's job.
-
-This is a place to share what works: workflows, skills, prompts and agent configurations for modern language models, each tested on real research. Anyone can [contribute](contribute.qmd). If you use material from this site, please cite it: that is how the people who shared it get credit for their work.
+Large language models are changing the way research is done, and fast. This is a place to share what works: material tested on real research, by scientists, with the model and the date of the test. If you use it, please cite it: that is how the people who shared it get credit for their work.
 :::
 
-## What you'll find here {#whats-here}
-
-<dl class="kinds">
-<div class="type-workflows"><dt><a href="workflows/index.html">Workflows</a></dt><dd>Step-by-step procedures for a research task, with the exact prompts and the checks to run on the result.</dd></div>
-<div class="type-prompts"><dt><a href="prompts/index.html">Prompts</a></dt><dd>Single prompts that worked on real research tasks, with an example of the output and their known limits.</dd></div>
-<div class="type-skills"><dt><a href="skills/index.html">Skills</a></dt><dd>Packaged instructions and scripts that an AI agent loads when a task needs them, ready to install.</dd></div>
-<div class="type-agent-configs"><dt><a href="agent-configs/index.html">Agent configs</a></dt><dd>CLAUDE.md and AGENTS.md templates that teach coding agents the conventions of a research project.</dd></div>
-<div class="type-model-checks"><dt><a href="model-checks/index.html">Model checks</a></dt><dd>Small, repeatable tests of models on real scientific tasks, with dated results.</dd></div>
-<div class="type-reviews"><dt><a href="reviews/index.html">Reviews</a></dt><dd>A second, AI-assisted peer review of published papers, with the model, the prompt and the date, checked by a scientist.</dd></div>
-<div class="type-failures"><dt><a href="failures/index.html">Failures</a></dt><dd>Real errors made by models on research tasks, how they were caught and the check that would have prevented them.</dd></div>
-</dl>
-
-
-## Workflows by research phase
-
-<ul class="phases">
-<li><a href="workflows/index.html#category=literature">Literature</a><span>Search, read and synthesise papers with ADS, arXiv or PubMed</span></li>
-<li><a href="workflows/index.html#category=proposals">Proposals</a><span>Telescope time, beamtime and grant proposals</span></li>
-<li><a href="workflows/index.html#category=code">Data and code</a><span>Pipelines, legacy code, data formats and plots</span></li>
-<li><a href="workflows/index.html#category=analysis">Analysis</a><span>Statistics, model fitting, units and derivations</span></li>
-<li><a href="workflows/index.html#category=writing">Writing</a><span>Drafts, figures and language review</span></li>
-<li><a href="workflows/index.html#category=review">Pre-submission review</a><span>Referee reports on your own draft, and replies to referees</span></li>
-</ul>
-
-## Latest contributions
+## Latest additions
 
 ::: {#latest}
+:::
+
+<p class="home-more"><a href="library.html">The whole library →</a></p>
+
+## Guides
+
+::: {#guides}
+:::
+
+::: {.home-share}
+**Share what works for you.** A workflow, a prompt, a skill or a guide: one short form on GitHub. [Contribute →](contribute.qmd)
 :::
 
 :::

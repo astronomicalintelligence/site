@@ -10,9 +10,6 @@ Anyone can propose a contribution with a short form on GitHub (a free GitHub acc
 [Prompt](https://github.com/astronomicalintelligence/site/issues/new?template=2-prompt.yml){.form-button .type-prompts}
 [Skill](https://github.com/astronomicalintelligence/site/issues/new?template=3-skill.yml){.form-button .type-skills}
 [Agent config](https://github.com/astronomicalintelligence/site/issues/new?template=4-agent-config.yml){.form-button .type-agent-configs}
-[Model check](https://github.com/astronomicalintelligence/site/issues/new?template=5-model-check.yml){.form-button .type-model-checks}
-[Paper to review](https://github.com/astronomicalintelligence/site/issues/new?template=6-review.yml){.form-button .type-reviews}
-[Failure](https://github.com/astronomicalintelligence/site/issues/new?template=7-failure.yml){.form-button .type-failures}
 :::
 
 Each form needs about four answers, the authors included, which takes a few minutes. List the authors one per line as *name, affiliation, ORCID, @GitHub username*: only the name is needed, and the username links the name to the GitHub profile. You can drag and drop images (screenshots, plots) into any text box. Use only images you made or may share under CC BY 4.0.
@@ -27,9 +24,6 @@ The fields in **bold** are required.
 - Prompt: **what it does**, **the prompt** exactly as used, **how to check the result**, a real example.
 - Skill: **what it does**, `SKILL.md` (pasted, or a .zip of the skill folder), **how to check the result**.
 - Agent config: **what it does and for which projects**, **the whole `AGENTS.md` or `CLAUDE.md`**, **how to check the result**.
-- Model check: **what it checks**, **the prompt**, **the expected answer with the rule to mark a reply pass or fail**, the results for each model you tried.
-- Paper to review: **the published paper**, **whether it is open access**, **why it is worth a second review**, **whether you could check the model's points**. Reviews follow the [ground rules](reviews/index.qmd#ground-rules).
-- Failure: **what happened** (model, date, what it answered and what was right), **how to catch or avoid it**.
 
 Workflows, prompts, skills and agent configs can also say **how you tested it**: the model, the date and the real case you ran it on. A tested contribution is published as **L1**; an untested one as an **L0** draft. All of them can list **known failures** and a research phase.
 

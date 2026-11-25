@@ -1,5 +1,6 @@
 -- Inserts a FITS-style header with the test metadata at the top of a page.
--- Runs on any page whose front matter has a `qflag` field.
+-- Runs on any page whose front matter has a `qflag` field (Library contributions), and on guides
+-- (catalogue number AI G...), which have no verification level but a "last checked" date.
 
 local function s(x)
   if x == nil then return nil end
@@ -36,9 +37,14 @@ end
 
 function Pandoc(doc)
   local m = doc.meta
-  if not m.qflag then return doc end
+  local guide = m.catalog and s(m.catalog):match("^AI G") ~= nil
+  if not m.qflag and not guide then return doc end
 
-  local rows = {
+  local rows = guide and {
+    { "CATALOG",  s(m.catalog),        "catalogue number" },
+    { "AUTHOR",   authors(m.author),   "who wrote it" },
+    { "CHECKED",  s(m["last-checked"]), "date the guide was last checked" },
+  } or {
     { "CATALOG",  s(m.catalog),       "catalogue number" },
     { "AUTHOR",   authors(m.author),  "who wrote and tested it" },
     { "MODEL",    s(m.model),         "model and version" },
@@ -65,7 +71,8 @@ function Pandoc(doc)
   local off = (quarto and quarto.project and quarto.project.offset) or "."
   local html = '<div class="fits-wrap"><div class="fits" role="note" aria-label="Test metadata" tabindex="0">'
     .. table.concat(lines, "\n") .. '</div>'
-    .. '<a class="fits-help" href="' .. off .. '/start.html#reading-a-contribution">What is this header?</a></div>'
+    .. (guide and "" or ('<a class="fits-help" href="' .. off .. '/library.html#reading-a-contribution">What is this header?</a>'))
+    .. '</div>'
   table.insert(doc.blocks, 1, pandoc.RawBlock("html", html))
   return doc
 end
